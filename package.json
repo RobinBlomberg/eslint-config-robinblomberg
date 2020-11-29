@@ -1,15 +1,30 @@
 {
-  "name": "@kjou/eslint-config",
-  "version": "0.1.0",
+  "name": "@robinblomberg/eslint-config-robinblomberg",
+  "version": "0.2.0",
   "author": "Robin Blomberg",
-  "scripts": {
-    "test": "node ./test"
+  "private": true,
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.14.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsdoc": "^30.7.8",
+    "eslint-plugin-typescript": "^0.14.0"
   },
+  "description": "```\r npm install --save-dev @robinblomberg/eslint-config-robinblomberg\r ```",
   "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RobinBlomberg/eslint-config.git"
+    "url": "git+https://github.com/RobinBlomberg/eslint-config-robinblomberg.git"
   },
-  "license": "UNLICENSED",
-  "description": ""
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobinBlomberg/eslint-config-robinblomberg/issues"
+  },
+  "homepage": "https://github.com/RobinBlomberg/eslint-config-robinblomberg"
 }
