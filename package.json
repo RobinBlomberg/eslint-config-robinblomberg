@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Robin Blomberg",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.8.2",
@@ -11,17 +11,11 @@
     "eslint-plugin-jsdoc": "^30.7.8",
     "eslint-plugin-typescript": "^0.14.0"
   },
-  "description": "```\r npm install --save-dev @robinblomberg/eslint-config-robinblomberg\r ```",
   "main": "index.js",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RobinBlomberg/eslint-config-robinblomberg.git"
   },
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/RobinBlomberg/eslint-config-robinblomberg/issues"
   },
