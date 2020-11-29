@@ -2,7 +2,6 @@
   "name": "@robinblomberg/eslint-config-robinblomberg",
   "version": "0.2.0",
   "author": "Robin Blomberg",
-  "private": true,
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
@@ -26,5 +25,5 @@
   "bugs": {
     "url": "https://github.com/RobinBlomberg/eslint-config-robinblomberg/issues"
   },
-  "homepage": "https://github.com/RobinBlomberg/eslint-config-robinblomberg"
+  "homepage": "https://github.com/RobinBlomberg/eslint-config-robinblomberg#readme"
 }
