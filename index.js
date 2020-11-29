@@ -618,7 +618,7 @@ module.exports = {
     'no-multi-assign': warn,
     'no-multi-spaces': warn,
     'no-multi-str': warn,
-    'no-multiple-empty-lines': [warn, { max: 'warn', maxEOF: 0 }],
+    'no-multiple-empty-lines': [warn, { max: 1, maxEOF: 0 }],
     'no-negated-condition': warn,
     'no-negated-in-lhs': warn,
     'no-nested-ternary': warn,

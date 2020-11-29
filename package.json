@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "author": "Robin Blomberg",
   "dependencies": {
     "@types/node": "^14.14.10",
