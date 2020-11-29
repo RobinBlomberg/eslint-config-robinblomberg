@@ -327,6 +327,15 @@ module.exports = {
         'jsdoc/require-jsdoc': off,
         'no-magic-numbers': off
       }
+    },
+    {
+      files: [
+        '**/*.d.ts'
+      ],
+      rules: {
+        '@typescript-eslint/no-extraneous-class': off,
+        'jsdoc/require-jsdoc': off
+      }
     }
   ],
   parser: 'babel-eslint',
