@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-npm install --save-dev @robinblomberg/eslint-config-hac-eslint
+npm install --save-dev @robinblomberg/eslint-config-robinblomberg
 ```
 
 ## Configuration
