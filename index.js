@@ -73,7 +73,7 @@ module.exports = {
         '@typescript-eslint/explicit-module-boundary-types': off,
         '@typescript-eslint/func-call-spacing': warn,
         '@typescript-eslint/indent': [warn, 2, {
-          SwitchCase: warn,
+          SwitchCase: 1,
           ignoredNodes: [
             'TSTypeParameterInstantiation',
             'TSUnionType'
