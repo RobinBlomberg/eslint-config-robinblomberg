@@ -281,7 +281,7 @@ module.exports = {
         '@typescript-eslint/require-await': warn,
         '@typescript-eslint/restrict-plus-operands': warn,
         // Disabled due to false positives:
-        // '@typescript-eslint/restrict-template-expressions': warn,
+        '@typescript-eslint/restrict-template-expressions': off,
         '@typescript-eslint/return-await': warn,
         '@typescript-eslint/semi': [warn, 'always'],
         '@typescript-eslint/space-before-function-paren': [warn, 'never'],
@@ -428,7 +428,8 @@ module.exports = {
     'import/no-named-export': off,
     'import/no-namespace': off,
     'import/no-nodejs-modules': off,
-    'import/no-relative-parent-imports': warn,
+    // Disabled due to false positives (e.g. "@robinblomberg/schema"):
+    'import/no-relative-parent-imports': off,
     'import/no-restricted-paths': warn,
     'import/no-self-import': warn,
     'import/no-unassigned-import': warn,
