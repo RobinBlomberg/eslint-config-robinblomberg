@@ -296,6 +296,7 @@ module.exports = {
         'func-call-spacing': off,
         indent: off,
         'init-declarations': off,
+        'jsdoc/require-jsdoc': off,
         'keyword-spacing': off,
         'no-extra-parens': off,
         'no-extra-semi': off,
