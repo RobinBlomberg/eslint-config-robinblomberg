@@ -475,7 +475,9 @@ module.exports = {
     'jsdoc/check-access': warn,
     'jsdoc/check-alignment': warn,
     'jsdoc/check-examples': warn,
-    'jsdoc/check-indentation': warn,
+    'jsdoc/check-indentation': [off, {
+      excludeTags: ['example']
+    }],
     'jsdoc/check-line-alignment': warn,
     'jsdoc/check-param-names': warn,
     'jsdoc/check-property-names': warn,
