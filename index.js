@@ -824,7 +824,7 @@ module.exports = {
       avoidEscape: true
     }],
     radix: warn,
-    'require-atomic-updates': warn,
+    'require-atomic-updates': off,
     'require-await': warn,
     'require-unicode-regexp': off,
     'require-yield': warn,
