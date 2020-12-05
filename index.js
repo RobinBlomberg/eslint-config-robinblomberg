@@ -496,6 +496,7 @@ module.exports = {
     'jsdoc/no-types': off,
     'jsdoc/no-undefined-types': [warn, {
       definedTypes: [
+        'unknown',
         /**
          * @see typescript\lib\lib.es5.d.ts
          * @version 4.1.2
