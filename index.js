@@ -724,7 +724,7 @@ module.exports = {
     'no-path-concat': warn,
     'no-plusplus': off,
     'no-process-env': off,
-    'no-process-exit': error,
+    'no-process-exit': off,
     'no-proto': warn,
     'no-prototype-builtins': warn,
     'no-redeclare': [warn, { builtinGlobals: false }],
