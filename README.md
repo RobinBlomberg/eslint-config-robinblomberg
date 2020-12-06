@@ -29,7 +29,7 @@ Add the following scripts to your package.json:
 }
 ```
 
-Adjust the paths according to your project/file structure as necessary (e.g. `"eslint \"src/**/*.{ts,tsx}\""`).
+Adjust the paths according to your project/file structure as necessary (e.g. `"eslint \"lib/**/*.{ts,tsx}\""`).
 
 To run a script, enter the following in your command line:
 
