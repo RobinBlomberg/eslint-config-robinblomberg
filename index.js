@@ -576,6 +576,7 @@ module.exports = {
     'jsdoc/require-file-overview': off,
     'jsdoc/require-hyphen-before-param-description': [warn, 'never'],
     'jsdoc/require-jsdoc': [warn, {
+      exemptEmptyFunctions: true,
       publicOnly: false,
       require: {
         ArrowFunctionExpression: true,
