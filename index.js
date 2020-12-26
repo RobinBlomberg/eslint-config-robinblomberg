@@ -413,7 +413,8 @@ module.exports = {
     'import/group-exports': off,
     'import/imports-first': warn,
     'import/max-dependencies': warn,
-    'import/named': warn,
+    // Disabled due to false positives:
+    'import/named': off,
     'import/namespace': warn,
     'import/newline-after-import': warn,
     'import/no-absolute-path': warn,
