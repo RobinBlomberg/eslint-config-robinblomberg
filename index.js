@@ -415,7 +415,8 @@ module.exports = {
     'import/max-dependencies': warn,
     // Disabled due to false positives:
     'import/named': off,
-    'import/namespace': warn,
+    // Disabled due to false positives:
+    'import/namespace': off,
     'import/newline-after-import': warn,
     'import/no-absolute-path': warn,
     'import/no-amd': warn,

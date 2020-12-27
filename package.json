@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.2.24",
+  "version": "0.2.25",
   "author": "Robin Blomberg",
   "main": "index.js",
   "dependencies": {
