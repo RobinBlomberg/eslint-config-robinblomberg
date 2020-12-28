@@ -330,7 +330,8 @@ module.exports = {
       ],
       rules: {
         'jsdoc/require-jsdoc': off,
-        'no-magic-numbers': off
+        'no-magic-numbers': off,
+        'sort-keys': off
       }
     },
     {
