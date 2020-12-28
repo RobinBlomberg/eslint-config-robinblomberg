@@ -4,6 +4,7 @@ const off = 'off';
 const warn = IS_DEVELOPMENT ? 'warn' : 'error';
 const offDuringDevelopment = IS_DEVELOPMENT ? off : warn;
 
+// eslint-disable-next-line import/no-commonjs
 module.exports = {
   env: {
     browser: true,
@@ -317,6 +318,9 @@ module.exports = {
       }
     },
     {
+      env: {
+        mocha: true
+      },
       files: [
         '**/spec/**',
         '**/test/**',

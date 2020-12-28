@@ -1,6 +1,3 @@
 {
-  "extends": "@robinblomberg/robinblomberg",
-  "rules": {
-    "import/no-commonjs": "off"
-  }
+  "extends": "@robinblomberg/robinblomberg"
 }
