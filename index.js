@@ -19,7 +19,11 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
+      files: [
+        '**/*.ts',
+        '**/*.tsx',
+        '**/*.d.ts'
+      ],
       globals: {
         NodeJS: true
       },
@@ -295,6 +299,7 @@ module.exports = {
         '@typescript-eslint/unified-signatures': warn,
         'default-case': off,
         'func-call-spacing': off,
+        'import/extensions': off,
         indent: off,
         'init-declarations': off,
         'jsdoc/require-jsdoc': off,
