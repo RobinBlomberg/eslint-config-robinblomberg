@@ -412,7 +412,7 @@ module.exports = {
     'id-match': [off, '^_?[_A-Za-z][A-Za-z0-9_]*$'],
     'implicit-arrow-linebreak': [off, 'beside'],
     'import/default': warn,
-    'import/dynamic-import-chunkname': warn,
+    'import/dynamic-import-chunkname': off,
     'import/export': warn,
     'import/exports-last': warn,
     'import/extensions': [warn, {
