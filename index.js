@@ -592,8 +592,8 @@ module.exports = {
       publicOnly: false,
       require: {
         ArrowFunctionExpression: true,
-        ClassDeclaration: true,
-        ClassExpression: true,
+        ClassDeclaration: false,
+        ClassExpression: false,
         FunctionDeclaration: true,
         FunctionExpression: true,
         MethodDefinition: true
