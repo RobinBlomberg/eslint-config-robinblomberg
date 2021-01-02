@@ -300,6 +300,9 @@ module.exports = {
         'default-case': off,
         'func-call-spacing': off,
         'import/extensions': off,
+        'import/no-unresolved': [warn, {
+          ignore: ['\\.types$']
+        }],
         indent: off,
         'init-declarations': off,
         'jsdoc/require-jsdoc': off,
@@ -346,7 +349,6 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-extraneous-class': off,
         '@typescript-eslint/no-use-before-define': off,
-        'import/no-unresolved': off,
         'jsdoc/require-jsdoc': off
       }
     }
