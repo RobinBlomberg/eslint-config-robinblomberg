@@ -508,7 +508,8 @@ module.exports = {
     'jsdoc/no-bad-blocks': warn,
     'jsdoc/no-defaults': warn,
     'jsdoc/no-types': off,
-    'jsdoc/no-undefined-types': [warn, {
+    // Disable due to false positives when referring to a generic type from inside its function:
+    'jsdoc/no-undefined-types': [off, {
       definedTypes: [
         'unknown',
         /**
