@@ -360,6 +360,7 @@ module.exports = {
       jsx: true
     },
     ecmaVersion: 2017,
+    requireConfigFile: false,
     sourceType: 'module'
   },
   plugins: [
