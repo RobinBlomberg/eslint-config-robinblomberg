@@ -355,6 +355,7 @@ module.exports = {
   ],
   parser: 'babel-eslint',
   parserOptions: {
+    allowAwaitOutsideFunction: true,
     ecmaFeatures: {
       jsx: true
     },
