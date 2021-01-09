@@ -300,7 +300,8 @@ module.exports = {
         'default-case': off,
         'func-call-spacing': off,
         'import/extensions': off,
-        'import/no-unresolved': [warn, {
+        // Disabled due to false positives:
+        'import/no-unresolved': [off, {
           ignore: ['\\.types$']
         }],
         indent: off,
