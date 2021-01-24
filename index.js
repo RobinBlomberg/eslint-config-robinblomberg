@@ -79,7 +79,9 @@ module.exports = {
         '@typescript-eslint/func-call-spacing': warn,
         '@typescript-eslint/indent': [warn, 2, {
           SwitchCase: 1,
+          // Ignored nodes due to false positives:
           ignoredNodes: [
+            'TSIntersectionType',
             'TSTypeParameterInstantiation',
             'TSUnionType'
           ]
