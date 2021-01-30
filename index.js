@@ -351,6 +351,7 @@ module.exports = {
       ],
       rules: {
         '@typescript-eslint/no-extraneous-class': off,
+        '@typescript-eslint/no-magic-numbers': off,
         '@typescript-eslint/no-use-before-define': off,
         'jsdoc/require-jsdoc': off
       }
