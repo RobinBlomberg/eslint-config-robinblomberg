@@ -340,6 +340,7 @@ module.exports = {
         '**/*.test.*'
       ],
       rules: {
+        '@typescript-eslint/no-magic-numbers': off,
         'jsdoc/require-jsdoc': off,
         'no-magic-numbers': off,
         'sort-keys': off
@@ -351,7 +352,6 @@ module.exports = {
       ],
       rules: {
         '@typescript-eslint/no-extraneous-class': off,
-        '@typescript-eslint/no-magic-numbers': off,
         '@typescript-eslint/no-use-before-define': off,
         'jsdoc/require-jsdoc': off
       }
