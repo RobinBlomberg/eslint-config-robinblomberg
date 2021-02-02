@@ -32,7 +32,6 @@ module.exports = {
         project: './tsconfig.json'
       },
       plugins: [
-        'typescript',
         '@typescript-eslint'
       ],
       rules: {
