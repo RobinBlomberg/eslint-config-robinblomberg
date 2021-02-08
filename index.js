@@ -276,7 +276,7 @@ module.exports = {
         // "Error: Non-null Assertion Failed: Expected to find a property "XXX" for the type."
         '@typescript-eslint/prefer-readonly-parameter-types': off,
         '@typescript-eslint/prefer-reduce-type-parameter': warn,
-        '@typescript-eslint/prefer-regexp-exec': warn,
+        '@typescript-eslint/prefer-regexp-exec': off,
         '@typescript-eslint/prefer-string-starts-ends-with': off,
         '@typescript-eslint/prefer-ts-expect-error': warn,
         '@typescript-eslint/promise-function-async': off,
