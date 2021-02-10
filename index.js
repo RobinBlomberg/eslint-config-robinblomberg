@@ -447,9 +447,7 @@ module.exports = {
     'import/no-extraneous-dependencies': warn,
     'import/no-internal-modules': [warn, {
       allow: [
-        '**/lib/*.js',
-        '**/index.js',
-        '**/index.test.js'
+        '[abcdefghijklmnopqrstuvwxyz]**/**'
       ]
     }],
     'import/no-mutable-exports': warn,
