@@ -467,7 +467,7 @@ module.exports = {
     'import/no-unused-modules': warn,
     'import/no-useless-path-segments': warn,
     'import/no-webpack-loader-syntax': warn,
-    'import/order': [warn, {
+    /* 'import/order': [warn, {
       alphabetize: {
         caseInsensitive: false,
         order: 'asc'
@@ -483,7 +483,7 @@ module.exports = {
         'object'
       ],
       'newlines-between': 'never'
-    }],
+    }], */
     'import/prefer-default-export': off,
     'import/unambiguous': off,
     indent: [warn, 2, {
