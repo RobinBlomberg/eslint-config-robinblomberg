@@ -301,6 +301,7 @@ module.exports = {
         'default-case': off,
         'func-call-spacing': off,
         'import/extensions': off,
+        'import/no-unassigned-import': off,
         // Disabled due to false positives:
         'import/no-unresolved': [off, {
           ignore: ['\\.types$']
