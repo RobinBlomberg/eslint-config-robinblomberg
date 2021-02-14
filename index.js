@@ -516,8 +516,14 @@ module.exports = {
         'react/jsx-props-no-spreading': off,
         'react/jsx-sort-default-props': warn,
         'react/jsx-sort-props': warn,
-        'react/jsx-space-before-closing': warn,
-        'react/jsx-tag-spacing': warn,
+        /** @deprecated */
+        'react/jsx-space-before-closing': off,
+        'react/jsx-tag-spacing': [warn, {
+          afterOpening: 'never',
+          beforeClosing: 'allow',
+          beforeSelfClosing: 'always',
+          closingSlash: 'never'
+        }],
         'react/jsx-uses-react': warn,
         'react/jsx-uses-vars': warn,
         'react/jsx-wrap-multilines': [warn, {
