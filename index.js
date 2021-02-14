@@ -204,6 +204,7 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': off,
         '@typescript-eslint/no-extra-non-null-assertion': warn,
         '@typescript-eslint/no-extra-parens': [warn, 'all', {
+          ignoreJSX: true,
           nestedBinaryExpressions: false
         }],
         '@typescript-eslint/no-extra-semi': warn,
@@ -361,6 +362,176 @@ module.exports = {
         'jsdoc/require-jsdoc': off,
         'no-magic-numbers': off,
         'sort-keys': off
+      }
+    },
+    {
+      files: [
+        '**/*.jsx',
+        '**/*.tsx'
+      ],
+      plugins: [
+        'react',
+        'jsx-a11y'
+      ],
+      rules: {
+        'react/boolean-prop-naming': warn,
+        'react/button-has-type': warn,
+        'react/default-props-match-prop-types': warn,
+        'react/destructuring-assignment': off,
+        'react/display-name': warn,
+        'react/forbid-component-props': off,
+        'react/forbid-dom-props': warn,
+        'react/forbid-elements': warn,
+        'react/forbid-foreign-prop-types': warn,
+        'react/forbid-prop-types': warn,
+        'react/function-component-definition': [warn, {
+          namedComponents: 'arrow-function',
+          unnamedComponents: 'arrow-function'
+        }],
+        'react/jsx-boolean-value': warn,
+        'react/jsx-child-element-spacing': warn,
+        'react/jsx-closing-bracket-location': warn,
+        'react/jsx-closing-tag-location': warn,
+        'react/jsx-curly-brace-presence': [warn, {
+          children: 'always',
+          props: 'never'
+        }],
+        'react/jsx-curly-newline': off,
+        'react/jsx-curly-spacing': warn,
+        'react/jsx-equals-spacing': warn,
+        'react/jsx-filename-extension': [warn, {
+          extensions: [
+            '.jsx',
+            '.tsx'
+          ]
+        }],
+        'react/jsx-first-prop-new-line': warn,
+        'react/jsx-fragments': warn,
+        'react/jsx-handler-names': warn,
+        'react/jsx-indent': [warn, 2, {
+          indentLogicalExpressions: true
+        }],
+        'react/jsx-indent-props': [warn, 2],
+        'react/jsx-key': warn,
+        'react/jsx-max-depth': off,
+        'react/jsx-max-props-per-line': [warn, {
+          maximum: 1,
+          when: 'multiline'
+        }],
+        'react/jsx-newline': off,
+        'react/jsx-no-bind': [warn, {
+          allowArrowFunctions: true,
+          allowBind: true,
+          allowFunctions: false,
+          ignoreDOMComponents: false,
+          ignoreRefs: false
+        }],
+        'react/jsx-no-comment-textnodes': warn,
+        'react/jsx-no-constructed-context-values': warn,
+        'react/jsx-no-duplicate-props': warn,
+        'react/jsx-no-literals': warn,
+        'react/jsx-no-script-url': warn,
+        'react/jsx-no-target-blank': warn,
+        'react/jsx-no-undef': warn,
+        'react/jsx-no-useless-fragment': off,
+        'react/jsx-one-expression-per-line': warn,
+        'react/jsx-pascal-case': warn,
+        'react/jsx-props-no-multi-spaces': warn,
+        'react/jsx-props-no-spreading': off,
+        'react/jsx-sort-default-props': warn,
+        'react/jsx-sort-props': warn,
+        'react/jsx-space-before-closing': warn,
+        'react/jsx-tag-spacing': warn,
+        'react/jsx-uses-react': warn,
+        'react/jsx-uses-vars': warn,
+        'react/jsx-wrap-multilines': [warn, {
+          arrow: 'ignore',
+          assignment: 'ignore',
+          condition: 'ignore',
+          declaration: 'ignore',
+          logical: 'ignore',
+          prop: 'ignore',
+          return: 'parens'
+        }],
+        'react/no-access-state-in-setstate': warn,
+        'react/no-adjacent-inline-elements': off,
+        'react/no-array-index-key': warn,
+        'react/no-children-prop': warn,
+        'react/no-danger': warn,
+        'react/no-danger-with-children': warn,
+        'react/no-deprecated': warn,
+        'react/no-did-mount-set-state': warn,
+        'react/no-did-update-set-state': warn,
+        'react/no-direct-mutation-state': warn,
+        'react/no-find-dom-node': warn,
+        'react/no-is-mounted': warn,
+        'react/no-multi-comp': warn,
+        'react/no-redundant-should-component-update': warn,
+        'react/no-render-return-value': warn,
+        'react/no-set-state': off,
+        'react/no-string-refs': warn,
+        'react/no-this-in-sfc': warn,
+        'react/no-typos': warn,
+        'react/no-unescaped-entities': warn,
+        'react/no-unknown-property': warn,
+        'react/no-unsafe': warn,
+        'react/no-unused-prop-types': warn,
+        'react/no-unused-state': warn,
+        'react/no-will-update-set-state': warn,
+        'react/prefer-es6-class': warn,
+        'react/prefer-read-only-props': warn,
+        'react/prefer-stateless-function': warn,
+        'react/prop-types': off,
+        'react/react-in-jsx-scope': warn,
+        'react/require-default-props': off,
+        'react/require-optimization': off,
+        'react/require-render-return': warn,
+        'react/self-closing-comp': warn,
+        'react/sort-comp': [warn, {
+          groups: {
+            lifecycle: [
+              'displayName',
+              'propTypes',
+              'contextTypes',
+              'childContextTypes',
+              'mixins',
+              'statics',
+              'defaultProps',
+              'constructor',
+              'getDefaultProps',
+              'state',
+              'getInitialState',
+              'getChildContext',
+              'getDerivedStateFromProps',
+              'componentWillMount',
+              'UNSAFE_componentWillMount',
+              'componentDidMount',
+              'componentWillReceiveProps',
+              'UNSAFE_componentWillReceiveProps',
+              'shouldComponentUpdate',
+              'componentWillUpdate',
+              'UNSAFE_componentWillUpdate',
+              'getSnapshotBeforeUpdate',
+              'componentDidUpdate',
+              'componentDidCatch',
+              'componentWillUnmount'
+            ]
+          },
+          order: [
+            'static-variables',
+            'static-methods',
+            'everything-else',
+            'instance-variables',
+            'instance-methods',
+            'lifecycle',
+            'render'
+          ]
+        }],
+        'react/sort-prop-types': warn,
+        'react/state-in-constructor': off,
+        'react/static-property-placement': warn,
+        'react/style-prop-object': warn,
+        'react/void-dom-elements-no-children': warn
       }
     },
     {
