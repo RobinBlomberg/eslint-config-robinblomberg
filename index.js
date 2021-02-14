@@ -372,6 +372,17 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': off,
         'jsdoc/require-jsdoc': off
       }
+    },
+    {
+      files: [
+        '**/*.stories.js',
+        '**/*.stories.jsx',
+        '**/*.stories.ts',
+        '**/*.stories.tsx'
+      ],
+      rules: {
+        'import/no-default-export': off
+      }
     }
   ],
   parser: 'babel-eslint',
