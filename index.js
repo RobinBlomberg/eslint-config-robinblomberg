@@ -204,7 +204,7 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': off,
         '@typescript-eslint/no-extra-non-null-assertion': warn,
         '@typescript-eslint/no-extra-parens': [warn, 'all', {
-          ignoreJSX: true,
+          ignoreJSX: 'all',
           nestedBinaryExpressions: false
         }],
         '@typescript-eslint/no-extra-semi': warn,
