@@ -720,7 +720,7 @@ module.exports = {
     'import/no-absolute-path': warn,
     'import/no-amd': warn,
     'import/no-anonymous-default-export': warn,
-    'import/no-commonjs': warn,
+    'import/no-commonjs': off,
     'import/no-cycle': off,
     'import/no-default-export': warn,
     'import/no-deprecated': warn,
