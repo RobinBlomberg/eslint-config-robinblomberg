@@ -348,6 +348,7 @@ module.exports = {
     },
     {
       env: {
+        jest: true,
         mocha: true
       },
       files: [
@@ -1180,6 +1181,9 @@ module.exports = {
     'import/internal-regex': '^@',
     jsdoc: {
       mode: 'closure'
+    },
+    react: {
+      version: 'detect'
     }
   }
 };
