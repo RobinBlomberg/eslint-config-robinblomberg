@@ -2,7 +2,6 @@ const IS_DEVELOPMENT = !process.env.CI && process.env.NODE_ENV !== 'production';
 const error = 'error';
 const off = 'off';
 const warn = IS_DEVELOPMENT ? 'warn' : 'error';
-const offDuringDevelopment = IS_DEVELOPMENT ? off : warn;
 
 // eslint-disable-next-line import/no-commonjs
 module.exports = {
@@ -946,9 +945,7 @@ module.exports = {
     'no-compare-neg-zero': warn,
     'no-cond-assign': warn,
     'no-confusing-arrow': warn,
-    'no-console': [offDuringDevelopment, {
-      allow: ['warn', 'error']
-    }],
+    'no-console': [warn, { allow: ['warn', 'error'] }],
     'no-const-assign': warn,
     'no-constant-condition': [warn, { checkLoops: false }],
     'no-continue': warn,
