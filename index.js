@@ -67,7 +67,7 @@ module.exports = {
         }],
         '@typescript-eslint/default-param-last': warn,
         '@typescript-eslint/dot-notation': warn,
-        '@typescript-eslint/explicit-function-return-type': [warn, {
+        '@typescript-eslint/explicit-function-return-type': [off, {
           allowTypedFunctionExpressions: true
         }],
         '@typescript-eslint/explicit-member-accessibility': [warn, {
@@ -564,7 +564,7 @@ module.exports = {
         'react/prefer-read-only-props': warn,
         'react/prefer-stateless-function': warn,
         'react/prop-types': off,
-        'react/react-in-jsx-scope': warn,
+        'react/react-in-jsx-scope': off,
         'react/require-default-props': off,
         'react/require-optimization': off,
         'react/require-render-return': warn,
