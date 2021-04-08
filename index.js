@@ -230,7 +230,7 @@ module.exports = {
         }],
         '@typescript-eslint/no-misused-new': warn,
         '@typescript-eslint/no-misused-promises': off,
-        '@typescript-eslint/no-namespace': [warn, {
+        '@typescript-eslint/no-namespace': [off, {
           allowDeclarations: true
         }],
         '@typescript-eslint/no-non-null-asserted-optional-chain': warn,
