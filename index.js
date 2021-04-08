@@ -636,7 +636,8 @@ module.exports = {
         '**/*.stories.tsx'
       ],
       rules: {
-        'import/no-default-export': off
+        'import/no-default-export': off,
+        'react/no-multi-comp': off
       }
     }
   ],
