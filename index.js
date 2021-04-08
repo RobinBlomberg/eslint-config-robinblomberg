@@ -621,8 +621,10 @@ module.exports = {
         '**/*.d.ts'
       ],
       rules: {
+        '@typescript-eslint/consistent-type-definitions': off,
         '@typescript-eslint/no-extraneous-class': off,
         '@typescript-eslint/no-use-before-define': off,
+        'import/no-default-export': off,
         'jsdoc/require-jsdoc': off
       }
     },
