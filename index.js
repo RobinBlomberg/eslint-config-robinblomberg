@@ -230,7 +230,7 @@ module.exports = {
         }],
         '@typescript-eslint/no-misused-new': warn,
         '@typescript-eslint/no-misused-promises': off,
-        '@typescript-eslint/no-namespace': [warn, {
+        '@typescript-eslint/no-namespace': [off, {
           allowDeclarations: true
         }],
         '@typescript-eslint/no-non-null-asserted-optional-chain': warn,
@@ -623,8 +623,10 @@ module.exports = {
         '**/*.d.ts'
       ],
       rules: {
+        '@typescript-eslint/consistent-type-definitions': off,
         '@typescript-eslint/no-extraneous-class': off,
         '@typescript-eslint/no-use-before-define': off,
+        'import/no-default-export': off,
         'jsdoc/require-jsdoc': off
       }
     },
@@ -636,7 +638,8 @@ module.exports = {
         '**/*.stories.tsx'
       ],
       rules: {
-        'import/no-default-export': off
+        'import/no-default-export': off,
+        'react/no-multi-comp': off
       }
     }
   ],
