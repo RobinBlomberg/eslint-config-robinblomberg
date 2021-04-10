@@ -253,7 +253,9 @@ module.exports = {
         '@typescript-eslint/no-unsafe-return': off,
         '@typescript-eslint/no-unused-expressions': warn,
         '@typescript-eslint/no-unused-vars': [warn, {
-          args: 'none'
+          args: 'all',
+          vars: 'all',
+          varsIgnorePattern: '^_'
         }],
         '@typescript-eslint/no-use-before-define': [warn, {
           classes: false,
@@ -1065,7 +1067,11 @@ module.exports = {
       allowTernary: true
     }],
     'no-unused-labels': warn,
-    'no-unused-vars': [warn, { vars: 'all' }],
+    'no-unused-vars': [warn, {
+      args: 'all',
+      vars: 'all',
+      varsIgnorePattern: '^_'
+    }],
     'no-use-before-define': [error, {
       classes: false,
       functions: false,
