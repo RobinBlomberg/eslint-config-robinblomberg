@@ -254,6 +254,7 @@ module.exports = {
         '@typescript-eslint/no-unused-expressions': warn,
         '@typescript-eslint/no-unused-vars': [warn, {
           args: 'after-used',
+          argsIgnorePattern: '^_.*$',
           vars: 'all',
           varsIgnorePattern: '^_.*$'
         }],
@@ -1072,6 +1073,7 @@ module.exports = {
     'no-unused-labels': warn,
     'no-unused-vars': [warn, {
       args: 'after-used',
+      argsIgnorePattern: '^_.*$',
       vars: 'all',
       varsIgnorePattern: '^_.*$'
     }],
