@@ -234,7 +234,7 @@ module.exports = {
           allowDeclarations: true
         }],
         '@typescript-eslint/no-non-null-asserted-optional-chain': warn,
-        '@typescript-eslint/no-non-null-assertion': warn,
+        '@typescript-eslint/no-non-null-assertion': off,
         '@typescript-eslint/no-parameter-properties': warn,
         '@typescript-eslint/no-redeclare': warn,
         '@typescript-eslint/no-require-imports': warn,
