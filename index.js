@@ -56,7 +56,7 @@ module.exports = {
         '@typescript-eslint/class-literal-property-style': [warn, 'fields'],
         '@typescript-eslint/comma-dangle': [warn, 'never'],
         '@typescript-eslint/comma-spacing': [warn, { after: true, before: false }],
-        '@typescript-eslint/consistent-type-assertions': [warn, {
+        '@typescript-eslint/consistent-type-assertions': [off, {
           assertionStyle: 'as',
           objectLiteralTypeAssertions: 'never'
         }],
