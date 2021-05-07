@@ -54,7 +54,7 @@ module.exports = {
         '@typescript-eslint/brace-style': warn,
         '@typescript-eslint/camelcase': off,
         '@typescript-eslint/class-literal-property-style': [warn, 'fields'],
-        '@typescript-eslint/comma-dangle': [warn, 'never'],
+        '@typescript-eslint/comma-dangle': [warn, 'always'],
         '@typescript-eslint/comma-spacing': [warn, { after: true, before: false }],
         '@typescript-eslint/consistent-type-assertions': [off, {
           assertionStyle: 'as',
@@ -675,7 +675,7 @@ module.exports = {
     camelcase: [off, { properties: 'never' }],
     'capitalized-comments': off,
     'class-methods-use-this': off,
-    'comma-dangle': [warn, 'never'],
+    'comma-dangle': [warn, 'always'],
     'comma-spacing': [warn, { after: true, before: false }],
     'comma-style': [warn, 'last'],
     complexity: off,
