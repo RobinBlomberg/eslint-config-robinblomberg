@@ -790,7 +790,7 @@ module.exports = {
     'import/no-anonymous-default-export': warn,
     'import/no-commonjs': off,
     'import/no-cycle': off,
-    'import/no-default-export': warn,
+    'import/no-default-export': off,
     'import/no-deprecated': warn,
     'import/no-duplicates': warn,
     'import/no-dynamic-require': warn,
