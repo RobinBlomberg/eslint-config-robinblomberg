@@ -8,36 +8,31 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true
+    node: true,
   },
   globals: {
-    globalThis: true
+    globalThis: true,
   },
-  ignorePatterns: [
-    '**/.*/**'
-  ],
+  ignorePatterns: ['**/.*/**'],
   overrides: [
     {
-      files: [
-        '**/*.ts',
-        '**/*.tsx',
-        '**/*.d.ts'
-      ],
+      files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
       globals: {
-        NodeJS: true
+        NodeJS: true,
       },
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: './tsconfig.json'
+        project: './tsconfig.json',
       },
-      plugins: [
-        '@typescript-eslint'
-      ],
+      plugins: ['@typescript-eslint'],
       rules: {
         '@typescript-eslint/adjacent-overload-signatures': warn,
-        '@typescript-eslint/array-type': [warn, {
-          default: 'array'
-        }],
+        '@typescript-eslint/array-type': [
+          warn,
+          {
+            default: 'array',
+          },
+        ],
         '@typescript-eslint/await-thenable': warn,
         '@typescript-eslint/ban-ts-comment': warn,
         '@typescript-eslint/ban-tslint-comment': warn,
@@ -47,114 +42,139 @@ module.exports = {
             extendDefaults: true,
             types: {
               '{}': false,
-              Function: false
-            }
-          }
+              Function: false,
+            },
+          },
         ],
         '@typescript-eslint/brace-style': warn,
         '@typescript-eslint/camelcase': off,
         '@typescript-eslint/class-literal-property-style': [warn, 'fields'],
         '@typescript-eslint/comma-dangle': [warn, 'always-multiline'],
-        '@typescript-eslint/comma-spacing': [warn, { after: true, before: false }],
-        '@typescript-eslint/consistent-type-assertions': [off, {
-          assertionStyle: 'as',
-          objectLiteralTypeAssertions: 'never'
-        }],
+        '@typescript-eslint/comma-spacing': [
+          warn,
+          { after: true, before: false },
+        ],
+        '@typescript-eslint/consistent-type-assertions': [
+          off,
+          {
+            assertionStyle: 'as',
+            objectLiteralTypeAssertions: 'never',
+          },
+        ],
         '@typescript-eslint/consistent-type-definitions': [warn, 'type'],
-        '@typescript-eslint/consistent-type-imports': [warn, {
-          disallowTypeAnnotations: true,
-          prefer: 'no-type-imports'
-        }],
+        '@typescript-eslint/consistent-type-imports': [
+          warn,
+          {
+            disallowTypeAnnotations: true,
+            prefer: 'no-type-imports',
+          },
+        ],
         '@typescript-eslint/default-param-last': warn,
         '@typescript-eslint/dot-notation': warn,
-        '@typescript-eslint/explicit-function-return-type': [off, {
-          allowTypedFunctionExpressions: true
-        }],
-        '@typescript-eslint/explicit-member-accessibility': [warn, {
-          accessibility: 'no-public'
-        }],
+        '@typescript-eslint/explicit-function-return-type': [
+          off,
+          {
+            allowTypedFunctionExpressions: true,
+          },
+        ],
+        '@typescript-eslint/explicit-member-accessibility': [
+          warn,
+          {
+            accessibility: 'no-public',
+          },
+        ],
         '@typescript-eslint/explicit-module-boundary-types': off,
         '@typescript-eslint/func-call-spacing': warn,
-        '@typescript-eslint/indent': [warn, 2, {
-          SwitchCase: 1,
-          // Ignored nodes due to false positives:
-          ignoredNodes: [
-            'TSIntersectionType',
-            'TSTypeParameterInstantiation',
-            'TSUnionType'
-          ]
-        }],
+        '@typescript-eslint/indent': [
+          warn,
+          2,
+          {
+            SwitchCase: 1,
+            // Ignored nodes due to false positives:
+            ignoredNodes: [
+              'TSIntersectionType',
+              'TSTypeParameterInstantiation',
+              'TSUnionType',
+            ],
+          },
+        ],
         // Definition not found (2020-10-26):
         // '@typescript-eslint/index': warn,
         '@typescript-eslint/init-declarations': off,
         '@typescript-eslint/keyword-spacing': warn,
         '@typescript-eslint/lines-between-class-members': off,
-        '@typescript-eslint/member-delimiter-style': [warn, {
-          multiline: {
-            delimiter: 'semi',
-            requireLast: true
+        '@typescript-eslint/member-delimiter-style': [
+          warn,
+          {
+            multiline: {
+              delimiter: 'semi',
+              requireLast: true,
+            },
+            singleline: {
+              delimiter: 'semi',
+              requireLast: true,
+            },
           },
-          singleline: {
-            delimiter: 'semi',
-            requireLast: true
-          }
-        }],
-        '@typescript-eslint/member-ordering': [warn, {
-          default: [
-            'signature',
-            'private-static-field',
-            'protected-static-field',
-            'public-static-field',
-            'private-static-method',
-            'protected-static-method',
-            'public-static-method',
-            'private-decorated-field',
-            'protected-decorated-field',
-            'public-decorated-field',
-            'private-instance-field',
-            'protected-instance-field',
-            'public-instance-field',
-            'private-abstract-field',
-            'protected-abstract-field',
-            'public-abstract-field',
-            'static-field',
-            'private-field',
-            'protected-field',
-            'public-field',
-            'instance-field',
-            'abstract-field',
-            'decorated-field',
-            'field',
-            'private-constructor',
-            'protected-constructor',
-            'public-constructor',
-            'constructor',
-            'private-decorated-method',
-            'protected-decorated-method',
-            'public-decorated-method',
-            'private-instance-method',
-            'protected-instance-method',
-            'public-instance-method',
-            'private-abstract-method',
-            'protected-abstract-method',
-            'public-abstract-method',
-            'static-method',
-            'private-method',
-            'protected-method',
-            'public-method',
-            'instance-method',
-            'abstract-method',
-            'decorated-method',
-            'method'
-          ]
-        }],
+        ],
+        '@typescript-eslint/member-ordering': [
+          warn,
+          {
+            default: [
+              'signature',
+              'private-static-field',
+              'protected-static-field',
+              'public-static-field',
+              'private-static-method',
+              'protected-static-method',
+              'public-static-method',
+              'private-decorated-field',
+              'protected-decorated-field',
+              'public-decorated-field',
+              'private-instance-field',
+              'protected-instance-field',
+              'public-instance-field',
+              'private-abstract-field',
+              'protected-abstract-field',
+              'public-abstract-field',
+              'static-field',
+              'private-field',
+              'protected-field',
+              'public-field',
+              'instance-field',
+              'abstract-field',
+              'decorated-field',
+              'field',
+              'private-constructor',
+              'protected-constructor',
+              'public-constructor',
+              'constructor',
+              'private-decorated-method',
+              'protected-decorated-method',
+              'public-decorated-method',
+              'private-instance-method',
+              'protected-instance-method',
+              'public-instance-method',
+              'private-abstract-method',
+              'protected-abstract-method',
+              'public-abstract-method',
+              'static-method',
+              'private-method',
+              'protected-method',
+              'public-method',
+              'instance-method',
+              'abstract-method',
+              'decorated-method',
+              'method',
+            ],
+          },
+        ],
         '@typescript-eslint/method-signature-style': [warn, 'property'],
         '@typescript-eslint/naming-convention': [
           warn,
           {
             format: ['camelCase'],
             leadingUnderscore: 'allow',
-            selector: 'default'
+            selector: 'default',
           },
           {
             format: ['PascalCase'],
@@ -163,35 +183,26 @@ module.exports = {
               'enum',
               'interface',
               'typeAlias',
-              'typeParameter'
-            ]
+              'typeParameter',
+            ],
           },
           {
             format: ['camelCase', 'PascalCase'],
-            selector: [
-              'function'
-            ]
+            selector: ['function'],
           },
           {
             format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
             leadingUnderscore: 'allow',
-            selector: [
-              'variable'
-            ]
+            selector: ['variable'],
           },
           {
             format: ['UPPER_CASE'],
-            selector: [
-              'enumMember'
-            ]
+            selector: ['enumMember'],
           },
           {
             format: null,
-            selector: [
-              'parameter',
-              'property'
-            ]
-          }
+            selector: ['parameter', 'property'],
+          },
         ],
         '@typescript-eslint/no-array-constructor': warn,
         '@typescript-eslint/no-base-to-string': warn,
@@ -202,37 +213,53 @@ module.exports = {
         '@typescript-eslint/no-empty-interface': warn,
         '@typescript-eslint/no-explicit-any': off,
         '@typescript-eslint/no-extra-non-null-assertion': warn,
-        '@typescript-eslint/no-extra-parens': [warn, 'all', {
-          ignoreJSX: 'all',
-          nestedBinaryExpressions: false
-        }],
+        '@typescript-eslint/no-extra-parens': [
+          warn,
+          'all',
+          {
+            ignoreJSX: 'all',
+            nestedBinaryExpressions: false,
+          },
+        ],
         '@typescript-eslint/no-extra-semi': warn,
         '@typescript-eslint/no-extraneous-class': warn,
-        '@typescript-eslint/no-floating-promises': [warn, {
-          ignoreIIFE: true,
-          ignoreVoid: true
-        }],
+        '@typescript-eslint/no-floating-promises': [
+          warn,
+          {
+            ignoreIIFE: true,
+            ignoreVoid: true,
+          },
+        ],
         '@typescript-eslint/no-for-in-array': warn,
-        '@typescript-eslint/no-implicit-any-catch': [warn, {
-          allowExplicitAny: true
-        }],
+        '@typescript-eslint/no-implicit-any-catch': [
+          warn,
+          {
+            allowExplicitAny: true,
+          },
+        ],
         '@typescript-eslint/no-implied-eval': warn,
         '@typescript-eslint/no-inferrable-types': warn,
         '@typescript-eslint/no-invalid-this': warn,
         '@typescript-eslint/no-invalid-void-type': off,
         '@typescript-eslint/no-loop-func': warn,
         '@typescript-eslint/no-loss-of-precision': warn,
-        '@typescript-eslint/no-magic-numbers': [warn, {
-          ignore: [-1, 0, 1, 2, 3],
-          ignoreEnums: true,
-          ignoreNumericLiteralTypes: true,
-          ignoreReadonlyClassProperties: true
-        }],
+        '@typescript-eslint/no-magic-numbers': [
+          warn,
+          {
+            ignore: [-1, 0, 1, 2, 3],
+            ignoreEnums: true,
+            ignoreNumericLiteralTypes: true,
+            ignoreReadonlyClassProperties: true,
+          },
+        ],
         '@typescript-eslint/no-misused-new': warn,
         '@typescript-eslint/no-misused-promises': off,
-        '@typescript-eslint/no-namespace': [off, {
-          allowDeclarations: true
-        }],
+        '@typescript-eslint/no-namespace': [
+          off,
+          {
+            allowDeclarations: true,
+          },
+        ],
         '@typescript-eslint/no-non-null-asserted-optional-chain': warn,
         '@typescript-eslint/no-non-null-assertion': off,
         '@typescript-eslint/no-parameter-properties': warn,
@@ -252,17 +279,23 @@ module.exports = {
         '@typescript-eslint/no-unsafe-member-access': off,
         '@typescript-eslint/no-unsafe-return': off,
         '@typescript-eslint/no-unused-expressions': warn,
-        '@typescript-eslint/no-unused-vars': [warn, {
-          args: 'after-used',
-          argsIgnorePattern: '^_.*$',
-          vars: 'all',
-          varsIgnorePattern: '^_.*$'
-        }],
-        '@typescript-eslint/no-use-before-define': [warn, {
-          classes: false,
-          functions: false,
-          variables: false
-        }],
+        '@typescript-eslint/no-unused-vars': [
+          warn,
+          {
+            args: 'after-used',
+            argsIgnorePattern: '^_.*$',
+            vars: 'all',
+            varsIgnorePattern: '^_.*$',
+          },
+        ],
+        '@typescript-eslint/no-use-before-define': [
+          warn,
+          {
+            classes: false,
+            functions: false,
+            variables: false,
+          },
+        ],
         '@typescript-eslint/no-useless-constructor': error,
         '@typescript-eslint/no-var-requires': off,
         '@typescript-eslint/prefer-as-const': warn,
@@ -284,9 +317,12 @@ module.exports = {
         '@typescript-eslint/prefer-ts-expect-error': warn,
         '@typescript-eslint/promise-function-async': off,
         '@typescript-eslint/quotes': [warn, 'single'],
-        '@typescript-eslint/require-array-sort-compare': [warn, {
-          ignoreStringArrays: true
-        }],
+        '@typescript-eslint/require-array-sort-compare': [
+          warn,
+          {
+            ignoreStringArrays: true,
+          },
+        ],
         '@typescript-eslint/require-await': warn,
         '@typescript-eslint/restrict-plus-operands': warn,
         // Disabled due to false positives:
@@ -306,9 +342,12 @@ module.exports = {
         'import/extensions': off,
         'import/no-unassigned-import': off,
         // Disabled due to false positives:
-        'import/no-unresolved': [off, {
-          ignore: ['\\.types$']
-        }],
+        'import/no-unresolved': [
+          off,
+          {
+            ignore: ['\\.types$'],
+          },
+        ],
         indent: off,
         'init-declarations': off,
         'jsdoc/require-description': off,
@@ -345,37 +384,31 @@ module.exports = {
         'no-void': off,
         quotes: off,
         semi: off,
-        'space-before-function-paren': off
-      }
+        'space-before-function-paren': off,
+      },
     },
     {
       env: {
         jest: true,
-        mocha: true
+        mocha: true,
       },
       files: [
         '**/spec/**',
         '**/test/**',
         '**/tests/**',
         '**/*.spec.*',
-        '**/*.test.*'
+        '**/*.test.*',
       ],
       rules: {
         '@typescript-eslint/no-magic-numbers': off,
         'jsdoc/require-jsdoc': off,
         'no-magic-numbers': off,
-        'sort-keys': off
-      }
+        'sort-keys': off,
+      },
     },
     {
-      files: [
-        '**/*.jsx',
-        '**/*.tsx'
-      ],
-      plugins: [
-        'react',
-        'jsx-a11y'
-      ],
+      files: ['**/*.jsx', '**/*.tsx'],
+      plugins: ['react', 'jsx-a11y'],
       rules: {
         'jsx-a11y/accessible-emoji': warn,
         'jsx-a11y/alt-text': warn,
@@ -388,50 +421,53 @@ module.exports = {
         'jsx-a11y/aria-unsupported-elements': warn,
         'jsx-a11y/autocomplete-valid': warn,
         'jsx-a11y/click-events-have-key-events': warn,
-        'jsx-a11y/control-has-associated-label': [warn, {
-          ignoreElements: [
-            'audio',
-            'canvas',
-            'embed',
-            'input',
-            'textarea',
-            'tr',
-            'video'
-          ],
-          ignoreRoles: [
-            'grid',
-            'listbox',
-            'menu',
-            'menubar',
-            'radiogroup',
-            'row',
-            'tablist',
-            'toolbar',
-            'tree',
-            'treegrid'
-          ],
-          includeRoles: [
-            'alert',
-            'dialog'
-          ]
-        }],
+        'jsx-a11y/control-has-associated-label': [
+          warn,
+          {
+            ignoreElements: [
+              'audio',
+              'canvas',
+              'embed',
+              'input',
+              'textarea',
+              'tr',
+              'video',
+            ],
+            ignoreRoles: [
+              'grid',
+              'listbox',
+              'menu',
+              'menubar',
+              'radiogroup',
+              'row',
+              'tablist',
+              'toolbar',
+              'tree',
+              'treegrid',
+            ],
+            includeRoles: ['alert', 'dialog'],
+          },
+        ],
         'jsx-a11y/heading-has-content': warn,
         'jsx-a11y/html-has-lang': warn,
         'jsx-a11y/iframe-has-title': warn,
         'jsx-a11y/img-redundant-alt': warn,
-        'jsx-a11y/interactive-supports-focus': [warn, {
-          tabbable: [
-            'button',
-            'checkbox',
-            'link',
-            'progressbar',
-            'searchbox',
-            'slider',
-            'spinbutton',
-            'switch',
-            'textbox'
-          ]
-        }],
+        'jsx-a11y/interactive-supports-focus': [
+          warn,
+          {
+            tabbable: [
+              'button',
+              'checkbox',
+              'link',
+              'progressbar',
+              'searchbox',
+              'slider',
+              'spinbutton',
+              'switch',
+              'textbox',
+            ],
+          },
+        ],
         'jsx-a11y/label-has-associated-control': warn,
         'jsx-a11y/label-has-for': off,
         'jsx-a11y/media-has-caption': warn,
@@ -440,11 +476,14 @@ module.exports = {
         'jsx-a11y/no-autofocus': warn,
         'jsx-a11y/no-distracting-elements': warn,
         'jsx-a11y/no-interactive-element-to-noninteractive-role': warn,
-        'jsx-a11y/no-noninteractive-element-interactions': [warn, {
-          body: ['onError', 'onLoad'],
-          iframe: ['onError', 'onLoad'],
-          img: ['onError', 'onLoad']
-        }],
+        'jsx-a11y/no-noninteractive-element-interactions': [
+          warn,
+          {
+            body: ['onError', 'onLoad'],
+            iframe: ['onError', 'onLoad'],
+            img: ['onError', 'onLoad'],
+          },
+        ],
         'jsx-a11y/no-noninteractive-element-to-interactive-role': warn,
         'jsx-a11y/no-noninteractive-tabindex': warn,
         'jsx-a11y/no-redundant-roles': warn,
@@ -463,48 +502,64 @@ module.exports = {
         'react/forbid-elements': warn,
         'react/forbid-foreign-prop-types': warn,
         'react/forbid-prop-types': warn,
-        'react/function-component-definition': [warn, {
-          namedComponents: 'arrow-function',
-          unnamedComponents: 'arrow-function'
-        }],
+        'react/function-component-definition': [
+          warn,
+          {
+            namedComponents: 'arrow-function',
+            unnamedComponents: 'arrow-function',
+          },
+        ],
         'react/jsx-boolean-value': warn,
         'react/jsx-child-element-spacing': warn,
         'react/jsx-closing-bracket-location': warn,
         'react/jsx-closing-tag-location': warn,
-        'react/jsx-curly-brace-presence': [warn, {
-          children: 'always',
-          props: 'never'
-        }],
+        'react/jsx-curly-brace-presence': [
+          warn,
+          {
+            children: 'always',
+            props: 'never',
+          },
+        ],
         'react/jsx-curly-newline': off,
         'react/jsx-curly-spacing': warn,
         'react/jsx-equals-spacing': warn,
-        'react/jsx-filename-extension': [warn, {
-          extensions: [
-            '.jsx',
-            '.tsx'
-          ]
-        }],
+        'react/jsx-filename-extension': [
+          warn,
+          {
+            extensions: ['.jsx', '.tsx'],
+          },
+        ],
         'react/jsx-first-prop-new-line': warn,
         'react/jsx-fragments': warn,
         'react/jsx-handler-names': warn,
-        'react/jsx-indent': [warn, 2, {
-          indentLogicalExpressions: true
-        }],
+        'react/jsx-indent': [
+          warn,
+          2,
+          {
+            indentLogicalExpressions: true,
+          },
+        ],
         'react/jsx-indent-props': [warn, 2],
         'react/jsx-key': warn,
         'react/jsx-max-depth': off,
-        'react/jsx-max-props-per-line': [warn, {
-          maximum: 1,
-          when: 'multiline'
-        }],
+        'react/jsx-max-props-per-line': [
+          warn,
+          {
+            maximum: 1,
+            when: 'multiline',
+          },
+        ],
         'react/jsx-newline': off,
-        'react/jsx-no-bind': [warn, {
-          allowArrowFunctions: true,
-          allowBind: true,
-          allowFunctions: false,
-          ignoreDOMComponents: false,
-          ignoreRefs: false
-        }],
+        'react/jsx-no-bind': [
+          warn,
+          {
+            allowArrowFunctions: true,
+            allowBind: true,
+            allowFunctions: false,
+            ignoreDOMComponents: false,
+            ignoreRefs: false,
+          },
+        ],
         'react/jsx-no-comment-textnodes': warn,
         'react/jsx-no-constructed-context-values': warn,
         'react/jsx-no-duplicate-props': warn,
@@ -521,23 +576,29 @@ module.exports = {
         'react/jsx-sort-props': warn,
         /** @deprecated */
         'react/jsx-space-before-closing': off,
-        'react/jsx-tag-spacing': [warn, {
-          afterOpening: 'never',
-          beforeClosing: 'allow',
-          beforeSelfClosing: 'always',
-          closingSlash: 'never'
-        }],
+        'react/jsx-tag-spacing': [
+          warn,
+          {
+            afterOpening: 'never',
+            beforeClosing: 'allow',
+            beforeSelfClosing: 'always',
+            closingSlash: 'never',
+          },
+        ],
         'react/jsx-uses-react': warn,
         'react/jsx-uses-vars': warn,
-        'react/jsx-wrap-multilines': [warn, {
-          arrow: 'ignore',
-          assignment: 'ignore',
-          condition: 'ignore',
-          declaration: 'ignore',
-          logical: 'ignore',
-          prop: 'ignore',
-          return: 'parens'
-        }],
+        'react/jsx-wrap-multilines': [
+          warn,
+          {
+            arrow: 'ignore',
+            assignment: 'ignore',
+            condition: 'ignore',
+            declaration: 'ignore',
+            logical: 'ignore',
+            prop: 'ignore',
+            return: 'parens',
+          },
+        ],
         'react/no-access-state-in-setstate': warn,
         'react/no-adjacent-inline-elements': off,
         'react/no-array-index-key': warn,
@@ -572,92 +633,90 @@ module.exports = {
         'react/require-optimization': off,
         'react/require-render-return': warn,
         'react/self-closing-comp': warn,
-        'react/sort-comp': [warn, {
-          groups: {
-            lifecycle: [
-              'displayName',
-              'propTypes',
-              'contextTypes',
-              'childContextTypes',
-              'mixins',
-              'statics',
-              'defaultProps',
-              'constructor',
-              'getDefaultProps',
-              'state',
-              'getInitialState',
-              'getChildContext',
-              'getDerivedStateFromProps',
-              'componentWillMount',
-              'UNSAFE_componentWillMount',
-              'componentDidMount',
-              'componentWillReceiveProps',
-              'UNSAFE_componentWillReceiveProps',
-              'shouldComponentUpdate',
-              'componentWillUpdate',
-              'UNSAFE_componentWillUpdate',
-              'getSnapshotBeforeUpdate',
-              'componentDidUpdate',
-              'componentDidCatch',
-              'componentWillUnmount'
-            ]
+        'react/sort-comp': [
+          warn,
+          {
+            groups: {
+              lifecycle: [
+                'displayName',
+                'propTypes',
+                'contextTypes',
+                'childContextTypes',
+                'mixins',
+                'statics',
+                'defaultProps',
+                'constructor',
+                'getDefaultProps',
+                'state',
+                'getInitialState',
+                'getChildContext',
+                'getDerivedStateFromProps',
+                'componentWillMount',
+                'UNSAFE_componentWillMount',
+                'componentDidMount',
+                'componentWillReceiveProps',
+                'UNSAFE_componentWillReceiveProps',
+                'shouldComponentUpdate',
+                'componentWillUpdate',
+                'UNSAFE_componentWillUpdate',
+                'getSnapshotBeforeUpdate',
+                'componentDidUpdate',
+                'componentDidCatch',
+                'componentWillUnmount',
+              ],
+            },
+            order: [
+              'static-variables',
+              'static-methods',
+              'everything-else',
+              'instance-variables',
+              'instance-methods',
+              'lifecycle',
+              'render',
+            ],
           },
-          order: [
-            'static-variables',
-            'static-methods',
-            'everything-else',
-            'instance-variables',
-            'instance-methods',
-            'lifecycle',
-            'render'
-          ]
-        }],
+        ],
         'react/sort-prop-types': warn,
         'react/state-in-constructor': off,
         'react/static-property-placement': warn,
         'react/style-prop-object': warn,
-        'react/void-dom-elements-no-children': warn
-      }
+        'react/void-dom-elements-no-children': warn,
+      },
     },
     {
-      files: [
-        '**/*.d.ts'
-      ],
+      files: ['**/*.d.ts'],
       rules: {
         '@typescript-eslint/consistent-type-definitions': off,
         '@typescript-eslint/no-extraneous-class': off,
         '@typescript-eslint/no-use-before-define': off,
         'import/no-default-export': off,
-        'jsdoc/require-jsdoc': off
-      }
+        'jsdoc/require-jsdoc': off,
+      },
     },
     {
       files: [
         '**/*.stories.js',
         '**/*.stories.jsx',
         '**/*.stories.ts',
-        '**/*.stories.tsx'
+        '**/*.stories.tsx',
       ],
       rules: {
         'import/no-default-export': off,
-        'react/no-multi-comp': off
-      }
-    }
+        'react/no-multi-comp': off,
+      },
+    },
   ],
   parser: 'babel-eslint',
   parserOptions: {
     allowAwaitOutsideFunction: true,
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 2017,
     requireConfigFile: false,
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  plugins: [
-    'import',
-    'jsdoc'
-  ],
+  plugins: ['import', 'jsdoc'],
   root: true,
   rules: {
     'accessor-pairs': warn,
@@ -710,10 +769,13 @@ module.exports = {
     'import/dynamic-import-chunkname': off,
     'import/export': warn,
     'import/exports-last': warn,
-    'import/extensions': [warn, {
-      js: 'always',
-      json: 'always'
-    }],
+    'import/extensions': [
+      warn,
+      {
+        js: 'always',
+        json: 'always',
+      },
+    ],
     'import/first': warn,
     'import/group-exports': off,
     'import/imports-first': warn,
@@ -733,11 +795,12 @@ module.exports = {
     'import/no-duplicates': warn,
     'import/no-dynamic-require': warn,
     'import/no-extraneous-dependencies': warn,
-    'import/no-internal-modules': [warn, {
-      allow: [
-        '[abcdefghijklmnopqrstuvwxyz]**/**'
-      ]
-    }],
+    'import/no-internal-modules': [
+      warn,
+      {
+        allow: ['[abcdefghijklmnopqrstuvwxyz]**/**'],
+      },
+    ],
     'import/no-mutable-exports': warn,
     'import/no-named-as-default': warn,
     'import/no-named-as-default-member': warn,
@@ -773,24 +836,34 @@ module.exports = {
     }], */
     'import/prefer-default-export': off,
     'import/unambiguous': off,
-    indent: [warn, 2, {
-      SwitchCase: 1
-    }],
+    indent: [
+      warn,
+      2,
+      {
+        SwitchCase: 1,
+      },
+    ],
     'init-declarations': off,
     'jsdoc/check-access': warn,
     'jsdoc/check-alignment': warn,
     'jsdoc/check-examples': warn,
-    'jsdoc/check-indentation': [off, {
-      excludeTags: ['example']
-    }],
+    'jsdoc/check-indentation': [
+      off,
+      {
+        excludeTags: ['example'],
+      },
+    ],
     'jsdoc/check-line-alignment': warn,
     'jsdoc/check-param-names': warn,
     'jsdoc/check-property-names': warn,
     'jsdoc/check-syntax': warn,
     'jsdoc/check-tag-names': warn,
-    'jsdoc/check-types': [warn, {
-      noDefaults: true
-    }],
+    'jsdoc/check-types': [
+      warn,
+      {
+        noDefaults: true,
+      },
+    ],
     'jsdoc/check-values': warn,
     'jsdoc/empty-tags': warn,
     'jsdoc/implements-on-classes': warn,
@@ -800,111 +873,126 @@ module.exports = {
     'jsdoc/no-defaults': warn,
     'jsdoc/no-types': off,
     // Disable due to false positives when referring to a generic type from inside its function:
-    'jsdoc/no-undefined-types': [off, {
-      definedTypes: [
-        'unknown',
-        /**
-         * @see typescript\lib\lib.es5.d.ts
-         * @version 4.1.2
-         */
-        'PropertyKey',
-        'PropertyDescriptor',
-        'PropertyDescriptorMap',
-        'ObjectConstructor',
-        'FunctionConstructor',
-        'ThisParameterType',
-        'OmitThisParameter',
-        'CallableFunction',
-        'NewableFunction',
-        'IArguments',
-        'StringConstructor',
-        'BooleanConstructor',
-        'NumberConstructor',
-        'TemplateStringsArray',
-        'ImportMeta',
-        'DateConstructor',
-        'RegExpMatchArray',
-        'RegExpExecArray',
-        'RegExpConstructor',
-        'ErrorConstructor',
-        'EvalErrorConstructor',
-        'RangeErrorConstructor',
-        'ReferenceErrorConstructor',
-        'SyntaxErrorConstructor',
-        'TypeErrorConstructor',
-        'URIErrorConstructor',
-        'ReadonlyArray',
-        'ConcatArray',
-        'ArrayConstructor',
-        'TypedPropertyDescriptor',
-        'ClassDecorator',
-        'PropertyDecorator',
-        'MethodDecorator',
-        'ParameterDecorator',
-        'PromiseConstructorLike',
-        'PromiseLike',
-        'ArrayLike',
-        'Partial',
-        'Required',
-        'Readonly',
-        'Pick',
-        'Exclude',
-        'Extract',
-        'Omit',
-        'NonNullable',
-        'Parameters',
-        'ConstructorParameters',
-        'ReturnType',
-        'InstanceType',
-        'ThisType',
-        'ArrayBufferTypes',
-        'ArrayBufferLike',
-        'ArrayBufferConstructor',
-        'ArrayBufferView',
-        'DataViewConstructor',
-        'Int8ArrayConstructor',
-        'Uint8ArrayConstructor',
-        'Uint8ClampedArrayConstructor',
-        'Int16ArrayConstructor',
-        'Uint16ArrayConstructor',
-        'Int32ArrayConstructor',
-        'Uint32ArrayConstructor',
-        'Float32ArrayConstructor',
-        'Float64ArrayConstructor'
-      ]
-    }],
-    'jsdoc/require-description': [off, {
-      contexts: ['any'],
-      descriptionStyle: 'body'
-    }],
+    'jsdoc/no-undefined-types': [
+      off,
+      {
+        definedTypes: [
+          'unknown',
+          /**
+           * @see typescript\lib\lib.es5.d.ts
+           * @version 4.1.2
+           */
+          'PropertyKey',
+          'PropertyDescriptor',
+          'PropertyDescriptorMap',
+          'ObjectConstructor',
+          'FunctionConstructor',
+          'ThisParameterType',
+          'OmitThisParameter',
+          'CallableFunction',
+          'NewableFunction',
+          'IArguments',
+          'StringConstructor',
+          'BooleanConstructor',
+          'NumberConstructor',
+          'TemplateStringsArray',
+          'ImportMeta',
+          'DateConstructor',
+          'RegExpMatchArray',
+          'RegExpExecArray',
+          'RegExpConstructor',
+          'ErrorConstructor',
+          'EvalErrorConstructor',
+          'RangeErrorConstructor',
+          'ReferenceErrorConstructor',
+          'SyntaxErrorConstructor',
+          'TypeErrorConstructor',
+          'URIErrorConstructor',
+          'ReadonlyArray',
+          'ConcatArray',
+          'ArrayConstructor',
+          'TypedPropertyDescriptor',
+          'ClassDecorator',
+          'PropertyDecorator',
+          'MethodDecorator',
+          'ParameterDecorator',
+          'PromiseConstructorLike',
+          'PromiseLike',
+          'ArrayLike',
+          'Partial',
+          'Required',
+          'Readonly',
+          'Pick',
+          'Exclude',
+          'Extract',
+          'Omit',
+          'NonNullable',
+          'Parameters',
+          'ConstructorParameters',
+          'ReturnType',
+          'InstanceType',
+          'ThisType',
+          'ArrayBufferTypes',
+          'ArrayBufferLike',
+          'ArrayBufferConstructor',
+          'ArrayBufferView',
+          'DataViewConstructor',
+          'Int8ArrayConstructor',
+          'Uint8ArrayConstructor',
+          'Uint8ClampedArrayConstructor',
+          'Int16ArrayConstructor',
+          'Uint16ArrayConstructor',
+          'Int32ArrayConstructor',
+          'Uint32ArrayConstructor',
+          'Float32ArrayConstructor',
+          'Float64ArrayConstructor',
+        ],
+      },
+    ],
+    'jsdoc/require-description': [
+      off,
+      {
+        contexts: ['any'],
+        descriptionStyle: 'body',
+      },
+    ],
     'jsdoc/require-description-complete-sentence': off,
     'jsdoc/require-example': off,
     'jsdoc/require-file-overview': off,
     'jsdoc/require-hyphen-before-param-description': [warn, 'never'],
-    'jsdoc/require-jsdoc': [warn, {
-      exemptEmptyFunctions: true,
-      publicOnly: false,
-      require: {
-        ArrowFunctionExpression: true,
-        ClassDeclaration: false,
-        ClassExpression: false,
-        FunctionDeclaration: true,
-        FunctionExpression: true,
-        MethodDefinition: true
-      }
-    }],
-    'jsdoc/require-param': [warn, {
-      checkConstructors: true,
-      checkDestructured: true,
-      checkDestructuredRoots: true,
-      checkGetters: true,
-      checkSetters: true
-    }],
+    'jsdoc/require-jsdoc': [
+      warn,
+      {
+        exemptEmptyFunctions: true,
+        publicOnly: false,
+        require: {
+          ArrowFunctionExpression: true,
+          ClassDeclaration: false,
+          ClassExpression: false,
+          FunctionDeclaration: true,
+          FunctionExpression: true,
+          MethodDefinition: true,
+        },
+      },
+    ],
+    'jsdoc/require-param': [
+      warn,
+      {
+        checkConstructors: true,
+        checkDestructured: true,
+        checkDestructuredRoots: true,
+        checkGetters: true,
+        checkSetters: true,
+      },
+    ],
     'jsdoc/require-param-description': off,
     'jsdoc/require-param-name': warn,
-    'jsdoc/require-param-type': [warn, {
-      contexts: ['any']
-    }],
+    'jsdoc/require-param-type': [
+      warn,
+      {
+        contexts: ['any'],
+      },
+    ],
     'jsdoc/require-property': warn,
     'jsdoc/require-property-description': warn,
     'jsdoc/require-property-name': warn,
@@ -923,11 +1011,14 @@ module.exports = {
     'lines-between-class-members': off,
     'max-classes-per-file': [off, 1],
     'max-depth': off,
-    'max-len': [warn, {
-      code: 100,
-      ignoreComments: true,
-      ignoreRegExpLiterals: true
-    }],
+    'max-len': [
+      warn,
+      {
+        code: 100,
+        ignoreComments: true,
+        ignoreRegExpLiterals: true,
+      },
+    ],
     'max-lines': off,
     'max-lines-per-function': off,
     'max-nested-callbacks': warn,
@@ -999,14 +1090,17 @@ module.exports = {
     'no-loss-of-precision': warn,
     'no-magic-numbers': [off, { ignore: [-1, 0, 1, 2, 3] }],
     'no-misleading-character-class': warn,
-    'no-mixed-operators': [warn, {
-      allowSamePrecedence: true,
-      groups: [
-        ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
-        ['&&', '||'],
-        ['in', 'instanceof']
-      ]
-    }],
+    'no-mixed-operators': [
+      warn,
+      {
+        allowSamePrecedence: true,
+        groups: [
+          ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
+          ['&&', '||'],
+          ['in', 'instanceof'],
+        ],
+      },
+    ],
     'no-mixed-requires': warn,
     'no-mixed-spaces-and-tabs': warn,
     'no-multi-assign': warn,
@@ -1065,23 +1159,32 @@ module.exports = {
     'no-unreachable': warn,
     'no-unsafe-finally': warn,
     'no-unsafe-negation': warn,
-    'no-unused-expressions': [warn, {
-      allowShortCircuit: true,
-      allowTaggedTemplates: true,
-      allowTernary: true
-    }],
+    'no-unused-expressions': [
+      warn,
+      {
+        allowShortCircuit: true,
+        allowTaggedTemplates: true,
+        allowTernary: true,
+      },
+    ],
     'no-unused-labels': warn,
-    'no-unused-vars': [warn, {
-      args: 'after-used',
-      argsIgnorePattern: '^_.*$',
-      vars: 'all',
-      varsIgnorePattern: '^_.*$'
-    }],
-    'no-use-before-define': [error, {
-      classes: false,
-      functions: false,
-      variables: false
-    }],
+    'no-unused-vars': [
+      warn,
+      {
+        args: 'after-used',
+        argsIgnorePattern: '^_.*$',
+        vars: 'all',
+        varsIgnorePattern: '^_.*$',
+      },
+    ],
+    'no-use-before-define': [
+      error,
+      {
+        classes: false,
+        functions: false,
+        variables: false,
+      },
+    ],
     'no-useless-call': warn,
     'no-useless-catch': warn,
     'no-useless-computed-key': warn,
@@ -1098,25 +1201,35 @@ module.exports = {
     'nonblock-statement-body-position': warn,
     'object-curly-newline': [warn, { consistent: true, multiline: true }],
     'object-curly-spacing': [warn, 'always'],
-    'object-property-newline': [warn, {
-      allowMultiplePropertiesPerLine: true
-    }],
+    'object-property-newline': [
+      warn,
+      {
+        allowMultiplePropertiesPerLine: true,
+      },
+    ],
     'object-shorthand': [warn, 'always'],
     'one-var': [warn, 'never'],
     'one-var-declaration-per-line': warn,
     'operator-assignment': [warn, 'always'],
-    'operator-linebreak': [warn, 'after', {
-      overrides: {
-        ':': 'before',
-        '?': 'before',
-        '??': 'before'
-      }
-    }],
-    'padded-blocks': [warn, {
-      blocks: 'never',
-      classes: 'never',
-      switches: 'never'
-    }],
+    'operator-linebreak': [
+      warn,
+      'after',
+      {
+        overrides: {
+          ':': 'before',
+          '?': 'before',
+          '??': 'before',
+        },
+      },
+    ],
+    'padded-blocks': [
+      warn,
+      {
+        blocks: 'never',
+        classes: 'never',
+        switches: 'never',
+      },
+    ],
     'padding-line-between-statements': warn,
     'prefer-arrow-callback': warn,
     'prefer-const': [warn, { destructuring: 'all' }],
@@ -1130,10 +1243,14 @@ module.exports = {
     'prefer-spread': warn,
     'prefer-template': off,
     'quote-props': [warn, 'as-needed'],
-    quotes: [warn, 'single', {
-      allowTemplateLiterals: false,
-      avoidEscape: true
-    }],
+    quotes: [
+      warn,
+      'single',
+      {
+        allowTemplateLiterals: false,
+        avoidEscape: true,
+      },
+    ],
     radix: warn,
     'require-atomic-updates': off,
     'require-await': warn,
@@ -1143,32 +1260,42 @@ module.exports = {
     semi: [warn, 'always'],
     'semi-spacing': [warn, { after: true, before: false }],
     'semi-style': [warn, 'last'],
-    'sort-imports': [off, {
-      ignoreCase: false,
-      ignoreDeclarationSort: false,
-      ignoreMemberSort: false,
-      memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple']
-    }],
-    'sort-keys': [warn, 'asc', { natural: true }],
+    'sort-imports': [
+      off,
+      {
+        ignoreCase: false,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],
+      },
+    ],
+    'sort-keys': [warn, 'asc', { natural: false }],
     'sort-vars': warn,
     'space-before-blocks': [warn, 'always'],
     'space-before-function-paren': [warn, 'never'],
     'space-in-parens': [warn, 'never'],
     'space-infix-ops': warn,
     'space-unary-ops': [warn, { nonwords: false, words: true }],
-    'spaced-comment': [warn, 'always', {
-      block: {
-        balanced: true,
-        exceptions: ['*'],
-        markers: ['*package', '!', ',', ':', '::', 'flow-include']
+    'spaced-comment': [
+      warn,
+      'always',
+      {
+        block: {
+          balanced: true,
+          exceptions: ['*'],
+          markers: ['*package', '!', ',', ':', '::', 'flow-include'],
+        },
+        line: { markers: ['*package', '!', '/', ',', '='] },
       },
-      line: { markers: ['*package', '!', '/', ',', '='] }
-    }],
+    ],
     strict: [warn, 'never'],
-    'switch-colon-spacing': [warn, {
-      after: true,
-      before: false
-    }],
+    'switch-colon-spacing': [
+      warn,
+      {
+        after: true,
+        before: false,
+      },
+    ],
     'symbol-description': warn,
     'template-curly-spacing': [warn, 'never'],
     'template-tag-spacing': [warn, 'never'],
@@ -1179,19 +1306,16 @@ module.exports = {
     'wrap-iife': [warn, 'any', { functionPrototypeMethods: true }],
     'wrap-regex': off,
     'yield-star-spacing': [warn, 'both'],
-    yoda: [warn, 'never']
+    yoda: [warn, 'never'],
   },
   settings: {
-    'import/extensions': [
-      '.js',
-      '.ts'
-    ],
+    'import/extensions': ['.js', '.ts'],
     'import/internal-regex': '^@',
     jsdoc: {
-      mode: 'closure'
+      mode: 'closure',
     },
     react: {
-      version: 'detect'
-    }
-  }
+      version: 'detect',
+    },
+  },
 };

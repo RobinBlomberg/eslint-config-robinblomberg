@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "author": "Robin Blomberg",
   "main": "index.js",
   "repository": {
@@ -25,7 +25,7 @@
     "eslint-plugin-react": "^7.23.1"
   },
   "devDependencies": {
-    "@robinblomberg/eslint-config-robinblomberg": "^0.6.0-beta1",
+    "@robinblomberg/eslint-config-robinblomberg": "^0.6.8",
     "@types/node": "*",
     "cross-env": "^7.0.3",
     "husky": "^4.3.8",
