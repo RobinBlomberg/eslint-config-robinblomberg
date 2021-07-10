@@ -1069,7 +1069,7 @@ module.exports = {
     'no-compare-neg-zero': warn,
     'no-cond-assign': warn,
     'no-confusing-arrow': warn,
-    'no-console': [warn, { allow: ['warn', 'error'] }],
+    'no-console': [warn, { allow: ['debug', 'error', 'info', 'warn'] }],
     'no-const-assign': warn,
     'no-constant-condition': [warn, { checkLoops: false }],
     'no-continue': warn,
