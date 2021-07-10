@@ -14,6 +14,29 @@ module.exports = {
     globalThis: true,
   },
   ignorePatterns: ['**/.*/**'],
+  parser: 'babel-eslint',
+  parserOptions: {
+    allowAwaitOutsideFunction: true,
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2017,
+    requireConfigFile: false,
+    sourceType: 'module',
+  },
+  plugins: ['import', 'jsdoc'],
+  root: true,
+  settings: {
+    'import/extensions': ['.js', '.ts'],
+    'import/internal-regex': '^@',
+    jsdoc: {
+      mode: 'closure',
+    },
+    react: {
+      version: 'detect',
+    },
+  },
+  // eslint-disable-next-line sort-keys
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
@@ -209,9 +232,9 @@ module.exports = {
         '@typescript-eslint/no-confusing-non-null-assertion': warn,
         '@typescript-eslint/no-dupe-class-members': warn,
         '@typescript-eslint/no-dynamic-delete': off,
-        '@typescript-eslint/no-empty-function': off,
+        '@typescript-eslint/no-empty-function': warn,
         '@typescript-eslint/no-empty-interface': warn,
-        '@typescript-eslint/no-explicit-any': off,
+        '@typescript-eslint/no-explicit-any': warn,
         '@typescript-eslint/no-extra-non-null-assertion': warn,
         '@typescript-eslint/no-extra-parens': [
           warn,
@@ -278,7 +301,14 @@ module.exports = {
         '@typescript-eslint/no-unsafe-call': off,
         '@typescript-eslint/no-unsafe-member-access': off,
         '@typescript-eslint/no-unsafe-return': off,
-        '@typescript-eslint/no-unused-expressions': warn,
+        '@typescript-eslint/no-unused-expressions': [
+          warn,
+          {
+            allowShortCircuit: true,
+            allowTaggedTemplates: true,
+            allowTernary: true,
+          },
+        ],
         '@typescript-eslint/no-unused-vars': [
           warn,
           {
@@ -289,14 +319,14 @@ module.exports = {
           },
         ],
         '@typescript-eslint/no-use-before-define': [
-          warn,
+          error,
           {
             classes: false,
             functions: false,
             variables: false,
           },
         ],
-        '@typescript-eslint/no-useless-constructor': error,
+        '@typescript-eslint/no-useless-constructor': warn,
         '@typescript-eslint/no-var-requires': off,
         '@typescript-eslint/prefer-as-const': warn,
         '@typescript-eslint/prefer-enum-initializers': off,
@@ -369,6 +399,7 @@ module.exports = {
         'jsdoc/require-returns-description': off,
         'jsdoc/require-returns-type': off,
         'keyword-spacing': off,
+        'no-empty-function': off,
         'no-extra-parens': off,
         'no-extra-semi': off,
         'no-invalid-this': off,
@@ -377,6 +408,10 @@ module.exports = {
         'no-redeclare': off,
         'no-return-await': off,
         'no-shadow': off,
+        /**
+         * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
+         */
+        'no-undef': off,
         'no-unused-expressions': off,
         'no-unused-vars': off,
         'no-use-before-define': off,
@@ -706,18 +741,6 @@ module.exports = {
       },
     },
   ],
-  parser: 'babel-eslint',
-  parserOptions: {
-    allowAwaitOutsideFunction: true,
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2017,
-    requireConfigFile: false,
-    sourceType: 'module',
-  },
-  plugins: ['import', 'jsdoc'],
-  root: true,
   rules: {
     'accessor-pairs': warn,
     'array-bracket-newline': off,
@@ -763,7 +786,7 @@ module.exports = {
     'handle-callback-err': [warn, '^(err|error)$'],
     'id-blacklist': warn,
     'id-length': off,
-    'id-match': [off, '^_?[_A-Za-z][A-Za-z0-9_]*$'],
+    'id-match': [warn, '^_?[_A-Za-z][A-Za-z0-9_]*$'],
     'implicit-arrow-linebreak': [off, 'beside'],
     'import/default': warn,
     'import/dynamic-import-chunkname': off,
@@ -1006,10 +1029,14 @@ module.exports = {
     'key-spacing': [warn, { afterColon: true, beforeColon: false }],
     'keyword-spacing': [off, { after: true, before: true }],
     'line-comment-position': off,
-    'linebreak-style': off,
+    'linebreak-style': [warn, 'unix'],
     'lines-around-comment': off,
-    'lines-between-class-members': off,
-    'max-classes-per-file': [off, 1],
+    'lines-between-class-members': [
+      warn,
+      'always',
+      { exceptAfterSingleLine: true },
+    ],
+    'max-classes-per-file': [warn, 1],
     'max-depth': off,
     'max-len': [
       warn,
@@ -1033,7 +1060,7 @@ module.exports = {
     'no-alert': off,
     'no-array-constructor': warn,
     'no-async-promise-executor': warn,
-    'no-await-in-loop': off,
+    'no-await-in-loop': warn,
     'no-bitwise': warn,
     'no-buffer-constructor': warn,
     'no-caller': warn,
@@ -1132,7 +1159,13 @@ module.exports = {
     'no-restricted-imports': warn,
     'no-restricted-modules': warn,
     'no-restricted-properties': warn,
-    'no-restricted-syntax': [warn, 'WithStatement'],
+    'no-restricted-syntax': [
+      warn,
+      'BinaryExpression[operator="in"]',
+      'FunctionDeclaration',
+      'LabeledStatement',
+      'WithStatement',
+    ],
     'no-return-assign': [warn, 'except-parens'],
     'no-return-await': warn,
     'no-script-url': warn,
@@ -1142,7 +1175,7 @@ module.exports = {
     'no-shadow': warn,
     'no-shadow-restricted-names': warn,
     'no-sparse-arrays': warn,
-    'no-sync': off,
+    'no-sync': warn,
     'no-tabs': warn,
     'no-template-curly-in-string': warn,
     'no-ternary': off,
@@ -1252,7 +1285,7 @@ module.exports = {
       },
     ],
     radix: warn,
-    'require-atomic-updates': off,
+    'require-atomic-updates': warn,
     'require-await': warn,
     'require-unicode-regexp': off,
     'require-yield': warn,
@@ -1307,15 +1340,5 @@ module.exports = {
     'wrap-regex': off,
     'yield-star-spacing': [warn, 'both'],
     yoda: [warn, 'never'],
-  },
-  settings: {
-    'import/extensions': ['.js', '.ts'],
-    'import/internal-regex': '^@',
-    jsdoc: {
-      mode: 'closure',
-    },
-    react: {
-      version: 'detect',
-    },
   },
 };
