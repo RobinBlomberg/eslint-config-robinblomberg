@@ -821,7 +821,7 @@ module.exports = {
     'import/no-internal-modules': [
       warn,
       {
-        allow: ['[abcdefghijklmnopqrstuvwxyz]**/**'],
+        allow: ['[abcdefghijklmnopqrstuvwxyz]**/**', '@prisma/**', '**/*.svg'],
       },
     ],
     'import/no-mutable-exports': warn,
@@ -1167,7 +1167,7 @@ module.exports = {
       'WithStatement',
     ],
     'no-return-assign': [warn, 'except-parens'],
-    'no-return-await': warn,
+    'no-return-await': off,
     'no-script-url': warn,
     'no-self-assign': [warn, { props: true }],
     'no-self-compare': warn,
