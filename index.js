@@ -821,7 +821,7 @@ module.exports = {
     'import/no-internal-modules': [
       warn,
       {
-        allow: ['[abcdefghijklmnopqrstuvwxyz]**/**', '@prisma/**', '**/*.svg'],
+        allow: ['[@a-z][@a-z]*/**', '**/*.svg'],
       },
     ],
     'import/no-mutable-exports': warn,
