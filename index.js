@@ -1313,8 +1313,12 @@ module.exports = {
       warn,
       'always',
       {
+        block: {
+          balanced: true,
+          exceptions: ['*'],
+        },
         line: {
-          markers: ['!', '?', '*', '//'],
+          markers: ['!', '?', '*', '/', '//'],
         },
       },
     ],
