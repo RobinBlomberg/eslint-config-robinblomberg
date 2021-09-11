@@ -1313,12 +1313,9 @@ module.exports = {
       warn,
       'always',
       {
-        block: {
-          balanced: true,
-          exceptions: ['*'],
-          markers: ['*package', '!', ',', ':', '::', 'flow-include'],
+        line: {
+          markers: ['!', '?', '*', '//'],
         },
-        line: { markers: ['*package', '!', '/', ',', '='] },
       },
     ],
     strict: [warn, 'never'],
