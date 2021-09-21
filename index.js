@@ -234,7 +234,7 @@ module.exports = {
         '@typescript-eslint/no-dynamic-delete': off,
         '@typescript-eslint/no-empty-function': warn,
         '@typescript-eslint/no-empty-interface': warn,
-        '@typescript-eslint/no-explicit-any': warn,
+        '@typescript-eslint/no-explicit-any': off,
         '@typescript-eslint/no-extra-non-null-assertion': warn,
         '@typescript-eslint/no-extra-parens': [
           warn,
@@ -269,7 +269,7 @@ module.exports = {
         '@typescript-eslint/no-magic-numbers': [
           warn,
           {
-            ignore: [-1, 0, 1, 2, 3],
+            ignore: [-1, 0, 1, 2, 3, '-1n', '0n', '1n', '2n', '3n'],
             ignoreEnums: true,
             ignoreNumericLiteralTypes: true,
             ignoreReadonlyClassProperties: true,
@@ -315,7 +315,7 @@ module.exports = {
             args: 'after-used',
             argsIgnorePattern: '^_.*$',
             vars: 'all',
-            varsIgnorePattern: '^_.*$',
+            varsIgnorePattern: '^_.*$|^T$',
           },
         ],
         '@typescript-eslint/no-use-before-define': [
@@ -418,6 +418,7 @@ module.exports = {
         'no-useless-constructor': off,
         'no-void': off,
         quotes: off,
+        'require-await': off,
         semi: off,
         'space-before-function-paren': off,
       },
@@ -1111,11 +1112,16 @@ module.exports = {
     'no-iterator': warn,
     'no-label-var': warn,
     'no-labels': [warn, { allowLoop: false, allowSwitch: false }],
-    'no-lone-blocks': warn,
+    'no-lone-blocks': off,
     'no-lonely-if': warn,
     'no-loop-func': warn,
     'no-loss-of-precision': warn,
-    'no-magic-numbers': [off, { ignore: [-1, 0, 1, 2, 3] }],
+    'no-magic-numbers': [
+      off,
+      {
+        ignore: [-1, 0, 1, 2, 3, '-1n', '0n', '1n', '2n', '3n'],
+      },
+    ],
     'no-misleading-character-class': warn,
     'no-mixed-operators': [
       warn,
@@ -1161,7 +1167,6 @@ module.exports = {
     'no-restricted-properties': warn,
     'no-restricted-syntax': [
       warn,
-      'BinaryExpression[operator="in"]',
       'FunctionDeclaration',
       'LabeledStatement',
       'WithStatement',
@@ -1207,7 +1212,7 @@ module.exports = {
         args: 'after-used',
         argsIgnorePattern: '^_.*$',
         vars: 'all',
-        varsIgnorePattern: '^_.*$',
+        varsIgnorePattern: '^_.*$|^T$',
       },
     ],
     'no-use-before-define': [
