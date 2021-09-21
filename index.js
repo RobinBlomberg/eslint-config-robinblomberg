@@ -754,7 +754,7 @@ module.exports = {
     'block-scoped-var': warn,
     'block-spacing': [warn, 'always'],
     'brace-style': [warn, '1tbs'],
-    'callback-return': [warn, ['callback', 'cb', 'next']],
+    'callback-return': [off, ['callback', 'cb', 'next']],
     camelcase: [off, { properties: 'never' }],
     'capitalized-comments': off,
     'class-methods-use-this': off,
