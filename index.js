@@ -195,12 +195,12 @@ module.exports = {
         '@typescript-eslint/naming-convention': [
           warn,
           {
-            format: ['camelCase'],
+            format: ['strictCamelCase'],
             leadingUnderscore: 'allow',
             selector: 'default',
           },
           {
-            format: ['PascalCase'],
+            format: ['StrictPascalCase'],
             selector: [
               'class',
               'enum',
@@ -210,15 +210,15 @@ module.exports = {
             ],
           },
           {
-            format: ['camelCase', 'PascalCase'],
+            format: ['strictCamelCase', 'StrictPascalCase'],
             selector: ['function'],
           },
           {
-            format: ['camelCase', 'UPPER_CASE'],
-            selector: ['objectLiteral'],
+            format: ['strictCamelCase', 'UPPER_CASE'],
+            selector: ['objectLiteralProperty'],
           },
           {
-            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+            format: ['strictCamelCase', 'StrictPascalCase', 'UPPER_CASE'],
             leadingUnderscore: 'allow',
             selector: ['variable'],
           },
