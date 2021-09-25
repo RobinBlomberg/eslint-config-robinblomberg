@@ -3,8 +3,6 @@ const error = 'error';
 const off = 'off';
 const warn = IS_DEVELOPMENT ? 'warn' : 'error';
 
-const camelCasePrefixes = ['', 'I', 'T'];
-
 // eslint-disable-next-line import/no-commonjs
 module.exports = {
   env: {
@@ -197,14 +195,12 @@ module.exports = {
         '@typescript-eslint/naming-convention': [
           warn,
           {
-            format: ['strictCamelCase'],
+            format: ['camelCase'],
             leadingUnderscore: 'allow',
-            prefix: camelCasePrefixes,
             selector: 'default',
           },
           {
-            format: ['StrictPascalCase'],
-            prefix: camelCasePrefixes,
+            format: ['PascalCase'],
             selector: [
               'class',
               'enum',
@@ -214,19 +210,16 @@ module.exports = {
             ],
           },
           {
-            format: ['strictCamelCase', 'StrictPascalCase'],
-            prefix: camelCasePrefixes,
+            format: ['camelCase', 'PascalCase'],
             selector: ['function'],
           },
           {
-            format: ['strictCamelCase', 'UPPER_CASE'],
-            prefix: camelCasePrefixes,
+            format: ['camelCase', 'UPPER_CASE'],
             selector: ['objectLiteralMethod', 'objectLiteralProperty'],
           },
           {
-            format: ['strictCamelCase', 'StrictPascalCase', 'UPPER_CASE'],
+            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
             leadingUnderscore: 'allow',
-            prefix: camelCasePrefixes,
             selector: ['variable'],
           },
           {
