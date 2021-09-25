@@ -3,7 +3,7 @@ const error = 'error';
 const off = 'off';
 const warn = IS_DEVELOPMENT ? 'warn' : 'error';
 
-const camelCasePrefixes = ['I', 'T'];
+const camelCasePrefixes = ['', 'I', 'T'];
 
 // eslint-disable-next-line import/no-commonjs
 module.exports = {
