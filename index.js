@@ -787,7 +787,7 @@ module.exports = {
     'handle-callback-err': [warn, '^(err|error)$'],
     'id-blacklist': warn,
     'id-length': off,
-    'id-match': [warn, '^[$_]?[_A-Za-z][A-Za-z0-9_]*$'],
+    'id-match': [warn, '^[$_]$|^[$_]?[_A-Za-z][A-Za-z0-9_]*$'],
     'implicit-arrow-linebreak': [off, 'beside'],
     'import/default': warn,
     'import/dynamic-import-chunkname': off,
