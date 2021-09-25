@@ -214,6 +214,10 @@ module.exports = {
             selector: ['function'],
           },
           {
+            format: ['camelCase', 'UPPER_CASE'],
+            selector: ['objectLiteral'],
+          },
+          {
             format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
             leadingUnderscore: 'allow',
             selector: ['variable'],
