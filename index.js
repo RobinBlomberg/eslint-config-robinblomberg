@@ -125,7 +125,14 @@ module.exports = {
         // '@typescript-eslint/index': warn,
         '@typescript-eslint/init-declarations': off,
         '@typescript-eslint/keyword-spacing': warn,
-        '@typescript-eslint/lines-between-class-members': off,
+        '@typescript-eslint/lines-between-class-members': [
+          warn,
+          'always',
+          {
+            exceptAfterOverload: true,
+            exceptAfterSingleLine: true,
+          },
+        ],
         '@typescript-eslint/member-delimiter-style': [
           warn,
           {
@@ -403,6 +410,7 @@ module.exports = {
         'jsdoc/require-returns-description': off,
         'jsdoc/require-returns-type': off,
         'keyword-spacing': off,
+        'lines-between-class-members': off,
         'no-dupe-class-members': off,
         'no-empty-function': off,
         'no-extra-parens': off,
