@@ -13,7 +13,7 @@ module.exports = {
   globals: {
     globalThis: true,
   },
-  ignorePatterns: ['**/.*/**'],
+  ignorePatterns: ['**/.*/**', '**/node_modules/**'],
   parser: 'babel-eslint',
   parserOptions: {
     allowAwaitOutsideFunction: true,
