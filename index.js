@@ -198,7 +198,7 @@ module.exports = {
             ],
           },
         ],
-        '@typescript-eslint/method-signature-style': [warn, 'property'],
+        '@typescript-eslint/method-signature-style': [warn, 'method'],
         '@typescript-eslint/naming-convention': [
           warn,
           {
@@ -221,11 +221,15 @@ module.exports = {
             selector: ['function'],
           },
           {
-            format: ['camelCase', 'UPPER_CASE'],
-            selector: ['objectLiteralMethod', 'objectLiteralProperty'],
+            format: ['camelCase', 'snake_case', 'UPPER_CASE'],
+            selector: [
+              'objectLiteralMethod',
+              'objectLiteralProperty',
+              'typeMethod',
+            ],
           },
           {
-            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+            format: ['camelCase', 'UPPER_CASE'],
             leadingUnderscore: 'allow',
             selector: ['variable'],
           },
@@ -265,12 +269,7 @@ module.exports = {
           },
         ],
         '@typescript-eslint/no-for-in-array': warn,
-        '@typescript-eslint/no-implicit-any-catch': [
-          warn,
-          {
-            allowExplicitAny: true,
-          },
-        ],
+        '@typescript-eslint/no-implicit-any-catch': off,
         '@typescript-eslint/no-implied-eval': warn,
         '@typescript-eslint/no-inferrable-types': warn,
         '@typescript-eslint/no-invalid-this': warn,
@@ -1303,7 +1302,8 @@ module.exports = {
       },
     ],
     radix: warn,
-    'require-atomic-updates': warn,
+    // Disabled due to false (?) positives:
+    'require-atomic-updates': off,
     'require-await': warn,
     'require-unicode-regexp': off,
     'require-yield': warn,
