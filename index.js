@@ -403,6 +403,7 @@ module.exports = {
         'jsdoc/require-returns-description': off,
         'jsdoc/require-returns-type': off,
         'keyword-spacing': off,
+        'no-dupe-class-members': off,
         'no-empty-function': off,
         'no-extra-parens': off,
         'no-extra-semi': off,
