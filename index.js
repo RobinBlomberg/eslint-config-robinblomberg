@@ -1036,7 +1036,7 @@ module.exports = {
     'jsdoc/require-property-description': warn,
     'jsdoc/require-property-name': warn,
     'jsdoc/require-property-type': warn,
-    'jsdoc/require-returns': warn,
+    'jsdoc/require-returns': off,
     'jsdoc/require-returns-check': warn,
     'jsdoc/require-returns-description': off,
     'jsdoc/require-returns-type': warn,
