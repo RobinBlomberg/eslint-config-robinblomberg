@@ -738,6 +738,13 @@ module.exports = {
       },
     },
     {
+      files: ['**/*.config.js', '**/*.config.ts'],
+      rules: {
+        '@typescript-eslint/no-magic-numbers': off,
+        'no-magic-numbers': off,
+      },
+    },
+    {
       files: [
         '**/*.stories.js',
         '**/*.stories.jsx',
