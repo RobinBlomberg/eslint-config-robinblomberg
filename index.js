@@ -363,8 +363,7 @@ module.exports = {
         '@typescript-eslint/restrict-plus-operands': warn,
         // Disabled due to false positives:
         '@typescript-eslint/restrict-template-expressions': off,
-        // Disabled due to requiring parserServices:
-        '@typescript-eslint/return-await': [off, 'always'],
+        '@typescript-eslint/return-await': [warn, 'always'],
         '@typescript-eslint/semi': [warn, 'always'],
         '@typescript-eslint/space-before-function-paren': [warn, 'always'],
         '@typescript-eslint/strict-boolean-expressions': off,
