@@ -207,6 +207,19 @@ module.exports = {
             selector: 'default',
           },
           {
+            format: ['camelCase', 'snake_case', 'PascalCase', 'UPPER_CASE'],
+            selector: ['objectLiteralProperty'],
+          },
+          {
+            format: ['camelCase', 'PascalCase'],
+            selector: ['function'],
+          },
+          {
+            format: ['camelCase', 'UPPER_CASE'],
+            leadingUnderscore: 'allow',
+            selector: ['objectLiteralMethod', 'typeMethod', 'variable'],
+          },
+          {
             format: ['PascalCase'],
             selector: [
               'class',
@@ -215,23 +228,6 @@ module.exports = {
               'typeAlias',
               'typeParameter',
             ],
-          },
-          {
-            format: ['camelCase', 'PascalCase'],
-            selector: ['function'],
-          },
-          {
-            format: ['camelCase', 'snake_case', 'UPPER_CASE'],
-            selector: [
-              'objectLiteralMethod',
-              'objectLiteralProperty',
-              'typeMethod',
-            ],
-          },
-          {
-            format: ['camelCase', 'UPPER_CASE'],
-            leadingUnderscore: 'allow',
-            selector: ['variable'],
           },
           {
             format: ['UPPER_CASE'],
