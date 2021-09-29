@@ -208,6 +208,7 @@ module.exports = {
           },
           {
             format: ['camelCase', 'snake_case', 'PascalCase', 'UPPER_CASE'],
+            leadingUnderscore: 'allow',
             selector: ['objectLiteralProperty'],
           },
           {
