@@ -213,6 +213,7 @@ module.exports = {
           },
           {
             format: ['camelCase', 'PascalCase'],
+            leadingUnderscore: 'allow',
             selector: ['function'],
           },
           {
@@ -222,6 +223,7 @@ module.exports = {
           },
           {
             format: ['PascalCase'],
+            leadingUnderscore: 'allow',
             selector: [
               'class',
               'enum',
@@ -232,10 +234,12 @@ module.exports = {
           },
           {
             format: ['UPPER_CASE'],
+            leadingUnderscore: 'allow',
             selector: ['enumMember'],
           },
           {
             format: null,
+            leadingUnderscore: 'allow',
             selector: ['parameter', 'property'],
           },
         ],
