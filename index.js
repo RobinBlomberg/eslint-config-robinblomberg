@@ -200,7 +200,7 @@ module.exports = {
         ],
         '@typescript-eslint/method-signature-style': [warn, 'method'],
         '@typescript-eslint/naming-convention': [
-          warn,
+          off,
           {
             format: ['camelCase'],
             leadingUnderscore: 'allow',
