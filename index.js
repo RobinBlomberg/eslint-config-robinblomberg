@@ -376,7 +376,7 @@ module.exports = {
         '@typescript-eslint/triple-slash-reference': warn,
         '@typescript-eslint/type-annotation-spacing': warn,
         '@typescript-eslint/typedef': off,
-        '@typescript-eslint/unbound-method': warn,
+        '@typescript-eslint/unbound-method': off,
         '@typescript-eslint/unified-signatures': warn,
         'default-case': off,
         'func-call-spacing': off,
