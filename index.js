@@ -261,7 +261,7 @@ module.exports = {
           },
         ],
         '@typescript-eslint/no-extra-semi': warn,
-        '@typescript-eslint/no-extraneous-class': warn,
+        '@typescript-eslint/no-extraneous-class': off,
         '@typescript-eslint/no-floating-promises': [
           warn,
           {
