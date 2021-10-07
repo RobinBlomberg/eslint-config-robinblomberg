@@ -24,7 +24,7 @@ module.exports = {
     requireConfigFile: false,
     sourceType: 'module',
   },
-  plugins: ['import', 'jsdoc'],
+  plugins: ['import', 'jsdoc', 'sort-keys'],
   root: true,
   settings: {
     'import/extensions': ['.js', '.ts'],
@@ -1328,7 +1328,8 @@ module.exports = {
         memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],
       },
     ],
-    'sort-keys': [warn, 'asc', { natural: false }],
+    'sort-keys': off,
+    'sort-keys/sort-keys-fix': [warn, 'asc', { natural: false }],
     'sort-vars': warn,
     'space-before-blocks': [warn, 'always'],
     'space-before-function-paren': [warn, 'always'],
