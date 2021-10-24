@@ -391,6 +391,7 @@ module.exports = {
         ],
         indent: off,
         'init-declarations': off,
+        'jsdoc/check-examples': off,
         'jsdoc/require-description': off,
         'jsdoc/require-description-complete-sentence': off,
         'jsdoc/require-example': off,
