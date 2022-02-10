@@ -1122,7 +1122,12 @@ module.exports = {
     'no-floating-decimal': warn,
     'no-func-assign': warn,
     'no-global-assign': warn,
-    'no-implicit-coercion': warn,
+    'no-implicit-coercion': [
+      warn,
+      {
+        boolean: false,
+      },
+    ],
     'no-implicit-globals': warn,
     'no-implied-eval': warn,
     'no-inline-comments': off,
