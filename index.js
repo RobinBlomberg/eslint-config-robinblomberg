@@ -3,7 +3,6 @@ const error = 'error';
 const off = 'off';
 const warn = IS_DEVELOPMENT ? 'warn' : 'error';
 
-// eslint-disable-next-line import/no-commonjs
 module.exports = {
   env: {
     browser: true,
@@ -14,29 +13,6 @@ module.exports = {
     globalThis: true,
   },
   ignorePatterns: ['**/.*/**', '**/node_modules/**'],
-  parser: 'babel-eslint',
-  parserOptions: {
-    allowAwaitOutsideFunction: true,
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2017,
-    requireConfigFile: false,
-    sourceType: 'module',
-  },
-  plugins: ['import', 'jsdoc', 'sort-keys'],
-  root: true,
-  settings: {
-    'import/extensions': ['.js', '.ts'],
-    'import/internal-regex': '^@',
-    jsdoc: {
-      mode: 'closure',
-    },
-    react: {
-      version: 'detect',
-    },
-  },
-  // eslint-disable-next-line sort-keys
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
@@ -60,12 +36,15 @@ module.exports = {
         '@typescript-eslint/ban-ts-comment': warn,
         '@typescript-eslint/ban-tslint-comment': warn,
         '@typescript-eslint/ban-types': [
-          warn,
+          off,
           {
             extendDefaults: true,
             types: {
-              '{}': false,
+              Boolean: false,
               Function: false,
+              Number: false,
+              Object: false,
+              '{}': false,
             },
           },
         ],
@@ -763,6 +742,18 @@ module.exports = {
       },
     },
   ],
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    allowAwaitOutsideFunction: true,
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2017,
+    requireConfigFile: false,
+    sourceType: 'module',
+  },
+  plugins: ['import', 'jsdoc', 'sort-keys'],
+  root: true,
   rules: {
     'accessor-pairs': warn,
     'array-bracket-newline': off,
@@ -1174,7 +1165,7 @@ module.exports = {
     'no-new-object': warn,
     'no-new-require': warn,
     'no-new-symbol': warn,
-    'no-new-wrappers': warn,
+    'no-new-wrappers': off,
     'no-obj-calls': warn,
     'no-octal': warn,
     'no-octal-escape': warn,
@@ -1374,5 +1365,15 @@ module.exports = {
     'wrap-regex': off,
     'yield-star-spacing': [warn, 'both'],
     yoda: [warn, 'never'],
+  },
+  settings: {
+    'import/extensions': ['.js', '.ts'],
+    'import/internal-regex': '^@',
+    jsdoc: {
+      mode: 'closure',
+    },
+    react: {
+      version: 'detect',
+    },
   },
 };
