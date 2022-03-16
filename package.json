@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.10.0",
+  "version": "0.11.0-beta1",
   "author": "Robin Blomberg",
   "main": "index.js",
   "repository": {
@@ -16,23 +16,20 @@
     "lint:fix": "eslint **/*.{js,ts} --fix"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.6.0",
-    "@typescript-eslint/parser": "^5.6.0",
-    "babel-eslint": ">=10.1.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jsdoc": "^37.2.0",
+    "@babel/core": "^7.17.7",
+    "@babel/eslint-parser": "^7.17.0",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
+    "eslint": "^7.23.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsdoc": "^38.0.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-sort-keys": "^2.3.5"
   },
   "devDependencies": {
-    "@robinblomberg/eslint-config-robinblomberg": "^0.9.1",
+    "@robinblomberg/eslint-config-robinblomberg": "^0.10.0",
     "@types/node": "*",
-    "cross-env": "^7.0.3"
-  },
-  "peerDependencies": {
-    "@types/node": "*",
-    "eslint": "^7.23.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.6.2"
   }
 }
