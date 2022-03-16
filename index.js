@@ -125,8 +125,9 @@ module.exports = {
             },
           },
         ],
+        // Disabled to due buggy ordering:
         '@typescript-eslint/member-ordering': [
-          warn,
+          off,
           {
             default: [
               'signature',

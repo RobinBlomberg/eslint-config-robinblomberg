@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.11.0-beta1",
+  "version": "0.11.0-beta2",
   "author": "Robin Blomberg",
   "main": "index.js",
   "repository": {
@@ -25,11 +25,11 @@
     "eslint-plugin-jsdoc": "^38.0.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-sort-keys": "^2.3.5"
+    "eslint-plugin-sort-keys": "^2.3.5",
+    "typescript": "^4.6.2"
   },
   "devDependencies": {
-    "@robinblomberg/eslint-config-robinblomberg": "^0.10.0",
-    "@types/node": "*",
-    "typescript": "^4.6.2"
+    "@robinblomberg/eslint-config-robinblomberg": "^0.11.0-beta1",
+    "@types/node": "*"
   }
 }
