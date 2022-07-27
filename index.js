@@ -105,7 +105,7 @@ module.exports = {
         '@typescript-eslint/init-declarations': off,
         '@typescript-eslint/keyword-spacing': warn,
         '@typescript-eslint/lines-between-class-members': [
-          warn,
+          off,
           'always',
           {
             exceptAfterOverload: true,
@@ -352,7 +352,7 @@ module.exports = {
         '@typescript-eslint/semi': [warn, 'always'],
         '@typescript-eslint/space-before-function-paren': [warn, 'always'],
         '@typescript-eslint/strict-boolean-expressions': off,
-        '@typescript-eslint/switch-exhaustiveness-check': off,
+        '@typescript-eslint/switch-exhaustiveness-check': warn,
         '@typescript-eslint/triple-slash-reference': warn,
         '@typescript-eslint/type-annotation-spacing': warn,
         '@typescript-eslint/typedef': off,
@@ -909,7 +909,7 @@ module.exports = {
     'jsdoc/no-bad-blocks': warn,
     'jsdoc/no-defaults': warn,
     'jsdoc/no-types': off,
-    // Disable due to false positives when referring to a generic type from inside its function:
+    // Disabled due to false positives when referring to a generic type from inside its function:
     'jsdoc/no-undefined-types': [
       off,
       {
@@ -1074,7 +1074,7 @@ module.exports = {
     'no-alert': off,
     'no-array-constructor': warn,
     'no-async-promise-executor': warn,
-    'no-await-in-loop': warn,
+    'no-await-in-loop': off,
     'no-bitwise': warn,
     'no-buffer-constructor': warn,
     'no-caller': warn,
@@ -1083,14 +1083,14 @@ module.exports = {
     'no-compare-neg-zero': warn,
     'no-cond-assign': warn,
     'no-confusing-arrow': warn,
-    'no-console': [warn, { allow: ['debug', 'error', 'info', 'warn'] }],
+    'no-console': [off, { allow: ['debug', 'error', 'info', 'warn'] }],
     'no-const-assign': warn,
     'no-constant-condition': [warn, { checkLoops: false }],
     'no-continue': warn,
     'no-control-regex': off,
     'no-debugger': warn,
     'no-delete-var': warn,
-    'no-div-regex': warn,
+    'no-div-regex': off,
     'no-dupe-args': warn,
     'no-dupe-class-members': warn,
     'no-dupe-keys': warn,
