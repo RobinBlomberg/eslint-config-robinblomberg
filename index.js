@@ -883,7 +883,7 @@ module.exports = {
     'init-declarations': off,
     'jsdoc/check-access': warn,
     'jsdoc/check-alignment': warn,
-    'jsdoc/check-examples': warn,
+    'jsdoc/check-examples': off,
     'jsdoc/check-indentation': [
       off,
       {
@@ -1154,7 +1154,7 @@ module.exports = {
     ],
     'no-mixed-requires': warn,
     'no-mixed-spaces-and-tabs': warn,
-    'no-multi-assign': warn,
+    'no-multi-assign': off,
     'no-multi-spaces': warn,
     'no-multi-str': warn,
     'no-multiple-empty-lines': [warn, { max: 1, maxEOF: 0 }],
@@ -1251,7 +1251,7 @@ module.exports = {
     'no-useless-return': warn,
     'no-var': warn,
     'no-void': warn,
-    'no-warning-comments': warn,
+    'no-warning-comments': off,
     'no-whitespace-before-property': warn,
     'no-with': warn,
     'nonblock-statement-body-position': warn,
