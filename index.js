@@ -276,7 +276,7 @@ module.exports = {
         ],
         '@typescript-eslint/no-non-null-asserted-optional-chain': warn,
         '@typescript-eslint/no-non-null-assertion': off,
-        '@typescript-eslint/no-parameter-properties': warn,
+        '@typescript-eslint/no-parameter-properties': off,
         '@typescript-eslint/no-redeclare': warn,
         '@typescript-eslint/no-require-imports': warn,
         '@typescript-eslint/no-shadow': warn,
