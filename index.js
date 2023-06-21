@@ -585,7 +585,6 @@ module.exports = {
         'react/jsx-pascal-case': warn,
         'react/jsx-props-no-multi-spaces': warn,
         'react/jsx-props-no-spreading': off,
-        'react/jsx-sort-default-props': warn,
         'react/jsx-sort-props': warn,
         /** @deprecated */
         'react/jsx-space-before-closing': off,
@@ -689,6 +688,7 @@ module.exports = {
             ],
           },
         ],
+        'react/sort-default-props': warn,
         'react/sort-prop-types': warn,
         'react/state-in-constructor': off,
         'react/static-property-placement': warn,

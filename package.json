@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.15.0-beta2",
+  "version": "0.15.0",
   "author": "Robin Blomberg",
   "main": "index.js",
   "repository": {
@@ -29,7 +29,7 @@
     "typescript": "^5.1.3"
   },
   "devDependencies": {
-    "@robinblomberg/eslint-config-robinblomberg": "0.14.0",
+    "@robinblomberg/eslint-config-robinblomberg": "0.15.0-beta2",
     "@types/node": "*"
   }
 }
