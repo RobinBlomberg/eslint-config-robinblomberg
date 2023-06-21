@@ -216,7 +216,7 @@ module.exports = {
         ],
         '@typescript-eslint/no-array-constructor': warn,
         '@typescript-eslint/no-base-to-string': warn,
-        '@typescript-eslint/no-confusing-non-null-assertion': warn,
+        '@typescript-eslint/no-confusing-non-null-assertion': off,
         '@typescript-eslint/no-dupe-class-members': warn,
         '@typescript-eslint/no-dynamic-delete': off,
         '@typescript-eslint/no-empty-function': off,
@@ -312,7 +312,8 @@ module.exports = {
         '@typescript-eslint/prefer-includes': warn,
         '@typescript-eslint/prefer-literal-enum-member': warn,
         '@typescript-eslint/prefer-namespace-keyword': warn,
-        '@typescript-eslint/prefer-nullish-coalescing': warn,
+        // Warns about correct uses of `||`:
+        '@typescript-eslint/prefer-nullish-coalescing': off,
         '@typescript-eslint/prefer-optional-chain': warn,
         '@typescript-eslint/prefer-readonly': warn,
         // Disabled due to error:
@@ -350,7 +351,12 @@ module.exports = {
         '@typescript-eslint/unified-signatures': warn,
         'default-case': off,
         'func-call-spacing': off,
+        'import/exports-last': off,
         'import/extensions': off,
+        'import/no-internal-modules': [
+          warn,
+          { allow: ['[@a-z][@a-z]***', '**/*.svg'] },
+        ],
         'import/no-unassigned-import': off,
         // Disabled due to false positives:
         'import/no-unresolved': [off, { ignore: ['\\.types$'] }],
@@ -782,7 +788,7 @@ module.exports = {
     'import/default': warn,
     'import/dynamic-import-chunkname': off,
     'import/export': warn,
-    'import/exports-last': warn,
+    'import/exports-last': off,
     'import/extensions': [
       warn,
       {
@@ -809,10 +815,6 @@ module.exports = {
     'import/no-duplicates': warn,
     'import/no-dynamic-require': warn,
     'import/no-extraneous-dependencies': warn,
-    'import/no-internal-modules': [
-      warn,
-      { allow: ['[@a-z][@a-z]***', '**/*.svg'] },
-    ],
     'import/no-mutable-exports': warn,
     'import/no-named-as-default': warn,
     'import/no-named-as-default-member': warn,
@@ -1107,7 +1109,7 @@ module.exports = {
     'no-multiple-empty-lines': [warn, { max: 1, maxEOF: 0 }],
     'no-negated-condition': warn,
     'no-negated-in-lhs': warn,
-    'no-nested-ternary': warn,
+    'no-nested-ternary': off,
     'no-new': warn,
     'no-new-func': warn,
     'no-new-object': warn,
@@ -1211,7 +1213,7 @@ module.exports = {
     'no-sparse-arrays': warn,
     'no-sync': off,
     'no-tabs': warn,
-    'no-template-curly-in-string': warn,
+    'no-template-curly-in-string': off,
     'no-ternary': off,
     'no-this-before-super': warn,
     'no-throw-literal': warn,
