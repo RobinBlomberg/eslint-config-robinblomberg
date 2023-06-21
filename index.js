@@ -815,6 +815,7 @@ module.exports = {
     'import/no-duplicates': warn,
     'import/no-dynamic-require': warn,
     'import/no-extraneous-dependencies': warn,
+    'import/no-internal-modules': off,
     'import/no-mutable-exports': warn,
     'import/no-named-as-default': warn,
     'import/no-named-as-default-member': warn,
