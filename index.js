@@ -353,10 +353,6 @@ module.exports = {
         'func-call-spacing': off,
         'import/exports-last': off,
         'import/extensions': off,
-        'import/no-internal-modules': [
-          warn,
-          { allow: ['[@a-z][@a-z]***', '**/*.svg'] },
-        ],
         'import/no-unassigned-import': off,
         // Disabled due to false positives:
         'import/no-unresolved': [off, { ignore: ['\\.types$'] }],
@@ -815,7 +811,10 @@ module.exports = {
     'import/no-duplicates': warn,
     'import/no-dynamic-require': warn,
     'import/no-extraneous-dependencies': warn,
-    'import/no-internal-modules': off,
+    'import/no-internal-modules': [
+      off,
+      { allow: ['[@a-z][@a-z]***', '**/*.svg'] },
+    ],
     'import/no-mutable-exports': warn,
     'import/no-named-as-default': warn,
     'import/no-named-as-default-member': warn,
