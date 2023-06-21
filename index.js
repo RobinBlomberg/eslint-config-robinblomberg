@@ -866,7 +866,6 @@ module.exports = {
     'jsdoc/empty-tags': warn,
     'jsdoc/implements-on-classes': warn,
     'jsdoc/match-description': warn,
-    'jsdoc/newline-after-description': warn,
     'jsdoc/no-bad-blocks': warn,
     'jsdoc/no-defaults': warn,
     'jsdoc/no-types': off,
