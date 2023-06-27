@@ -249,7 +249,7 @@ module.exports = {
         '@typescript-eslint/no-loop-func': warn,
         '@typescript-eslint/no-loss-of-precision': warn,
         '@typescript-eslint/no-magic-numbers': [
-          warn,
+          off,
           {
             ignore: [-1, 0, 1, 2, 3, '-1n', '0n', '1n', '2n', '3n'],
             ignoreEnums: true,
@@ -1334,7 +1334,7 @@ module.exports = {
       },
     ],
     'sort-keys': off,
-    'sort-keys/sort-keys-fix': [warn, 'asc', { natural: false }],
+    'sort-keys/sort-keys-fix': [off, 'asc', { natural: false }],
     'sort-vars': warn,
     'space-before-blocks': [warn, 'always'],
     'space-before-function-paren': [warn, 'always'],
