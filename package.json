@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.17.0-beta5",
+  "version": "0.17.0-beta6",
   "author": "Robin Blomberg",
   "main": "index.js",
   "repository": {
@@ -30,8 +30,10 @@
     "eslint-plugin-unicorn": "^48.0.1"
   },
   "devDependencies": {
-    "@robinblomberg/eslint-config-robinblomberg": "0.17.0-beta3",
-    "@types/node": "*"
+    "@robinblomberg/eslint-config-robinblomberg": "0.17.0-beta5",
+    "@types/node": "*",
+    "eslint-plugin-sort-exports": "^0.8.0",
+    "eslint-plugin-storybook": "^0.6.13"
   },
   "peerDependencies": {
     "eslint": "^8.43.0",
