@@ -20,6 +20,9 @@ dependencies:
   eslint:
     specifier: ^8.43.0
     version: 8.46.0
+  eslint-define-config:
+    specifier: ^1.22.0
+    version: 1.22.0
   eslint-plugin-import:
     specifier: ^2.28.0
     version: 2.28.0(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)
@@ -46,9 +49,6 @@ devDependencies:
   '@types/node':
     specifier: '*'
     version: 17.0.21
-  eslint-define-config:
-    specifier: ^1.22.0
-    version: 1.22.0
   eslint-plugin-sonarjs:
     specifier: ^0.19.0
     version: 0.19.0(eslint@8.46.0)
@@ -1152,7 +1152,7 @@ packages:
   /eslint-define-config@1.22.0:
     resolution: {integrity: sha512-pckNJppFwC4AX+AGK63aa4sX5BluPwWwHES3fq/ER0jDR2U2czwlngg38B4EQ2ibvofufc+R5QfmdPKI6+74vQ==}
     engines: {node: ^16.13.0 || >=18.0.0, npm: '>=7.0.0', pnpm: '>= 8.6.0'}
-    dev: true
+    dev: false
 
   /eslint-import-resolver-node@0.3.7:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
