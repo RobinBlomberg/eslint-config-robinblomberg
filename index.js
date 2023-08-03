@@ -1,14 +1,17 @@
+const { defineConfig } = require('eslint-define-config');
+
 const IS_DEVELOPMENT = !process.env.CI && process.env.NODE_ENV !== 'production';
 const error = 'error';
 const off = 'off';
 const warn = IS_DEVELOPMENT ? 'warn' : 'error';
 
-module.exports = {
+module.exports = defineConfig({
   env: {
     browser: true,
-    es6: true,
+    es2024: true,
     node: true,
   },
+  extends: ['plugin:sonarjs/recommended', 'plugin:unicorn/recommended'],
   globals: {
     globalThis: true,
   },
@@ -134,7 +137,6 @@ module.exports = {
               'private-instance-field',
               'protected-instance-field',
               'public-instance-field',
-              'private-abstract-field',
               'protected-abstract-field',
               'public-abstract-field',
               'static-field',
@@ -155,7 +157,6 @@ module.exports = {
               'private-instance-method',
               'protected-instance-method',
               'public-instance-method',
-              'private-abstract-method',
               'protected-abstract-method',
               'public-abstract-method',
               'static-method',
@@ -332,10 +333,7 @@ module.exports = {
         '@typescript-eslint/require-await': warn,
         '@typescript-eslint/restrict-plus-operands': [
           error,
-          {
-            allowAny: false,
-            checkCompoundAssignments: true,
-          },
+          { allowAny: false },
         ],
         // Disabled due to false positives:
         '@typescript-eslint/restrict-template-expressions': off,
@@ -728,11 +726,11 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2017,
+    ecmaVersion: 'latest',
     requireConfigFile: false,
     sourceType: 'module',
   },
-  plugins: ['import', 'jsdoc', 'sort-keys'],
+  plugins: ['import', 'jsdoc', 'sort-keys', 'sonarjs', 'unicorn'],
   root: true,
   rules: {
     'accessor-pairs': warn,
@@ -1384,4 +1382,4 @@ module.exports = {
       version: 'detect',
     },
   },
-};
+});
