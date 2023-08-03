@@ -1322,6 +1322,8 @@ module.exports = defineConfig({
     semi: [warn, 'always'],
     'semi-spacing': [warn, { after: true, before: false }],
     'semi-style': [warn, 'last'],
+    'sonarjs/cognitive-complexity': 0,
+    'sonarjs/no-nested-switch': 0,
     'sort-imports': [
       off,
       {
@@ -1364,6 +1366,12 @@ module.exports = defineConfig({
     'template-curly-spacing': [warn, 'never'],
     'template-tag-spacing': [warn, 'never'],
     'unicode-bom': [warn, 'never'],
+    'unicorn/no-nested-ternary': 0,
+    'unicorn/no-null': 0,
+    'unicorn/number-literal-case': 0,
+    'unicorn/prefer-at': 0,
+    'unicorn/prefer-number-properties': 0,
+    'unicorn/prevent-abbreviations': 0,
     'use-isnan': warn,
     'valid-typeof': [warn, { requireStringLiterals: true }],
     'vars-on-top': warn,

@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.17.0-beta3",
+  "version": "0.17.0-beta4",
   "author": "Robin Blomberg",
   "main": "index.js",
   "repository": {
@@ -30,7 +30,7 @@
     "eslint-plugin-unicorn": "^48.0.1"
   },
   "devDependencies": {
-    "@robinblomberg/eslint-config-robinblomberg": "^0.16.0",
+    "@robinblomberg/eslint-config-robinblomberg": "0.17.0-beta3",
     "@types/node": "*"
   },
   "peerDependencies": {
