@@ -222,7 +222,7 @@ module.exports = defineConfig({
         '@typescript-eslint/no-dynamic-delete': off,
         '@typescript-eslint/no-empty-function': off,
         '@typescript-eslint/no-empty-interface': warn,
-        '@typescript-eslint/no-explicit-any': off,
+        '@typescript-eslint/no-explicit-any': warn,
         '@typescript-eslint/no-extra-non-null-assertion': warn,
         '@typescript-eslint/no-extra-parens': [
           warn,
@@ -266,7 +266,7 @@ module.exports = defineConfig({
         '@typescript-eslint/no-non-null-assertion': off,
         '@typescript-eslint/no-parameter-properties': off,
         '@typescript-eslint/no-redeclare': off,
-        '@typescript-eslint/no-require-imports': warn,
+        '@typescript-eslint/no-require-imports': off,
         '@typescript-eslint/no-shadow': warn,
         '@typescript-eslint/no-this-alias': warn,
         '@typescript-eslint/no-throw-literal': warn,
@@ -402,7 +402,6 @@ module.exports = defineConfig({
         'require-await': off,
         semi: off,
         'space-before-function-paren': off,
-        'unicorn/prefer-module': off,
       },
     },
     // Based on `storybook/recommended`:
@@ -448,6 +447,7 @@ module.exports = defineConfig({
         '@typescript-eslint/no-magic-numbers': off,
         'jsdoc/require-jsdoc': off,
         'no-magic-numbers': off,
+        'sonarjs/no-duplicate-string': off,
         'sort-keys': off,
       },
     },
@@ -983,7 +983,7 @@ module.exports = defineConfig({
     'import/no-deprecated': off,
     // Disabled due to slow performance, and because it's duplicated by `no-duplicate-imports`:
     'import/no-duplicates': off,
-    'import/no-dynamic-require': warn,
+    'import/no-dynamic-require': off,
     'import/no-extraneous-dependencies': warn,
     'import/no-internal-modules': [
       off,
@@ -1541,7 +1541,7 @@ module.exports = defineConfig({
     'unicorn/prefer-string-starts-ends-with': warn,
     'unicorn/prefer-string-trim-start-end': warn,
     'unicorn/prefer-switch': warn,
-    'unicorn/prefer-ternary': warn,
+    'unicorn/prefer-ternary': off,
     'unicorn/prefer-top-level-await': warn,
     'unicorn/prefer-type-error': warn,
     'unicorn/prevent-abbreviations': off,
