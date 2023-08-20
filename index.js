@@ -222,7 +222,8 @@ module.exports = defineConfig({
         '@typescript-eslint/no-dynamic-delete': off,
         '@typescript-eslint/no-empty-function': off,
         '@typescript-eslint/no-empty-interface': warn,
-        '@typescript-eslint/no-explicit-any': warn,
+        // Often warns about necessary uses:
+        '@typescript-eslint/no-explicit-any': off,
         '@typescript-eslint/no-extra-non-null-assertion': warn,
         '@typescript-eslint/no-extra-parens': [
           warn,
@@ -292,7 +293,7 @@ module.exports = defineConfig({
         '@typescript-eslint/no-unused-vars': [
           warn,
           {
-            args: 'after-used',
+            args: 'none',
             argsIgnorePattern: '^_.*$',
             vars: 'all',
             varsIgnorePattern: '^_.*$|^T$',
@@ -449,6 +450,7 @@ module.exports = defineConfig({
         'no-magic-numbers': off,
         'sonarjs/no-duplicate-string': off,
         'sort-keys': off,
+        'unicorn/consistent-function-scoping': off,
       },
     },
     {
@@ -729,6 +731,7 @@ module.exports = defineConfig({
         '@typescript-eslint/no-use-before-define': off,
         'import/no-default-export': off,
         'jsdoc/require-jsdoc': off,
+        'max-classes-per-file': off,
       },
     },
     {
@@ -875,7 +878,7 @@ module.exports = defineConfig({
         'jsdoc/require-param-name': warn,
         'jsdoc/require-param-type': [warn, { contexts: ['any'] }],
         'jsdoc/require-property': warn,
-        'jsdoc/require-property-description': warn,
+        'jsdoc/require-property-description': off,
         'jsdoc/require-property-name': warn,
         'jsdoc/require-property-type': warn,
         'jsdoc/require-returns': off,
@@ -1274,7 +1277,7 @@ module.exports = defineConfig({
     'no-unused-vars': [
       warn,
       {
-        args: 'after-used',
+        args: 'none',
         argsIgnorePattern: '^_.*$',
         vars: 'all',
         varsIgnorePattern: '^_.*$|^T$',
@@ -1476,7 +1479,7 @@ module.exports = defineConfig({
     'unicorn/no-new-array': warn,
     'unicorn/no-new-buffer': warn,
     'unicorn/no-null': off,
-    'unicorn/no-object-as-default-parameter': warn,
+    'unicorn/no-object-as-default-parameter': off,
     'unicorn/no-process-exit': warn,
     'unicorn/no-static-only-class': warn,
     // Disabled due to slow performance:
