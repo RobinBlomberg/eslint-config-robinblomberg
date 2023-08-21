@@ -850,7 +850,7 @@ module.exports = defineConfig({
         'jsdoc/require-file-overview': off,
         'jsdoc/require-hyphen-before-param-description': [warn, 'never'],
         'jsdoc/require-jsdoc': [
-          warn,
+          off,
           {
             exemptEmptyFunctions: true,
             publicOnly: false,
