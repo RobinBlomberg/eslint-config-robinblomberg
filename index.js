@@ -1005,6 +1005,7 @@ module.exports = defineConfig({
     // Disabled due to slow performance:
     'import/no-self-import': off,
     'import/no-unassigned-import': warn,
+    // Disabled due to false positives:
     'import/no-unresolved': warn,
     'import/no-unused-modules': warn,
     // Disabled due to slow performance:
@@ -1042,7 +1043,7 @@ module.exports = defineConfig({
       'always',
       { exceptAfterSingleLine: true },
     ],
-    'max-classes-per-file': [warn, 1],
+    'max-classes-per-file': [off, 1],
     'max-depth': off,
     'max-len': [
       warn,
@@ -1456,7 +1457,7 @@ module.exports = defineConfig({
         },
       },
     ],
-    'unicorn/import-style': warn,
+    'unicorn/import-style': off,
     'unicorn/new-for-builtins': warn,
     'unicorn/no-abusive-eslint-disable': warn,
     'unicorn/no-array-callback-reference': warn,
@@ -1480,7 +1481,7 @@ module.exports = defineConfig({
     'unicorn/no-new-buffer': warn,
     'unicorn/no-null': off,
     'unicorn/no-object-as-default-parameter': off,
-    'unicorn/no-process-exit': warn,
+    'unicorn/no-process-exit': off,
     'unicorn/no-static-only-class': warn,
     // Disabled due to slow performance:
     'unicorn/no-thenable': off,
@@ -1527,7 +1528,8 @@ module.exports = defineConfig({
     'unicorn/prefer-module': off,
     'unicorn/prefer-native-coercion-functions': warn,
     'unicorn/prefer-negative-index': warn,
-    'unicorn/prefer-node-protocol': error,
+    // Not available in earlier Node.js versions:
+    'unicorn/prefer-node-protocol': off,
     'unicorn/prefer-number-properties': off,
     'unicorn/prefer-object-from-entries': warn,
     'unicorn/prefer-optional-catch-binding': warn,
@@ -1545,7 +1547,8 @@ module.exports = defineConfig({
     'unicorn/prefer-string-trim-start-end': warn,
     'unicorn/prefer-switch': warn,
     'unicorn/prefer-ternary': off,
-    'unicorn/prefer-top-level-await': warn,
+    // Not available in all Node.js versions or without specific settings:
+    'unicorn/prefer-top-level-await': off,
     'unicorn/prefer-type-error': warn,
     'unicorn/prevent-abbreviations': off,
     'unicorn/relative-url-style': warn,
@@ -1553,7 +1556,7 @@ module.exports = defineConfig({
     'unicorn/require-number-to-fixed-digits-argument': warn,
     'unicorn/require-post-message-target-origin': off,
     'unicorn/string-content': off,
-    'unicorn/switch-case-braces': warn,
+    'unicorn/switch-case-braces': off,
     'unicorn/template-indent': warn,
     'unicorn/text-encoding-identifier-case': warn,
     'unicorn/throw-new-error': warn,
