@@ -1,19 +1,19 @@
-# ESLint Config
+# ESLint config
 
 ## Installation
 
-```
-npm install --save-dev @robinblomberg/eslint-config-robinblomberg
+```sh
+npm install -D @robinblomberg/eslint-config-robinblomberg
 ```
 
 ## Configuration
 
 Create a file called **.eslintrc.js** at the project root:
 
-```javascript
+```js
 module.exports = {
-  extends: '@robinblomberg/robinblomberg'
-}
+  extends: '@robinblomberg/robinblomberg',
+};
 ```
 
 ## NPM scripts
@@ -24,7 +24,7 @@ Add the following scripts to your package.json:
 {
   "scripts": {
     "lint-scripts": "eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "lint-scripts-fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
+    "lint-scripts-fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix"
   }
 }
 ```
@@ -33,11 +33,11 @@ Adjust the paths according to your project/file structure as necessary (e.g. `"e
 
 To run a script, enter the following in your command line:
 
-```
+```sh
 npm run lint-scripts
 ```
 
-## Formatting on Save
+## Formatting on save
 
 With this knowledge of ESLint messages in mind, we can modify VS Code to tell ESLint to fix any issues (mainly formatting) every time we save. To open the settings menu, click on the gear icon in the lower left, and then choose **Settings**.
 
