@@ -1387,7 +1387,7 @@ module.exports = defineConfig({
     'sonarjs/no-redundant-boolean': warn,
     'sonarjs/no-redundant-jump': warn,
     'sonarjs/no-same-line-conditional': warn,
-    'sonarjs/no-small-switch': warn,
+    'sonarjs/no-small-switch': off,
     'sonarjs/no-unused-collection': warn,
     'sonarjs/no-use-of-empty-return-value': warn,
     'sonarjs/no-useless-catch': warn,
