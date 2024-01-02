@@ -452,6 +452,7 @@ module.exports = defineConfig({
         'no-sparse-arrays': off,
         'sonarjs/no-duplicate-string': off,
         'sort-keys': off,
+        'symbol-description': off,
         'unicorn/better-regex': off,
         'unicorn/consistent-function-scoping': off,
         'unicorn/new-for-builtins': off,

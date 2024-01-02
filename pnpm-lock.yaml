@@ -56,8 +56,8 @@ dependencies:
 
 devDependencies:
   '@robinblomberg/eslint-config-robinblomberg':
-    specifier: 0.23.1
-    version: 0.23.1(eslint@8.46.0)(typescript@5.0.4)
+    specifier: 0.23.4
+    version: 0.23.4(eslint@8.46.0)(typescript@5.0.4)
   '@types/node':
     specifier: '*'
     version: 17.0.21
@@ -393,8 +393,8 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
-  /@robinblomberg/eslint-config-robinblomberg@0.23.1(eslint@8.46.0)(typescript@5.0.4):
-    resolution: {integrity: sha512-1/V/kLAgN7Wf2y7B9FB5YSLDbgnCCB0gvIPEy9NlYXWi25YLHlr1RwpfRgBdpmv3/nwve/QkhrpMgbGkWPusqA==}
+  /@robinblomberg/eslint-config-robinblomberg@0.23.4(eslint@8.46.0)(typescript@5.0.4):
+    resolution: {integrity: sha512-/r/34FhXgl5EsERSlELWkesUVAb073GuHdQIFkxLxNbq+zEmtV63g0Sd8bmTrc6M9Bd6gX7wL8v3xCXfIZDcuA==}
     peerDependencies:
       eslint: ^8.43.0
       typescript: '>=4.2.0'
