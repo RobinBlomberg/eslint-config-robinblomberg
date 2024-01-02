@@ -1382,7 +1382,7 @@ module.exports = defineConfig({
     'sonarjs/no-ignored-return': warn,
     'sonarjs/no-inverted-boolean-check': off,
     'sonarjs/no-nested-switch': off,
-    'sonarjs/no-nested-template-literals': warn,
+    'sonarjs/no-nested-template-literals': off,
     'sonarjs/no-one-iteration-loop': warn,
     'sonarjs/no-redundant-boolean': warn,
     'sonarjs/no-redundant-jump': warn,
