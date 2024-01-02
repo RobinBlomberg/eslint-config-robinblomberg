@@ -1463,7 +1463,7 @@ module.exports = defineConfig({
     'unicorn/no-array-callback-reference': warn,
     'unicorn/no-array-for-each': warn,
     'unicorn/no-array-method-this-argument': warn,
-    'unicorn/no-array-push-push': warn,
+    'unicorn/no-array-push-push': off,
     'unicorn/no-array-reduce': warn,
     'unicorn/no-await-expression-member': warn,
     'unicorn/no-console-spaces': warn,
