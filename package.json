@@ -5,12 +5,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RobinBlomberg/eslint-config.git"
+    "url": "git+https://github.com/RobinBlomberg/eslint-config-robinblomberg.git"
   },
   "bugs": {
-    "url": "https://github.com/RobinBlomberg/eslint-config/issues"
+    "url": "https://github.com/RobinBlomberg/eslint-config-robinblomberg/issues"
   },
-  "homepage": "https://github.com/RobinBlomberg/eslint-config#readme",
+  "homepage": "https://github.com/RobinBlomberg/eslint-config-robinblomberg#readme",
   "scripts": {
     "lint": "eslint **/*.{js,ts}",
     "lint:fix": "eslint **/*.{js,ts} --fix"
