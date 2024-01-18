@@ -433,10 +433,6 @@ module.exports = defineConfig({
       },
     },
     {
-      env: {
-        jest: true,
-        mocha: true,
-      },
       files: [
         '**/spec/**',
         '**/test/**',
@@ -444,6 +440,10 @@ module.exports = defineConfig({
         '**/*.spec.*',
         '**/*.test.*',
       ],
+      env: {
+        jest: true,
+        mocha: true,
+      },
       rules: {
         '@typescript-eslint/no-magic-numbers': off,
         'jsdoc/require-jsdoc': off,
@@ -461,7 +461,7 @@ module.exports = defineConfig({
     },
     {
       files: ['**/*.jsx', '**/*.tsx'],
-      plugins: ['react', 'jsx-a11y'],
+      plugins: ['react', 'react-hooks', 'jsx-a11y'],
       rules: {
         'jsx-a11y/accessible-emoji': warn,
         'jsx-a11y/alt-text': warn,
@@ -727,6 +727,8 @@ module.exports = defineConfig({
         'react/static-property-placement': warn,
         'react/style-prop-object': warn,
         'react/void-dom-elements-no-children': warn,
+        'react-hooks/exhaustive-deps': warn,
+        'react-hooks/rules-of-hooks': error,
       },
     },
     {
