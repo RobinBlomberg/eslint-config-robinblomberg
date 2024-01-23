@@ -66,7 +66,8 @@ module.exports = defineConfig({
           warn,
           {
             disallowTypeAnnotations: true,
-            prefer: 'no-type-imports',
+            fixStyle: 'inline-type-imports',
+            prefer: 'type-imports',
           },
         ],
         '@typescript-eslint/default-param-last': warn,
@@ -968,8 +969,9 @@ module.exports = defineConfig({
     'import/dynamic-import-chunkname': off,
     'import/export': warn,
     'import/exports-last': off,
+    // This should be opt-in. It's not necessary for Vite, for example.
     'import/extensions': [
-      warn,
+      off,
       {
         js: 'always',
         json: 'always',
@@ -1336,7 +1338,8 @@ module.exports = defineConfig({
       },
     ],
     'padding-line-between-statements': warn,
-    'prefer-arrow-callback': warn,
+    // You may want to use `fn(function () {})` for some advanced cases:
+    'prefer-arrow-callback': off,
     'prefer-const': [warn, { destructuring: 'all' }],
     'prefer-destructuring': [off, { array: false, object: true }],
     'prefer-named-capture-group': off,
