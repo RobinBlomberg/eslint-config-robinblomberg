@@ -66,7 +66,7 @@ module.exports = defineConfig({
           warn,
           {
             disallowTypeAnnotations: true,
-            fixStyle: 'inline-type-imports',
+            fixStyle: 'separate-type-imports',
             prefer: 'type-imports',
           },
         ],
@@ -382,6 +382,7 @@ module.exports = defineConfig({
         'keyword-spacing': off,
         'lines-between-class-members': off,
         'no-dupe-class-members': off,
+        'no-duplicate-imports': off,
         'no-empty-function': off,
         'no-extra-parens': off,
         'no-extra-semi': off,
@@ -415,6 +416,7 @@ module.exports = defineConfig({
       rules: {
         'import/no-anonymous-default-export': off,
         'react/no-multi-comp': off,
+        'react-hooks/rules-of-hooks': off,
         'storybook/await-interactions': error,
         'storybook/context-in-play-function': error,
         'storybook/default-exports': error,
@@ -462,7 +464,7 @@ module.exports = defineConfig({
     },
     {
       files: ['**/*.jsx', '**/*.tsx'],
-      plugins: ['react', 'react-hooks', 'jsx-a11y'],
+      plugins: ['react', 'react-hooks', 'react-refresh', 'jsx-a11y'],
       rules: {
         'jsx-a11y/accessible-emoji': warn,
         'jsx-a11y/alt-text': warn,
@@ -730,6 +732,10 @@ module.exports = defineConfig({
         'react/void-dom-elements-no-children': warn,
         'react-hooks/exhaustive-deps': warn,
         'react-hooks/rules-of-hooks': error,
+        'react-refresh/only-export-components': [
+          warn,
+          { allowConstantExport: true },
+        ],
       },
     },
     {
