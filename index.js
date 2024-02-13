@@ -410,8 +410,9 @@ module.exports = defineConfig({
     // Based on `storybook/recommended`:
     {
       files: [
-        '*.stories.@(ts|tsx|js|jsx|mjs|cjs)',
-        '*.story.@(ts|tsx|js|jsx|mjs|cjs)',
+        '**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)',
+        '**/*.stories.fixtures.@(ts|tsx|js|jsx|mjs|cjs)',
+        '**/*.story.@(ts|tsx|js|jsx|mjs|cjs)',
       ],
       rules: {
         'import/no-anonymous-default-export': off,
@@ -430,7 +431,7 @@ module.exports = defineConfig({
     },
     // Based on `storybook/recommended`:
     {
-      files: ['.storybook/main.@(js|cjs|mjs|ts)'],
+      files: ['**/.storybook/main.@(js|cjs|mjs|ts)'],
       rules: {
         'storybook/no-uninstalled-addons': error,
       },
