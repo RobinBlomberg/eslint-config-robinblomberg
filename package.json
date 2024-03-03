@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.25.1",
+  "version": "0.26.0",
   "author": "Robin Blomberg",
   "main": "index.js",
   "repository": {
@@ -16,13 +16,13 @@
     "lint:fix": "eslint **/*.{js,ts} --fix"
   },
   "dependencies": {
-    "@babel/core": "^7.23.9",
+    "@babel/core": "^7.24.0",
     "@babel/eslint-parser": "^7.23.10",
-    "@typescript-eslint/eslint-plugin": "^7.0.1",
-    "@typescript-eslint/parser": "^7.0.1",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
     "eslint-define-config": "^2.1.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsdoc": "^48.0.6",
+    "eslint-plugin-jsdoc": "^48.2.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -30,11 +30,11 @@
     "eslint-plugin-sonarjs": "^0.24.0",
     "eslint-plugin-sort-exports": "^0.9.1",
     "eslint-plugin-sort-keys": "^2.3.5",
-    "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-storybook": "^0.8.0",
     "eslint-plugin-unicorn": "^51.0.1"
   },
   "devDependencies": {
-    "@robinblomberg/eslint-config-robinblomberg": "0.25.0",
+    "@robinblomberg/eslint-config-robinblomberg": "0.25.1",
     "@types/node": "*"
   },
   "peerDependencies": {
