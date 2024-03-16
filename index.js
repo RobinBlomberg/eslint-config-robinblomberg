@@ -1480,7 +1480,7 @@ module.exports = defineConfig({
     'unicorn/no-array-reduce': warn,
     'unicorn/no-await-expression-member': warn,
     'unicorn/no-console-spaces': warn,
-    'unicorn/no-document-cookie': warn,
+    'unicorn/no-document-cookie': off,
     'unicorn/no-empty-file': off,
     'unicorn/no-for-loop': warn,
     'unicorn/no-hex-escape': off,
