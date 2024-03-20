@@ -1543,7 +1543,7 @@ module.exports = defineConfig({
     'unicorn/prefer-negative-index': warn,
     // Not available in earlier Node.js versions:
     'unicorn/prefer-node-protocol': off,
-    'unicorn/prefer-number-properties': off,
+    'unicorn/prefer-number-properties': warn,
     'unicorn/prefer-object-from-entries': warn,
     'unicorn/prefer-optional-catch-binding': warn,
     'unicorn/prefer-prototype-methods': warn,
