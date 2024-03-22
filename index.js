@@ -389,6 +389,8 @@ module.exports = defineConfig({
         'no-invalid-this': off,
         'no-loop-func': off,
         'no-loss-of-precision': off,
+        // Handled by `@typescript-eslint/no-implied-eval`:
+        'no-new-func': off,
         'no-redeclare': off,
         'no-return-await': off,
         'no-shadow': off,
