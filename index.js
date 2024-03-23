@@ -1543,8 +1543,7 @@ module.exports = defineConfig({
     'unicorn/prefer-module': off,
     'unicorn/prefer-native-coercion-functions': warn,
     'unicorn/prefer-negative-index': warn,
-    // Not available in earlier Node.js versions:
-    'unicorn/prefer-node-protocol': off,
+    'unicorn/prefer-node-protocol': warn,
     'unicorn/prefer-number-properties': warn,
     'unicorn/prefer-object-from-entries': warn,
     'unicorn/prefer-optional-catch-binding': warn,
