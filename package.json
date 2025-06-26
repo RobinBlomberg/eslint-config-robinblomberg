@@ -1,8 +1,9 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.29.0-beta1",
+  "version": "0.29.0-beta2",
   "author": "Robin Blomberg",
   "main": "index.js",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RobinBlomberg/eslint-config-robinblomberg.git"
