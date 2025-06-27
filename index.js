@@ -345,7 +345,14 @@ module.exports = defineConfig({
         '@typescript-eslint/semi': [warn, 'always'],
         '@typescript-eslint/space-before-function-paren': [warn, 'always'],
         '@typescript-eslint/strict-boolean-expressions': off,
-        '@typescript-eslint/switch-exhaustiveness-check': warn,
+        '@typescript-eslint/switch-exhaustiveness-check': [
+          warn,
+          {
+            allowDefaultCaseForExhaustiveSwitch: true,
+            considerDefaultExhaustiveForUnions: true,
+            requireDefaultForNonUnion: true,
+          },
+        ],
         '@typescript-eslint/triple-slash-reference': warn,
         '@typescript-eslint/type-annotation-spacing': warn,
         '@typescript-eslint/typedef': off,
