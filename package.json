@@ -35,6 +35,7 @@
     "eslint-plugin-unicorn": "^56.0.1"
   },
   "devDependencies": {
+    "@robinblomberg/eslint-config-prettier": "^0.1.4",
     "@robinblomberg/eslint-config-robinblomberg": "*",
     "@types/node": "*"
   },

@@ -102,22 +102,13 @@ module.exports = defineConfig({
         '@typescript-eslint/lines-between-class-members': [
           off,
           'always',
-          {
-            exceptAfterOverload: true,
-            exceptAfterSingleLine: true,
-          },
+          { exceptAfterOverload: true, exceptAfterSingleLine: true },
         ],
         '@typescript-eslint/member-delimiter-style': [
           warn,
           {
-            multiline: {
-              delimiter: 'semi',
-              requireLast: true,
-            },
-            singleline: {
-              delimiter: 'semi',
-              requireLast: true,
-            },
+            multiline: { delimiter: 'semi', requireLast: true },
+            singleline: { delimiter: 'semi', requireLast: true },
           },
         ],
         // Disabled to due buggy ordering:
@@ -229,20 +220,14 @@ module.exports = defineConfig({
         '@typescript-eslint/no-extra-parens': [
           warn,
           'all',
-          {
-            ignoreJSX: 'all',
-            nestedBinaryExpressions: false,
-          },
+          { ignoreJSX: 'all', nestedBinaryExpressions: false },
         ],
         '@typescript-eslint/no-extra-semi': warn,
         '@typescript-eslint/no-extraneous-class': off,
         // Disabled due to slow performance:
         '@typescript-eslint/no-floating-promises': [
           off,
-          {
-            ignoreIIFE: true,
-            ignoreVoid: true,
-          },
+          { ignoreIIFE: true, ignoreVoid: true },
         ],
         '@typescript-eslint/no-for-in-array': warn,
         '@typescript-eslint/no-implicit-any-catch': off,
@@ -301,11 +286,7 @@ module.exports = defineConfig({
         ],
         '@typescript-eslint/no-use-before-define': [
           error,
-          {
-            classes: false,
-            functions: false,
-            variables: false,
-          },
+          { classes: false, functions: false, variables: false },
         ],
         '@typescript-eslint/no-useless-constructor': warn,
         '@typescript-eslint/no-var-requires': off,
@@ -581,10 +562,7 @@ module.exports = defineConfig({
         'react/jsx-closing-tag-location': warn,
         'react/jsx-curly-brace-presence': [
           warn,
-          {
-            children: 'always',
-            props: 'never',
-          },
+          { children: 'always', props: 'never' },
         ],
         'react/jsx-curly-newline': off,
         'react/jsx-curly-spacing': warn,
@@ -602,10 +580,7 @@ module.exports = defineConfig({
         'react/jsx-max-depth': off,
         'react/jsx-max-props-per-line': [
           warn,
-          {
-            maximum: 1,
-            when: 'multiline',
-          },
+          { maximum: 1, when: 'multiline' },
         ],
         'react/jsx-newline': off,
         'react/jsx-no-bind': [
@@ -865,10 +840,7 @@ module.exports = defineConfig({
         ],
         'jsdoc/require-description': [
           off,
-          {
-            contexts: ['any'],
-            descriptionStyle: 'body',
-          },
+          { contexts: ['any'], descriptionStyle: 'body' },
         ],
         'jsdoc/require-description-complete-sentence': off,
         'jsdoc/require-example': off,
@@ -986,13 +958,7 @@ module.exports = defineConfig({
     'import/export': warn,
     'import/exports-last': off,
     // This should be opt-in. It's not necessary for Vite, for example.
-    'import/extensions': [
-      off,
-      {
-        js: 'always',
-        json: 'always',
-      },
-    ],
+    'import/extensions': [off, { js: 'always', json: 'always' }],
     'import/first': warn,
     'import/group-exports': off,
     'import/imports-first': warn,
@@ -1073,11 +1039,7 @@ module.exports = defineConfig({
     'max-depth': off,
     'max-len': [
       warn,
-      {
-        code: 100,
-        ignoreComments: true,
-        ignoreRegExpLiterals: true,
-      },
+      { code: 100, ignoreComments: true, ignoreRegExpLiterals: true },
     ],
     'max-lines': off,
     'max-lines-per-function': off,
@@ -1257,7 +1219,10 @@ module.exports = defineConfig({
       'toolbar',
       'top',
     ],
-    'no-restricted-imports': warn,
+    'no-restricted-imports': [
+      'error',
+      { paths: ['console', 'node:console', 'test', 'node:test'] },
+    ],
     'no-restricted-modules': warn,
     'no-restricted-properties': warn,
     'no-restricted-syntax': [warn, 'WithStatement'],
@@ -1307,11 +1272,7 @@ module.exports = defineConfig({
     ],
     'no-use-before-define': [
       error,
-      {
-        classes: false,
-        functions: false,
-        variables: false,
-      },
+      { classes: false, functions: false, variables: false },
     ],
     'no-useless-call': warn,
     'no-useless-catch': warn,
@@ -1337,21 +1298,11 @@ module.exports = defineConfig({
     'operator-linebreak': [
       warn,
       'after',
-      {
-        overrides: {
-          ':': 'before',
-          '?': 'before',
-          '??': 'before',
-        },
-      },
+      { overrides: { ':': 'before', '?': 'before', '??': 'before' } },
     ],
     'padded-blocks': [
       warn,
-      {
-        blocks: 'never',
-        classes: 'never',
-        switches: 'never',
-      },
+      { blocks: 'never', classes: 'never', switches: 'never' },
     ],
     'padding-line-between-statements': warn,
     // You may want to use `fn(function () {})` for some advanced cases:
@@ -1370,10 +1321,7 @@ module.exports = defineConfig({
     quotes: [
       warn,
       'single',
-      {
-        allowTemplateLiterals: false,
-        avoidEscape: true,
-      },
+      { allowTemplateLiterals: false, avoidEscape: true },
     ],
     radix: warn,
     // Disabled due to false (?) positives:
@@ -1439,23 +1387,12 @@ module.exports = defineConfig({
       warn,
       'always',
       {
-        block: {
-          balanced: true,
-          exceptions: ['*'],
-        },
-        line: {
-          markers: ['!', '?', '*', '/', '//'],
-        },
+        block: { balanced: true, exceptions: ['*'] },
+        line: { markers: ['!', '?', '*', '/', '//'] },
       },
     ],
     strict: [warn, 'never'],
-    'switch-colon-spacing': [
-      warn,
-      {
-        after: true,
-        before: false,
-      },
-    ],
+    'switch-colon-spacing': [warn, { after: true, before: false }],
     'symbol-description': warn,
     'template-curly-spacing': [warn, 'never'],
     'template-tag-spacing': [warn, 'never'],
@@ -1472,12 +1409,7 @@ module.exports = defineConfig({
     'unicorn/explicit-length-check': warn,
     'unicorn/filename-case': [
       warn,
-      {
-        cases: {
-          kebabCase: true,
-          pascalCase: true,
-        },
-      },
+      { cases: { kebabCase: true, pascalCase: true } },
     ],
     'unicorn/import-style': off,
     'unicorn/new-for-builtins': warn,
@@ -1496,7 +1428,9 @@ module.exports = defineConfig({
     'unicorn/no-instanceof-array': warn,
     'unicorn/no-invalid-remove-event-listener': warn,
     'unicorn/no-keyword-prefix': off,
-    'unicorn/no-lonely-if': warn,
+    // Duplicated by `sonarjs/no-collapsible-if`, but with more annoying highlighting.
+    // It has auto-fix however, which is sometimes wanted and sometimes not:
+    'unicorn/no-lonely-if': off,
     'unicorn/no-negated-condition': warn,
     'unicorn/no-nested-ternary': off,
     'unicorn/no-new-array': off,
@@ -1553,10 +1487,7 @@ module.exports = defineConfig({
     'unicorn/prefer-node-protocol': warn,
     'unicorn/prefer-number-properties': [
       warn,
-      {
-        checkInfinity: false,
-        checkNaN: false,
-      },
+      { checkInfinity: false, checkNaN: false },
     ],
     'unicorn/prefer-object-from-entries': warn,
     'unicorn/prefer-optional-catch-binding': warn,
@@ -1572,7 +1503,7 @@ module.exports = defineConfig({
     'unicorn/prefer-string-slice': warn,
     'unicorn/prefer-string-starts-ends-with': warn,
     'unicorn/prefer-string-trim-start-end': warn,
-    'unicorn/prefer-switch': warn,
+    'unicorn/prefer-switch': off,
     'unicorn/prefer-ternary': off,
     // Not available in all Node.js versions or without specific settings:
     'unicorn/prefer-top-level-await': off,
