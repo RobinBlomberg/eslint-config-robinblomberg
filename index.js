@@ -341,6 +341,7 @@ module.exports = defineConfig({
         '@typescript-eslint/unified-signatures': warn,
         'default-case': off,
         'default-param-last': off,
+        'dot-notation': off,
         'func-call-spacing': off,
         'import/exports-last': off,
         'import/no-unassigned-import': off,
