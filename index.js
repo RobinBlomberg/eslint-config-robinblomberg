@@ -233,7 +233,7 @@ module.exports = defineConfig({
         '@typescript-eslint/no-implicit-any-catch': off,
         '@typescript-eslint/no-implied-eval': warn,
         '@typescript-eslint/no-inferrable-types': warn,
-        '@typescript-eslint/no-invalid-this': warn,
+        '@typescript-eslint/no-invalid-this': off,
         '@typescript-eslint/no-invalid-void-type': off,
         '@typescript-eslint/no-loop-func': warn,
         '@typescript-eslint/no-loss-of-precision': warn,
@@ -341,6 +341,7 @@ module.exports = defineConfig({
         '@typescript-eslint/unified-signatures': warn,
         'default-case': off,
         'default-param-last': off,
+        // Incompatible with the `noPropertyAccessFromIndexSignature` config setting:
         'dot-notation': off,
         'func-call-spacing': off,
         'import/exports-last': off,
