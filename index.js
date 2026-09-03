@@ -46,14 +46,14 @@ module.exports = defineConfig({
             },
           },
         ],
-        '@typescript-eslint/brace-style': warn,
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/brace-style': warn,
         '@typescript-eslint/camelcase': off,
         '@typescript-eslint/class-literal-property-style': [warn, 'fields'],
-        '@typescript-eslint/comma-dangle': [warn, 'always-multiline'],
-        '@typescript-eslint/comma-spacing': [
-          warn,
-          { after: true, before: false },
-        ],
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/comma-dangle': [warn, 'always-multiline'],
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/comma-spacing': [warn, { after: true, before: false }],
         '@typescript-eslint/consistent-type-assertions': [
           off,
           {
@@ -81,36 +81,40 @@ module.exports = defineConfig({
           { accessibility: 'no-public' },
         ],
         '@typescript-eslint/explicit-module-boundary-types': off,
-        '@typescript-eslint/func-call-spacing': warn,
-        '@typescript-eslint/indent': [
-          warn,
-          2,
-          {
-            SwitchCase: 1,
-            // Ignored nodes due to false positives:
-            ignoredNodes: [
-              'TSIntersectionType',
-              'TSTypeParameterInstantiation',
-              'TSUnionType',
-            ],
-          },
-        ],
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/func-call-spacing': warn,
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/indent': [
+        //   warn,
+        //   2,
+        //   {
+        //     SwitchCase: 1,
+        //     // Ignored nodes due to false positives:
+        //     ignoredNodes: [
+        //       'TSIntersectionType',
+        //       'TSTypeParameterInstantiation',
+        //       'TSUnionType',
+        //     ],
+        //   },
+        // ],
         // Definition not found (2020-10-26):
         // '@typescript-eslint/index': warn,
         '@typescript-eslint/init-declarations': off,
-        '@typescript-eslint/keyword-spacing': warn,
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/keyword-spacing': warn,
         '@typescript-eslint/lines-between-class-members': [
           off,
           'always',
           { exceptAfterOverload: true, exceptAfterSingleLine: true },
         ],
-        '@typescript-eslint/member-delimiter-style': [
-          warn,
-          {
-            multiline: { delimiter: 'semi', requireLast: true },
-            singleline: { delimiter: 'semi', requireLast: true },
-          },
-        ],
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/member-delimiter-style': [
+        //   warn,
+        //   {
+        //     multiline: { delimiter: 'semi', requireLast: true },
+        //     singleline: { delimiter: 'semi', requireLast: true },
+        //   },
+        // ],
         // Disabled to due buggy ordering:
         '@typescript-eslint/member-ordering': [
           off,
@@ -217,12 +221,14 @@ module.exports = defineConfig({
         // Often warns about necessary uses:
         '@typescript-eslint/no-explicit-any': off,
         '@typescript-eslint/no-extra-non-null-assertion': warn,
-        '@typescript-eslint/no-extra-parens': [
-          warn,
-          'all',
-          { ignoreJSX: 'all', nestedBinaryExpressions: false },
-        ],
-        '@typescript-eslint/no-extra-semi': warn,
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/no-extra-parens': [
+        //   warn,
+        //   'all',
+        //   { ignoreJSX: 'all', nestedBinaryExpressions: false },
+        // ],
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/no-extra-semi': warn,
         '@typescript-eslint/no-extraneous-class': off,
         // Disabled due to slow performance:
         '@typescript-eslint/no-floating-promises': [
@@ -310,7 +316,8 @@ module.exports = defineConfig({
         '@typescript-eslint/prefer-string-starts-ends-with': off,
         '@typescript-eslint/prefer-ts-expect-error': warn,
         '@typescript-eslint/promise-function-async': off,
-        '@typescript-eslint/quotes': [warn, 'single'],
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/quotes': [warn, 'single'],
         '@typescript-eslint/require-array-sort-compare': [
           warn,
           { ignoreStringArrays: true },
@@ -323,8 +330,10 @@ module.exports = defineConfig({
         // Disabled due to false positives:
         '@typescript-eslint/restrict-template-expressions': off,
         '@typescript-eslint/return-await': [warn, 'always'],
-        '@typescript-eslint/semi': [warn, 'always'],
-        '@typescript-eslint/space-before-function-paren': [warn, 'always'],
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/semi': [warn, 'always'],
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/space-before-function-paren': [warn, 'always'],
         '@typescript-eslint/strict-boolean-expressions': off,
         '@typescript-eslint/switch-exhaustiveness-check': [
           warn,
@@ -335,7 +344,8 @@ module.exports = defineConfig({
           },
         ],
         '@typescript-eslint/triple-slash-reference': warn,
-        '@typescript-eslint/type-annotation-spacing': warn,
+        // Definition not found (2026-09-03):
+        // '@typescript-eslint/type-annotation-spacing': warn,
         '@typescript-eslint/typedef': off,
         '@typescript-eslint/unbound-method': off,
         '@typescript-eslint/unified-signatures': warn,

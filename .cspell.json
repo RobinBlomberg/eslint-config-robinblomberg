@@ -5,6 +5,7 @@
     "Blomberg",
     "defaultstatus",
     "dynamic-import-chunkname",
+    "esbuild",
     "multilines",
     "no-collection-size-mischeck",
     "nonblock-statement-body-position",
