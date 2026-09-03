@@ -13,9 +13,9 @@ Requires ESLint 9.x and Node's `require(esm)`/ESM support.
 Create a file called **eslint.config.js** at the project root:
 
 ```js
-import robinblomberg from '@robinblomberg/eslint-config-robinblomberg';
+import eslintConfigRobinBlomberg from '@robinblomberg/eslint-config-robinblomberg';
 
-export default [...robinblomberg];
+export default [...eslintConfigRobinBlomberg];
 ```
 
 If your project isn't set up for ESM (no `"type": "module"` in package.json), name the file **eslint.config.mjs** instead.
@@ -27,8 +27,8 @@ Add the following scripts to your package.json:
 ```json
 {
   "scripts": {
-    "lint-scripts": "eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "lint-scripts-fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix"
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix"
   }
 }
 ```
@@ -38,7 +38,7 @@ Adjust the paths according to your project/file structure as necessary (e.g. `"e
 To run a script, enter the following in your command line:
 
 ```sh
-npm run lint-scripts
+npm run lint
 ```
 
 ## Formatting on save

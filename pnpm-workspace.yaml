@@ -4,5 +4,7 @@ minimumReleaseAgeExclude:
   - eslint-plugin-storybook@10.6.0
   - '@robinblomberg/eslint-config-robinblomberg@0.33.0'
   - eslint-plugin-react-refresh@0.5.6
+  - '@robinblomberg/eslint-config-robinblomberg@0.34.0'
+  - '@robinblomberg/eslint-config-prettier@0.2.0'
 onlyBuiltDependencies:
   - esbuild

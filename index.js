@@ -21,7 +21,9 @@ const error = 'error';
 const off = 'off';
 const warn = IS_DEVELOPMENT ? 'warn' : 'error';
 
-/** @type {import('eslint').Linter.Config[]} */
+/**
+ * @type {import('eslint').Linter.Config[]}
+ */
 const config = [
   {
     ignores: ['**/.*/**', '**/node_modules/**'],
@@ -76,7 +78,7 @@ const config = [
       complexity: off,
       'computed-property-spacing': [warn, 'never'],
       'consistent-return': off,
-      'consistent-this': warn,
+      'consistent-this': off,
       'constructor-super': warn,
       curly: [warn, 'all'],
       'default-case': warn,
@@ -591,7 +593,7 @@ const config = [
       'unicorn/no-static-only-class': warn,
       // Disabled due to slow performance:
       'unicorn/no-thenable': off,
-      'unicorn/no-this-assignment': warn,
+      'unicorn/no-this-assignment': off,
       'unicorn/no-typeof-undefined': [warn, { checkGlobalVariables: true }],
       'unicorn/no-unnecessary-await': warn,
       'unicorn/no-unreadable-array-destructuring': warn,
@@ -1020,7 +1022,7 @@ const config = [
       // '@typescript-eslint/type-annotation-spacing': warn,
       '@typescript-eslint/typedef': off,
       '@typescript-eslint/unbound-method': off,
-      '@typescript-eslint/unified-signatures': warn,
+      '@typescript-eslint/unified-signatures': off,
       'default-case': off,
       'default-param-last': off,
       'dot-notation': off,

@@ -1,10 +1,9 @@
-// @ts-expect-error - no published type declarations
-import prettier from '@robinblomberg/eslint-config-prettier';
-import robinblombergESLintConfig from './index.js';
+import eslintConfigPrettier from '@robinblomberg/eslint-config-prettier';
+import eslintConfigRobinBlomberg from './index.js';
 
 /**
  * @type {import('eslint').Linter.Config[]}
  */
-const config = [...robinblombergESLintConfig, prettier];
+const config = [...eslintConfigRobinBlomberg, ...eslintConfigPrettier];
 
 export default config;
