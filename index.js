@@ -938,7 +938,7 @@ const config = [
       '@typescript-eslint/no-redeclare': off,
       '@typescript-eslint/no-require-imports': off,
       '@typescript-eslint/no-shadow': warn,
-      '@typescript-eslint/no-this-alias': warn,
+      '@typescript-eslint/no-this-alias': off,
       '@typescript-eslint/no-type-alias': off,
       '@typescript-eslint/no-unnecessary-boolean-literal-compare': warn,
       '@typescript-eslint/no-unnecessary-condition': off,

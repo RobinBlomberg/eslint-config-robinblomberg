@@ -1,6 +1,6 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.34.1",
+  "version": "0.34.2",
   "author": "Robin Blomberg",
   "main": "index.js",
   "types": "index.d.ts",
