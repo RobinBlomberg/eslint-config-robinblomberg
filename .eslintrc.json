@@ -1,3 +1,0 @@
-{
-  "extends": ["@robinblomberg/robinblomberg", "@robinblomberg/prettier"]
-}

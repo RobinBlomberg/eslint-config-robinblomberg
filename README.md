@@ -8,13 +8,17 @@ npm install -D @robinblomberg/eslint-config-robinblomberg
 
 ## Configuration
 
-Create a file called **.eslintrc.js** at the project root:
+Requires ESLint 9.x and Node's `require(esm)`/ESM support.
+
+Create a file called **eslint.config.js** at the project root:
 
 ```js
-module.exports = {
-  extends: '@robinblomberg/robinblomberg',
-};
+import robinblomberg from '@robinblomberg/eslint-config-robinblomberg';
+
+export default [...robinblomberg];
 ```
+
+If your project isn't set up for ESM (no `"type": "module"` in package.json), name the file **eslint.config.mjs** instead.
 
 ## NPM scripts
 
