@@ -753,8 +753,8 @@ const config = [
       '@typescript-eslint/default-param-last': warn,
       '@typescript-eslint/dot-notation': warn,
       '@typescript-eslint/explicit-function-return-type': [
-        off,
-        { allowTypedFunctionExpressions: true },
+        warn,
+        { allowExpressions: true, allowTypedFunctionExpressions: true },
       ],
       '@typescript-eslint/explicit-member-accessibility': [
         warn,
