@@ -517,7 +517,7 @@ const config = [
       'sonarjs/no-use-of-empty-return-value': warn,
       'sonarjs/no-useless-catch': warn,
       'sonarjs/non-existent-operator': warn,
-      'sonarjs/prefer-immediate-return': warn,
+      'sonarjs/prefer-immediate-return': off,
       'sonarjs/prefer-object-literal': warn,
       'sonarjs/prefer-single-boolean-return': warn,
       'sonarjs/prefer-while': warn,
