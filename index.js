@@ -4,6 +4,8 @@ import typescriptEslintParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+// @ts-expect-error - No published type declarations:
+import noOnlyTestsPlugin from 'eslint-plugin-no-only-tests';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import reactRefreshPlugin from 'eslint-plugin-react-refresh';
@@ -50,6 +52,7 @@ const config = [
     plugins: {
       import: importPlugin,
       jsdoc: jsdocPlugin,
+      'no-only-tests': /** @type {any} */ (noOnlyTestsPlugin),
       'sort-exports': /** @type {any} */ (sortExportsPlugin),
       'sort-keys': /** @type {any} */ (sortKeysPlugin),
       sonarjs: sonarjsPlugin,
@@ -1130,6 +1133,7 @@ const config = [
       'jsdoc/require-jsdoc': off,
       'no-empty-character-class': off,
       'no-magic-numbers': off,
+      'no-only-tests/no-only-tests': warn,
       'no-sparse-arrays': off,
       'sonarjs/no-duplicate-string': off,
       'sort-keys': off,
