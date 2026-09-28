@@ -1,21 +1,30 @@
 {
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.addMissingImports": "explicit",
+    "source.organizeImports": "explicit"
   },
-  "editor.codeActionsOnSave": [
-    "source.organizeImports",
-    "source.fixAll.eslint"
-  ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontLigatures": false,
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
-  "editor.rulers": [100],
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.rulers": [85],
   "editor.tabSize": 2,
   "editor.trimAutoWhitespace": true,
-  "editor.wordWrapColumn": 100,
+  "editor.wordWrapColumn": 85,
   "eslint.format.enable": false,
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "files.encoding": "utf8",
   "files.eol": "\n",
   "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "js/ts.preferences.preferTypeOnlyAutoImports": true,
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "tailwindCSS.classFunctions": ["twMerge"]
 }
