@@ -106,6 +106,7 @@ const config = [
       'id-length': off,
       'id-match': [warn, '^[$_]$|^[$_]?[_A-Za-z][A-Za-z0-9_]*$'],
       'implicit-arrow-linebreak': [off, 'beside'],
+      'import/consistent-type-specifier-style': [warn, 'prefer-inline'],
       'import/default': warn,
       'import/dynamic-import-chunkname': off,
       'import/export': warn,
@@ -746,7 +747,7 @@ const config = [
         warn,
         {
           disallowTypeAnnotations: true,
-          fixStyle: 'separate-type-imports',
+          fixStyle: 'inline-type-imports',
           prefer: 'type-imports',
         },
       ],
