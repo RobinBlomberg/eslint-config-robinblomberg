@@ -379,7 +379,18 @@ const config = [
       ],
       'no-restricted-modules': warn,
       'no-restricted-properties': warn,
-      'no-restricted-syntax': [warn, 'WithStatement'],
+      'no-restricted-syntax': [
+        warn,
+        'WithStatement',
+        {
+          message: 'Use ++ instead of += 1.',
+          selector: "AssignmentExpression[operator='+='][right.value=1]",
+        },
+        {
+          message: 'Use -- instead of -= 1.',
+          selector: "AssignmentExpression[operator='-='][right.value=1]",
+        },
+      ],
       'no-return-assign': [warn, 'except-parens'],
       'no-return-await': off,
       'no-script-url': warn,
