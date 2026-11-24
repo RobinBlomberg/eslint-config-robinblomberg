@@ -78,6 +78,25 @@ assert.deepEqual(
   [],
 );
 
+// Comments start groups that are sorted on their own:
+assert.deepEqual(
+  await getMessages(
+    [
+      'export const articles = new Set([',
+      '  // English:',
+      "  'a',",
+      "  'the',",
+      '  // French:',
+      "  'la',",
+      "  'une',",
+      "  'le',",
+      ']);',
+    ].join('\n'),
+    'perfectionist/sort-sets',
+  ),
+  ['Expected "le" to come before "une".'],
+);
+
 // Sorting is case-insensitive, like the `robinblomberg` rules:
 assert.deepEqual(
   await getMessages(

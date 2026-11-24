@@ -851,6 +851,9 @@ const config = [
         ignoreCase: true,
         locales: 'en-US',
         order: 'asc',
+        // A comment between members starts a group that's sorted on its own, e.g.
+        // a heading like `// French:` in a list of words grouped by language:
+        partitionByComment: true,
         specialCharacters: 'keep',
         type: 'alphabetical',
       },
