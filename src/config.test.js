@@ -54,12 +54,35 @@ assert.deepEqual(
       '  get size(): number {',
       '    return this.#secret;',
       '  }',
+      '  [compareSymbol](): number {',
+      '    return 0;',
+      '  }',
+      '  [INSPECT_CUSTOM](): string {',
+      "    return '';",
+      '  }',
+      '  *[Symbol.iterator](): Generator<number> {}',
       '  add(): void {}',
       '}',
     ].join('\n'),
     'perfectionist/sort-classes',
   ),
   [],
+);
+
+// Symbol-keyed methods come before the other public methods:
+assert.deepEqual(
+  await getMessages(
+    [
+      'export class Example {',
+      '  add(): void {}',
+      '  *[Symbol.iterator](): Generator<number> {}',
+      '}',
+    ].join('\n'),
+    'perfectionist/sort-classes',
+  ),
+  [
+    'Expected "Symbol.iterator" (symbol-methods) to come before "add" (public-methods).',
+  ],
 );
 
 // Packages come first, then parent, sibling and side-effect imports:
@@ -95,6 +118,47 @@ assert.deepEqual(
     'perfectionist/sort-sets',
   ),
   ['Expected "le" to come before "une".'],
+);
+
+// Named types come first in intersections:
+assert.deepEqual(
+  await getMessages(
+    [
+      "export type Style = CSSProperties & { '--size': string };",
+      "export type Swapped = { '--size': string } & CSSProperties;",
+    ].join('\n'),
+    'perfectionist/sort-intersection-types',
+  ),
+  [
+    'Expected "CSSProperties" (named) to come before "{ \'--size\': string }" (unknown).',
+  ],
+);
+
+// `null` and `undefined` come last in unions:
+assert.deepEqual(
+  await getMessages(
+    [
+      'export type Name = number | string | null | undefined;',
+      'export type Swapped = null | string;',
+    ].join('\n'),
+    'perfectionist/sort-union-types',
+  ),
+  ['Expected "string" (unknown) to come before "null" (nullish).'],
+);
+
+// Identifiers don't end in `_`:
+assert.deepEqual(
+  await getMessages(
+    [
+      'export const MAX_COUNT = 1;',
+      'export const _private = 2;',
+      'export const index_ = 3;',
+    ].join('\n'),
+    'id-match',
+  ),
+  [
+    "Identifier 'index_' does not match the pattern '^[$_]$|^[$_]?[_A-Za-z](?:[A-Za-z0-9_]*[A-Za-z0-9])?$'.",
+  ],
 );
 
 // Sorting is case-insensitive, like the `robinblomberg` rules:

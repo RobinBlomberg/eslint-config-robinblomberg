@@ -36,6 +36,17 @@ const RESTRICTED_SYNTAX = [
   },
 ];
 
+/**
+ * The names that perfectionist gives symbol keys, i.e. a constant's name, e.g.
+ * `INSPECT_CUSTOM`, a name ending in `Symbol`, e.g. `compareSymbol`, or an
+ * expression that isn't an identifier, e.g. `Symbol.iterator`.
+ */
+const SYMBOL_NAME_PATTERNS = [
+  String.raw`^[A-Z][\dA-Z]*(?:_[\dA-Z]+)*$`,
+  'Symbol$',
+  String.raw`^(?![$A-Z_a-z][\w$]*$)`,
+];
+
 const error = 'error';
 const off = 'off';
 const warn = IS_DEVELOPMENT ? 'warn' : 'error';
@@ -124,7 +135,12 @@ const config = [
         warn,
         { exceptions: ['_', 'x', 'y', 'z'], min: 2, properties: 'never' },
       ],
-      'id-match': [warn, '^[$_]$|^[$_]?[_A-Za-z][A-Za-z0-9_]*$'],
+      // No trailing `_`, which e.g. `unicorn/prevent-abbreviations` adds to avoid a
+      // clash, as in `index_`:
+      'id-match': [
+        warn,
+        '^[$_]$|^[$_]?[_A-Za-z](?:[A-Za-z0-9_]*[A-Za-z0-9])?$',
+      ],
       'implicit-arrow-linebreak': [off, 'beside'],
       'import/consistent-type-specifier-style': [warn, 'prefer-top-level'],
       'import/default': warn,
@@ -554,6 +570,20 @@ const config = [
               ],
               groupName: 'private-methods',
             },
+            // Methods keyed by a symbol, e.g. `[INSPECT_CUSTOM]()`:
+            {
+              anyOf: [
+                {
+                  elementNamePattern: SYMBOL_NAME_PATTERNS,
+                  selector: 'function-property',
+                },
+                {
+                  elementNamePattern: SYMBOL_NAME_PATTERNS,
+                  selector: 'method',
+                },
+              ],
+              groupName: 'symbol-methods',
+            },
             {
               anyOf: [
                 { selector: 'function-property' },
@@ -572,6 +602,7 @@ const config = [
             'constructors',
             'private-methods',
             'accessors',
+            'symbol-methods',
             'public-methods',
             'unknown',
           ],
@@ -600,7 +631,11 @@ const config = [
         },
       ],
       'perfectionist/sort-interfaces': warn,
-      'perfectionist/sort-intersection-types': warn,
+      // Named types first, e.g. `CSSProperties & { '--size': string }`:
+      'perfectionist/sort-intersection-types': [
+        warn,
+        { groups: ['named', 'unknown'] },
+      ],
       'perfectionist/sort-jsx-props': warn,
       'perfectionist/sort-maps': warn,
       // Replaced by `robinblomberg/sort-declarations`, which also sorts variables:
@@ -611,7 +646,11 @@ const config = [
       'perfectionist/sort-objects': warn,
       'perfectionist/sort-sets': warn,
       'perfectionist/sort-switch-case': warn,
-      'perfectionist/sort-union-types': warn,
+      // `null` and `undefined` last, e.g. `string | null`:
+      'perfectionist/sort-union-types': [
+        warn,
+        { groups: ['unknown', 'nullish'] },
+      ],
       'perfectionist/sort-variable-declarations': warn,
       'prefer-arrow-callback': [
         warn,
