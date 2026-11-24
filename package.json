@@ -1,14 +1,20 @@
 {
   "name": "@robinblomberg/eslint-config-robinblomberg",
-  "version": "0.35.0",
+  "version": "0.36.0-beta1",
   "author": "Robin Blomberg",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "src/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
   "type": "module",
   "files": [
-    "index.js",
-    "index.d.ts",
-    "index.d.ts.map"
+    "dist",
+    "src",
+    "!src/**/*.test.js"
   ],
   "repository": {
     "type": "git",
@@ -20,9 +26,10 @@
   "homepage": "https://github.com/RobinBlomberg/eslint-config-robinblomberg#readme",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "lint": "eslint --no-error-on-unmatched-pattern **/*.{js,ts}",
-    "lint:fix": "eslint --no-error-on-unmatched-pattern **/*.{js,ts} --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepack": "npm run build",
+    "test": "node src/rules/rules.test.js && node src/config.test.js",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -34,18 +41,17 @@
     "eslint-plugin-jsdoc": "^64.3.4",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-no-only-tests": "^3.4.0",
+    "eslint-plugin-perfectionist": "^5.14.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",
     "eslint-plugin-sonarjs": "^4.2.0",
-    "eslint-plugin-sort-exports": "^0.9.1",
-    "eslint-plugin-sort-keys": "^2.3.5",
     "eslint-plugin-storybook": "^10.6.0",
     "eslint-plugin-unicorn": "^65.0.1",
     "globals": "^17.12.0"
   },
   "devDependencies": {
-    "@robinblomberg/eslint-config-prettier": "^0.2.0",
+    "@robinblomberg/eslint-config-prettier": "^0.3.0",
     "@robinblomberg/eslint-config-robinblomberg": "^0.34.0",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
     "@types/node": "*",

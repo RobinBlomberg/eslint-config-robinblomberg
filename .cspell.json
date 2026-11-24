@@ -6,6 +6,7 @@
     "defaultstatus",
     "dynamic-import-chunkname",
     "esbuild",
+    "Groupable",
     "multilines",
     "no-collection-size-mischeck",
     "nonblock-statement-body-position",

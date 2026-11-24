@@ -27,5 +27,5 @@
     "useUnknownInCatchVariables": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["*.js"]
+  "include": ["src", "eslint.config.js"]
 }

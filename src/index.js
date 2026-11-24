@@ -6,19 +6,36 @@ import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 // @ts-expect-error - No published type declarations:
 import noOnlyTestsPlugin from 'eslint-plugin-no-only-tests';
+import perfectionistPlugin from 'eslint-plugin-perfectionist';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import reactRefreshPlugin from 'eslint-plugin-react-refresh';
 import sonarjsPlugin from 'eslint-plugin-sonarjs';
-// @ts-expect-error - No published type declarations:
-import sortExportsPlugin from 'eslint-plugin-sort-exports';
-// @ts-expect-error - No published type declarations:
-import sortKeysPlugin from 'eslint-plugin-sort-keys';
 import storybookPlugin from 'eslint-plugin-storybook';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import globals from 'globals';
+import robinblombergPlugin from './rules/index.js';
 
 const IS_DEVELOPMENT = !process.env.CI && process.env.NODE_ENV !== 'production';
+
+const RESTRICTED_SYNTAX = [
+  'WithStatement',
+  {
+    message: 'Use ++ instead of += 1.',
+    selector: "AssignmentExpression[operator='+='][right.value=1]",
+  },
+  {
+    message: 'Use -- instead of -= 1.',
+    selector: "AssignmentExpression[operator='-='][right.value=1]",
+  },
+  {
+    message:
+      'Write a function component with hooks instead of a class component.',
+    selector:
+      ':matches(ClassDeclaration, ClassExpression)[superClass.name=/^(?:Pure)?Component$/], :matches(ClassDeclaration, ClassExpression)[superClass.property.name=/^(?:Pure)?Component$/]',
+  },
+];
+
 const error = 'error';
 const off = 'off';
 const warn = IS_DEVELOPMENT ? 'warn' : 'error';
@@ -33,7 +50,12 @@ const config = [
   {
     languageOptions: {
       ecmaVersion: 'latest',
-      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.es2024,
+        ...globals.node,
+        globalThis: 'writable',
+      },
       parser: babelParser,
       parserOptions: {
         allowAwaitOutsideFunction: true,
@@ -42,19 +64,14 @@ const config = [
         },
         requireConfigFile: false,
       },
-      globals: {
-        ...globals.browser,
-        ...globals.es2024,
-        ...globals.node,
-        globalThis: 'writable',
-      },
+      sourceType: 'module',
     },
     plugins: {
       import: importPlugin,
       jsdoc: jsdocPlugin,
       'no-only-tests': /** @type {any} */ (noOnlyTestsPlugin),
-      'sort-exports': /** @type {any} */ (sortExportsPlugin),
-      'sort-keys': /** @type {any} */ (sortKeysPlugin),
+      perfectionist: perfectionistPlugin,
+      robinblomberg: robinblombergPlugin,
       sonarjs: sonarjsPlugin,
       storybook: /** @type {any} */ (storybookPlugin),
       unicorn: unicornPlugin,
@@ -65,7 +82,7 @@ const config = [
       'array-bracket-spacing': [warn, 'never'],
       'array-callback-return': warn,
       'array-element-newline': [warn, 'consistent'],
-      'arrow-body-style': off,
+      'arrow-body-style': [warn, 'always'],
       'arrow-parens': [warn, 'always'],
       'arrow-spacing': [warn, { after: true, before: true }],
       'block-scoped-var': warn,
@@ -103,7 +120,10 @@ const config = [
       'guard-for-in': off,
       'handle-callback-err': [warn, '^(err|error)$'],
       'id-blacklist': warn,
-      'id-length': off,
+      'id-length': [
+        warn,
+        { exceptions: ['_', 'x', 'y', 'z'], min: 2, properties: 'never' },
+      ],
       'id-match': [warn, '^[$_]$|^[$_]?[_A-Za-z][A-Za-z0-9_]*$'],
       'implicit-arrow-linebreak': [off, 'beside'],
       'import/consistent-type-specifier-style': [warn, 'prefer-top-level'],
@@ -111,7 +131,7 @@ const config = [
       'import/dynamic-import-chunkname': off,
       'import/export': warn,
       'import/exports-last': off,
-      // This should be opt-in. It's not necessary for Vite, for example.
+      // Opt-in, since e.g. Vite doesn't need it:
       'import/extensions': [off, { js: 'always', json: 'always' }],
       'import/first': warn,
       'import/group-exports': off,
@@ -130,7 +150,8 @@ const config = [
       'import/no-default-export': off,
       // Disabled due to slow performance:
       'import/no-deprecated': off,
-      // Disabled due to slow performance, and because it's duplicated by `no-duplicate-imports`:
+      // Disabled due to slow performance, and because it's duplicated by
+      // `no-duplicate-imports`:
       'import/no-duplicates': off,
       'import/no-dynamic-require': off,
       'import/no-extraneous-dependencies': warn,
@@ -157,23 +178,8 @@ const config = [
       // Disabled due to slow performance:
       'import/no-useless-path-segments': off,
       'import/no-webpack-loader-syntax': warn,
-      /* 'import/order': [warn, {
-        alphabetize: {
-          caseInsensitive: false,
-          order: 'asc'
-        },
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'unknown',
-          'parent',
-          'sibling',
-          'index',
-          'object'
-        ],
-        'newlines-between': 'never'
-      }], */
+      // Replaced by `perfectionist/sort-imports`:
+      'import/order': off,
       'import/prefer-default-export': off,
       'import/unambiguous': off,
       indent: [warn, 2, { SwitchCase: 1 }],
@@ -374,23 +380,31 @@ const config = [
         'top',
       ],
       'no-restricted-imports': [
-        'error',
-        { paths: ['console', 'node:console', 'test', 'node:test'] },
+        error,
+        {
+          paths: [
+            'console',
+            'node:console',
+            {
+              message: 'Type props with TypeScript instead of PropTypes.',
+              name: 'prop-types',
+            },
+            'test',
+            'node:test',
+          ],
+          patterns: [
+            {
+              allowImportNamePattern: '^(?:\\w+Icon|Lucide\\w*)$',
+              group: ['lucide-react'],
+              message:
+                'Import Lucide icons by their `*Icon` names, e.g. `CheckIcon`.',
+            },
+          ],
+        },
       ],
       'no-restricted-modules': warn,
       'no-restricted-properties': warn,
-      'no-restricted-syntax': [
-        warn,
-        'WithStatement',
-        {
-          message: 'Use ++ instead of += 1.',
-          selector: "AssignmentExpression[operator='+='][right.value=1]",
-        },
-        {
-          message: 'Use -- instead of -= 1.',
-          selector: "AssignmentExpression[operator='-='][right.value=1]",
-        },
-      ],
+      'no-restricted-syntax': [warn, ...RESTRICTED_SYNTAX],
       'no-return-assign': [warn, 'except-parens'],
       'no-return-await': off,
       'no-script-url': warn,
@@ -472,9 +486,137 @@ const config = [
         warn,
         { blocks: 'never', classes: 'never', switches: 'never' },
       ],
-      'padding-line-between-statements': warn,
-      // You may want to use `fn(function () {})` for some advanced cases:
-      'prefer-arrow-callback': off,
+      'padding-line-between-statements': [
+        warn,
+        {
+          blankLine: 'always',
+          next: ['do', 'for', 'if', 'switch', 'try', 'while'],
+          prev: '*',
+        },
+        {
+          blankLine: 'always',
+          next: '*',
+          prev: ['do', 'for', 'if', 'switch', 'try', 'while'],
+        },
+      ],
+      'perfectionist/sort-array-includes': warn,
+      // Would change what the array means:
+      'perfectionist/sort-arrays': off,
+      'perfectionist/sort-classes': [
+        warn,
+        {
+          customGroups: [
+            {
+              anyOf: [
+                { modifiers: ['static'], selector: 'accessor-property' },
+                { modifiers: ['static'], selector: 'property' },
+              ],
+              groupName: 'static-properties',
+            },
+            {
+              anyOf: [
+                { modifiers: ['static'], selector: 'function-property' },
+                { modifiers: ['static'], selector: 'method' },
+              ],
+              groupName: 'static-methods',
+            },
+            {
+              anyOf: [
+                { modifiers: ['private'], selector: 'accessor-property' },
+                { modifiers: ['private'], selector: 'property' },
+                { modifiers: ['protected'], selector: 'accessor-property' },
+                { modifiers: ['protected'], selector: 'property' },
+              ],
+              groupName: 'private-properties',
+            },
+            {
+              anyOf: [
+                { selector: 'accessor-property' },
+                { selector: 'property' },
+              ],
+              groupName: 'public-properties',
+            },
+            // A constructor would otherwise match the `method` selector below:
+            {
+              groupName: 'constructors',
+              selector: 'constructor',
+            },
+            {
+              anyOf: [{ selector: 'get-method' }, { selector: 'set-method' }],
+              groupName: 'accessors',
+            },
+            {
+              anyOf: [
+                { modifiers: ['private'], selector: 'function-property' },
+                { modifiers: ['private'], selector: 'method' },
+                { modifiers: ['protected'], selector: 'function-property' },
+                { modifiers: ['protected'], selector: 'method' },
+              ],
+              groupName: 'private-methods',
+            },
+            {
+              anyOf: [
+                { selector: 'function-property' },
+                { selector: 'method' },
+              ],
+              groupName: 'public-methods',
+            },
+          ],
+          groups: [
+            'index-signature',
+            'static-properties',
+            'static-methods',
+            'static-block',
+            'private-properties',
+            'public-properties',
+            'constructors',
+            'private-methods',
+            'accessors',
+            'public-methods',
+            'unknown',
+          ],
+        },
+      ],
+      // Would change the order of the arguments:
+      'perfectionist/sort-constructor-parameters': off,
+      'perfectionist/sort-decorators': warn,
+      'perfectionist/sort-enums': warn,
+      'perfectionist/sort-export-attributes': warn,
+      'perfectionist/sort-exports': warn,
+      'perfectionist/sort-heritage-clauses': warn,
+      'perfectionist/sort-import-attributes': warn,
+      'perfectionist/sort-imports': [
+        warn,
+        {
+          groups: [
+            ['builtin', 'external', 'internal', 'subpath', 'tsconfig-path'],
+            'parent',
+            'sibling',
+            'index',
+            ['side-effect', 'side-effect-style'],
+            'unknown',
+          ],
+          newlinesBetween: 0,
+        },
+      ],
+      'perfectionist/sort-interfaces': warn,
+      'perfectionist/sort-intersection-types': warn,
+      'perfectionist/sort-jsx-props': warn,
+      'perfectionist/sort-maps': warn,
+      // Replaced by `robinblomberg/sort-declarations`, which also sorts variables:
+      'perfectionist/sort-modules': off,
+      'perfectionist/sort-named-exports': warn,
+      'perfectionist/sort-named-imports': warn,
+      'perfectionist/sort-object-types': warn,
+      'perfectionist/sort-objects': warn,
+      'perfectionist/sort-sets': warn,
+      'perfectionist/sort-switch-case': warn,
+      'perfectionist/sort-union-types': warn,
+      'perfectionist/sort-variable-declarations': warn,
+      'prefer-arrow-callback': [
+        warn,
+        { allowNamedFunctions: false, allowUnboundThis: true },
+      ],
       'prefer-const': [warn, { destructuring: 'all' }],
       'prefer-destructuring': [off, { array: false, object: true }],
       'prefer-named-capture-group': off,
@@ -498,6 +640,10 @@ const config = [
       'require-unicode-regexp': off,
       'require-yield': warn,
       'rest-spread-spacing': [warn, 'never'],
+      'robinblomberg/comment-style': warn,
+      'robinblomberg/prefer-arrow-functions': warn,
+      'robinblomberg/sort-declarations': warn,
+      'robinblomberg/sort-tests': warn,
       semi: [warn, 'always'],
       'semi-spacing': [warn, { after: true, before: false }],
       'semi-style': [warn, 'last'],
@@ -533,18 +679,11 @@ const config = [
       'sonarjs/prefer-object-literal': warn,
       'sonarjs/prefer-single-boolean-return': warn,
       'sonarjs/prefer-while': warn,
-      'sort-imports': [
-        off,
-        {
-          ignoreCase: false,
-          ignoreDeclarationSort: false,
-          ignoreMemberSort: false,
-          memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],
-        },
-      ],
+      // Replaced by `perfectionist/sort-named-imports`:
+      'sort-imports': off,
       'sort-keys': off,
-      'sort-keys/sort-keys-fix': [off, 'asc', { natural: false }],
-      'sort-vars': warn,
+      // Replaced by `perfectionist/sort-variable-declarations`:
+      'sort-vars': off,
       'space-before-blocks': [warn, 'always'],
       'space-before-function-paren': [warn, 'always'],
       'space-in-parens': [warn, 'never'],
@@ -595,8 +734,9 @@ const config = [
       'unicorn/no-instanceof-array': warn,
       'unicorn/no-invalid-remove-event-listener': warn,
       'unicorn/no-keyword-prefix': off,
-      // Duplicated by `sonarjs/no-collapsible-if`, but with more annoying highlighting.
-      // It has auto-fix however, which is sometimes wanted and sometimes not:
+      // Duplicated by `sonarjs/no-collapsible-if`, but with more annoying
+      // highlighting. It has auto-fix however, which is sometimes wanted and
+      // sometimes not:
       'unicorn/no-lonely-if': off,
       'unicorn/no-negated-condition': warn,
       'unicorn/no-nested-ternary': off,
@@ -625,9 +765,9 @@ const config = [
       'unicorn/numeric-separators-style': warn,
       'unicorn/prefer-add-event-listener': warn,
       'unicorn/prefer-array-find': warn,
-      'unicorn/prefer-array-flat-map': warn,
       // Disabled due to slow performance:
       'unicorn/prefer-array-flat': off,
+      'unicorn/prefer-array-flat-map': warn,
       'unicorn/prefer-array-index-of': warn,
       'unicorn/prefer-array-some': warn,
       'unicorn/prefer-at': warn,
@@ -675,7 +815,14 @@ const config = [
       // Not available in all Node.js versions or without specific settings:
       'unicorn/prefer-top-level-await': off,
       'unicorn/prefer-type-error': warn,
-      'unicorn/prevent-abbreviations': off,
+      'unicorn/prevent-abbreviations': [
+        warn,
+        {
+          checkFilenames: false,
+          // Established names, e.g. React's `props` and Storybook's `args`:
+          replacements: { args: false, props: false, ref: false, refs: false },
+        },
+      ],
       'unicorn/relative-url-style': off,
       'unicorn/require-array-join-separator': warn,
       'unicorn/require-number-to-fixed-digits-argument': warn,
@@ -698,6 +845,14 @@ const config = [
       'import/internal-regex': '^@',
       jsdoc: {
         mode: 'closure',
+      },
+      // Shared by every `perfectionist` rule, and matched by `robinblomberg` rules:
+      perfectionist: {
+        ignoreCase: true,
+        locales: 'en-US',
+        order: 'asc',
+        specialCharacters: 'keep',
+        type: 'alphabetical',
       },
       react: {
         version: 'detect',
@@ -730,11 +885,11 @@ const config = [
         {
           extendDefaults: true,
           types: {
+            '{}': false,
             Boolean: false,
             Function: false,
             Number: false,
             Object: false,
-            '{}': false,
           },
         },
       ],
@@ -746,12 +901,11 @@ const config = [
       // '@typescript-eslint/comma-dangle': [warn, 'always-multiline'],
       // Definition not found (2026-09-03):
       // '@typescript-eslint/comma-spacing': [warn, { after: true, before: false }],
+      // Allows `as const`. Disable it on a line only where TypeScript provably needs
+      // `as`:
       '@typescript-eslint/consistent-type-assertions': [
-        off,
-        {
-          assertionStyle: 'as',
-          objectLiteralTypeAssertions: 'never',
-        },
+        warn,
+        { assertionStyle: 'never' },
       ],
       '@typescript-eslint/consistent-type-definitions': [warn, 'type'],
       '@typescript-eslint/consistent-type-imports': [
@@ -807,100 +961,21 @@ const config = [
       //     singleline: { delimiter: 'semi', requireLast: true },
       //   },
       // ],
-      // Disabled to due buggy ordering:
-      '@typescript-eslint/member-ordering': [
-        off,
-        {
-          default: [
-            'signature',
-            'private-static-field',
-            'protected-static-field',
-            'public-static-field',
-            'private-static-method',
-            'protected-static-method',
-            'public-static-method',
-            'private-decorated-field',
-            'protected-decorated-field',
-            'public-decorated-field',
-            'private-instance-field',
-            'protected-instance-field',
-            'public-instance-field',
-            'protected-abstract-field',
-            'public-abstract-field',
-            'static-field',
-            'private-field',
-            'protected-field',
-            'public-field',
-            'instance-field',
-            'abstract-field',
-            'decorated-field',
-            'field',
-            'private-constructor',
-            'protected-constructor',
-            'public-constructor',
-            'constructor',
-            'private-decorated-method',
-            'protected-decorated-method',
-            'public-decorated-method',
-            'private-instance-method',
-            'protected-instance-method',
-            'public-instance-method',
-            'protected-abstract-method',
-            'public-abstract-method',
-            'static-method',
-            'private-method',
-            'protected-method',
-            'public-method',
-            'instance-method',
-            'abstract-method',
-            'decorated-method',
-            'method',
-          ],
-        },
-      ],
+      // Replaced by `perfectionist/sort-classes`, `sort-interfaces` and
+      // `sort-object-types`:
+      '@typescript-eslint/member-ordering': off,
       '@typescript-eslint/method-signature-style': [warn, 'property'],
+      // Initialisms are written in capitals, like `JSON.parse()` and `innerHTML`:
       '@typescript-eslint/naming-convention': [
-        off,
+        warn,
         {
-          format: ['camelCase'],
-          leadingUnderscore: 'allow',
-          selector: 'default',
-        },
-        {
-          format: ['camelCase', 'snake_case', 'PascalCase', 'UPPER_CASE'],
-          leadingUnderscore: 'allow',
-          selector: ['objectLiteralProperty'],
-        },
-        {
-          format: ['camelCase', 'PascalCase'],
-          leadingUnderscore: 'allow',
-          selector: ['function'],
-        },
-        {
-          format: ['camelCase', 'UPPER_CASE'],
-          leadingUnderscore: 'allow',
-          selector: ['objectLiteralMethod', 'typeMethod', 'variable'],
-        },
-        {
-          format: ['PascalCase'],
-          leadingUnderscore: 'allow',
-          selector: [
-            'class',
-            'enum',
-            'interface',
-            'typeAlias',
-            'typeParameter',
-          ],
-        },
-        {
-          format: ['UPPER_CASE'],
-          leadingUnderscore: 'allow',
-          selector: ['enumMember'],
-        },
-        {
+          custom: {
+            match: false,
+            regex:
+              '(?:Api|Ascii|Css|Csv|Dom|Html|Http|Iso|Json|Pdf|Sql|Svg|Uri|Url|Utf|Uuid|Xml)(?![a-z])',
+          },
           format: null,
-          leadingUnderscore: 'allow',
-          selector: ['parameter', 'property'],
+          selector: 'default',
         },
       ],
       '@typescript-eslint/no-array-constructor': warn,
@@ -1000,8 +1075,8 @@ const config = [
       '@typescript-eslint/prefer-nullish-coalescing': off,
       '@typescript-eslint/prefer-optional-chain': warn,
       '@typescript-eslint/prefer-readonly': warn,
-      // Disabled due to error:
-      // "Error: Non-null Assertion Failed: Expected to find a property "XXX" for the type."
+      // Disabled due to the error "Non-null Assertion Failed: Expected to find a
+      // property "XXX" for the type.":
       '@typescript-eslint/prefer-readonly-parameter-types': off,
       '@typescript-eslint/prefer-reduce-type-parameter': warn,
       '@typescript-eslint/prefer-regexp-exec': off,
@@ -1106,8 +1181,19 @@ const config = [
     ],
     rules: {
       'import/no-anonymous-default-export': off,
-      'react/no-multi-comp': off,
+      'no-restricted-syntax': [
+        warn,
+        ...RESTRICTED_SYNTAX,
+        {
+          message:
+            'Only add a `play` function to a story when it was explicitly asked for.',
+          selector: "Property[key.name='play']",
+        },
+      ],
       'react-hooks/rules-of-hooks': off,
+      'react/no-multi-comp': off,
+      // Storybook lists stories in the order they're exported:
+      'robinblomberg/sort-declarations': off,
       'storybook/await-interactions': error,
       'storybook/context-in-play-function': error,
       'storybook/default-exports': error,
@@ -1146,6 +1232,22 @@ const config = [
       'no-empty-character-class': off,
       'no-magic-numbers': off,
       'no-only-tests/no-only-tests': warn,
+      'no-restricted-syntax': [
+        warn,
+        ...RESTRICTED_SYNTAX,
+        {
+          message:
+            'Assert the exact, full result instead of with a partial or loose matcher.',
+          selector:
+            'CallExpression > MemberExpression.callee[property.name=/^(?:toBeDefined|toBeFalsy|toBeTruthy|toContain|toContainEqual|toHaveProperty|toMatch|toMatchObject)$/]',
+        },
+        {
+          message:
+            'Assert the exact, full result instead of with a partial or loose matcher.',
+          selector:
+            "MemberExpression[object.name='expect'][property.name=/^(?:any|anything|arrayContaining|objectContaining|stringContaining|stringMatching)$/]",
+        },
+      ],
       'no-sparse-arrays': off,
       'sonarjs/no-duplicate-string': off,
       'sort-keys': off,
@@ -1159,10 +1261,10 @@ const config = [
   {
     files: ['**/*.jsx', '**/*.tsx'],
     plugins: {
+      'jsx-a11y': jsxA11yPlugin,
       react: reactPlugin,
       'react-hooks': /** @type {any} */ (reactHooksPlugin),
       'react-refresh': reactRefreshPlugin,
-      'jsx-a11y': jsxA11yPlugin,
     },
     rules: {
       'jsx-a11y/accessible-emoji': warn,
@@ -1247,6 +1349,12 @@ const config = [
       'jsx-a11y/role-supports-aria-props': warn,
       'jsx-a11y/scope': warn,
       'jsx-a11y/tabindex-no-positive': warn,
+      'react-hooks/exhaustive-deps': warn,
+      'react-hooks/rules-of-hooks': error,
+      'react-refresh/only-export-components': [
+        warn,
+        { allowConstantExport: true },
+      ],
       'react/boolean-prop-naming': warn,
       'react/button-has-type': warn,
       'react/default-props-match-prop-types': warn,
@@ -1307,8 +1415,11 @@ const config = [
       'react/jsx-pascal-case': warn,
       'react/jsx-props-no-multi-spaces': warn,
       'react/jsx-props-no-spreading': off,
-      'react/jsx-sort-props': warn,
-      /** @deprecated */
+      // Replaced by `perfectionist/sort-jsx-props`:
+      'react/jsx-sort-props': off,
+      /**
+       * @deprecated
+       */
       'react/jsx-space-before-closing': off,
       'react/jsx-tag-spacing': [
         warn,
@@ -1345,7 +1456,7 @@ const config = [
       'react/no-direct-mutation-state': warn,
       'react/no-find-dom-node': warn,
       'react/no-is-mounted': warn,
-      'react/no-multi-comp': off,
+      'react/no-multi-comp': [warn, { ignoreStateless: false }],
       'react/no-redundant-should-component-update': warn,
       'react/no-render-return-value': warn,
       'react/no-set-state': off,
@@ -1417,12 +1528,6 @@ const config = [
       'react/static-property-placement': warn,
       'react/style-prop-object': warn,
       'react/void-dom-elements-no-children': warn,
-      'react-hooks/exhaustive-deps': warn,
-      'react-hooks/rules-of-hooks': error,
-      'react-refresh/only-export-components': [
-        warn,
-        { allowConstantExport: true },
-      ],
     },
   },
   {
@@ -1463,7 +1568,8 @@ const config = [
       'jsdoc/no-bad-blocks': warn,
       'jsdoc/no-defaults': warn,
       'jsdoc/no-types': off,
-      // Disabled due to false positives when referring to a generic type from inside its function:
+      // Disabled due to false positives when referring to a generic type from inside
+      // its function:
       'jsdoc/no-undefined-types': [
         off,
         {

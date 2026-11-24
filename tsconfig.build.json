@@ -4,7 +4,9 @@
     "composite": false,
     "emitDeclarationOnly": true,
     "incremental": false,
-    "noEmit": false
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": "src"
   },
-  "include": ["index.js"]
+  "include": ["src/index.js"]
 }
