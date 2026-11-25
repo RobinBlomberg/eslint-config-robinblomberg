@@ -1,4 +1,5 @@
 import babelParser from '@babel/eslint-parser';
+import eslintCommentsPlugin from '@eslint-community/eslint-plugin-eslint-comments';
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptEslintParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
@@ -16,10 +17,49 @@ import unicornPlugin from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import robinblombergPlugin from './rules/index.js';
 
+// Initialisms are written in capitals, like `JSON.parse()` and `innerHTML`, but a
+// library's own spelling wins, e.g. `Cuid2`:
+const INITIALISM_NAMING = {
+  match: false,
+  regex:
+    '(?:Api|Ascii|Ast|Csp|Css|Csv|Dom|Fsrs|Html|Http|Ip|Iso|Json|Otp|Pdf|Rpc|Sql|Sse|Svg|Tr|Ui|Uri|Url|Utf|Uuid|Xml)(?![a-z])',
+};
+
 const IS_DEVELOPMENT = !process.env.CI && process.env.NODE_ENV !== 'production';
+
+/**
+ * The names that perfectionist gives symbol keys, i.e. a constant's name, e.g.
+ * `INSPECT_CUSTOM`, a name ending in `Symbol`, e.g. `compareSymbol`, or an
+ * expression that isn't an identifier, e.g. `Symbol.iterator`.
+ */
+const SYMBOL_NAME_PATTERNS = [
+  String.raw`^[A-Z][\dA-Z]*(?:_[\dA-Z]+)*$`,
+  'Symbol$',
+  String.raw`^(?![$A-Z_a-z][\w$]*$)`,
+];
+
+// A theme variable or derived value in an arbitrary Tailwind value, e.g.
+// `bg-(--color-surface)`, `bg-[var(--color-surface)]` or `p-[calc(...)]`:
+const TAILWIND_THEME_VALUE_REGEXP =
+  '/(?:\\(|\\[var\\()--(?:animate|aspect|blur|breakpoint|color|container|drop-shadow|ease|font|inset-shadow|leading|perspective|radius|shadow|spacing|text|tracking|z-index)-|\\[calc\\(/';
 
 const RESTRICTED_SYNTAX = [
   'WithStatement',
+  {
+    message: 'A RegExp match always has an `index`, so it needs no `!`.',
+    selector:
+      "TSNonNullExpression > MemberExpression[computed=false][property.name='index']",
+  },
+  {
+    message: 'Use `RegExp.escape()` instead of escaping by hand.',
+    selector:
+      "CallExpression[callee.property.name=/^replace(?:All)?$/][arguments.1.value='\\\\$&']",
+  },
+  {
+    message:
+      'Define the value as a named theme variable, e.g. `--color-surface`, and use its utility, e.g. `bg-surface`.',
+    selector: `:matches(JSXAttribute[name.name='className'], CallExpression[callee.name=/^(?:clsx|cn|cva|twJoin|twMerge)$/]) :matches(Literal[value=${TAILWIND_THEME_VALUE_REGEXP}], TemplateElement[value.raw=${TAILWIND_THEME_VALUE_REGEXP}])`,
+  },
   {
     message: 'Use ++ instead of += 1.',
     selector: "AssignmentExpression[operator='+='][right.value=1]",
@@ -34,17 +74,6 @@ const RESTRICTED_SYNTAX = [
     selector:
       ':matches(ClassDeclaration, ClassExpression)[superClass.name=/^(?:Pure)?Component$/], :matches(ClassDeclaration, ClassExpression)[superClass.property.name=/^(?:Pure)?Component$/]',
   },
-];
-
-/**
- * The names that perfectionist gives symbol keys, i.e. a constant's name, e.g.
- * `INSPECT_CUSTOM`, a name ending in `Symbol`, e.g. `compareSymbol`, or an
- * expression that isn't an identifier, e.g. `Symbol.iterator`.
- */
-const SYMBOL_NAME_PATTERNS = [
-  String.raw`^[A-Z][\dA-Z]*(?:_[\dA-Z]+)*$`,
-  'Symbol$',
-  String.raw`^(?![$A-Z_a-z][\w$]*$)`,
 ];
 
 const error = 'error';
@@ -78,6 +107,9 @@ const config = [
       sourceType: 'module',
     },
     plugins: {
+      '@eslint-community/eslint-comments': /** @type {any} */ (
+        eslintCommentsPlugin
+      ),
       import: importPlugin,
       jsdoc: jsdocPlugin,
       'no-only-tests': /** @type {any} */ (noOnlyTestsPlugin),
@@ -88,6 +120,19 @@ const config = [
       unicorn: unicornPlugin,
     },
     rules: {
+      '@eslint-community/eslint-comments/disable-enable-pair': [
+        warn,
+        { allowWholeFile: true },
+      ],
+      '@eslint-community/eslint-comments/no-aggregating-enable': warn,
+      '@eslint-community/eslint-comments/no-duplicate-disable': warn,
+      '@eslint-community/eslint-comments/no-unlimited-disable': warn,
+      '@eslint-community/eslint-comments/no-unused-enable': warn,
+      // Every exception says why, e.g. `// eslint-disable-next-line rule -- Reason`:
+      '@eslint-community/eslint-comments/require-description': [
+        warn,
+        { ignore: ['eslint-enable'] },
+      ],
       'accessor-pairs': warn,
       'array-bracket-newline': off,
       'array-bracket-spacing': [warn, 'never'],
@@ -754,6 +799,8 @@ const config = [
       'unicorn/no-array-method-this-argument': warn,
       'unicorn/no-array-push-push': off,
       'unicorn/no-array-reduce': warn,
+      'unicorn/no-array-reverse': warn,
+      'unicorn/no-array-sort': warn,
       'unicorn/no-await-expression-member': warn,
       'unicorn/no-console-spaces': warn,
       'unicorn/no-document-cookie': off,
@@ -784,6 +831,7 @@ const config = [
       'unicorn/no-unreadable-iife': warn,
       'unicorn/no-unused-properties': off,
       'unicorn/no-useless-fallback-in-spread': warn,
+      'unicorn/no-useless-iterator-to-array': warn,
       'unicorn/no-useless-length-check': warn,
       'unicorn/no-useless-promise-resolve-reject': warn,
       'unicorn/no-useless-spread': warn,
@@ -798,9 +846,12 @@ const config = [
       'unicorn/prefer-array-flat': off,
       'unicorn/prefer-array-flat-map': warn,
       'unicorn/prefer-array-index-of': warn,
+      'unicorn/prefer-array-last-methods': warn,
       'unicorn/prefer-array-some': warn,
       'unicorn/prefer-at': warn,
+      'unicorn/prefer-bigint-literals': warn,
       'unicorn/prefer-blob-reading-methods': warn,
+      'unicorn/prefer-classlist-toggle': warn,
       'unicorn/prefer-code-point': off,
       'unicorn/prefer-date-now': warn,
       'unicorn/prefer-default-parameters': warn,
@@ -810,10 +861,14 @@ const config = [
       'unicorn/prefer-dom-node-text-content': warn,
       'unicorn/prefer-event-target': warn,
       'unicorn/prefer-export-from': warn,
+      'unicorn/prefer-get-or-insert-computed': warn,
+      'unicorn/prefer-import-meta-properties': warn,
       'unicorn/prefer-includes': warn,
       'unicorn/prefer-json-parse-buffer': off,
       'unicorn/prefer-keyboard-event-key': warn,
       'unicorn/prefer-logical-operator-over-ternary': warn,
+      'unicorn/prefer-math-abs': warn,
+      'unicorn/prefer-math-min-max': warn,
       'unicorn/prefer-math-trunc': warn,
       'unicorn/prefer-modern-dom-apis': warn,
       'unicorn/prefer-modern-math-apis': warn,
@@ -829,16 +884,22 @@ const config = [
       'unicorn/prefer-optional-catch-binding': warn,
       'unicorn/prefer-prototype-methods': warn,
       'unicorn/prefer-query-selector': warn,
+      'unicorn/prefer-queue-microtask': warn,
       'unicorn/prefer-reflect-apply': warn,
       'unicorn/prefer-regexp-test': warn,
+      'unicorn/prefer-response-static-json': warn,
       'unicorn/prefer-set-has': warn,
       'unicorn/prefer-set-size': warn,
       // Disabled due to slow performance:
       'unicorn/prefer-spread': off,
+      'unicorn/prefer-string-match-all': warn,
+      'unicorn/prefer-string-pad-start-end': warn,
+      'unicorn/prefer-string-repeat': warn,
       'unicorn/prefer-string-replace-all': warn,
       'unicorn/prefer-string-slice': warn,
       'unicorn/prefer-string-starts-ends-with': warn,
       'unicorn/prefer-string-trim-start-end': warn,
+      'unicorn/prefer-structured-clone': warn,
       'unicorn/prefer-switch': off,
       'unicorn/prefer-ternary': off,
       // Not available in all Node.js versions or without specific settings:
@@ -848,8 +909,30 @@ const config = [
         warn,
         {
           checkFilenames: false,
-          // Established names, e.g. React's `props` and Storybook's `args`:
-          replacements: { args: false, props: false, ref: false, refs: false },
+          replacements: {
+            // Established names, e.g. React's `props` and Storybook's `args`:
+            args: false,
+            cfg: { config: true },
+            cnt: { count: true },
+            col: { column: true },
+            cols: { columns: true },
+            dep: { dependency: true },
+            deps: { dependencies: true },
+            img: { image: true },
+            lbl: { label: true },
+            mgr: { manager: true },
+            ms: { milliseconds: true },
+            opt: { option: true },
+            pos: { position: true },
+            props: false,
+            qty: { quantity: true },
+            ref: false,
+            refs: false,
+            srv: { server: true },
+            tpl: { template: true },
+            txt: { text: true },
+            usr: { user: true },
+          },
         },
       ],
       'unicorn/relative-url-style': off,
@@ -997,17 +1080,25 @@ const config = [
       // `sort-object-types`:
       '@typescript-eslint/member-ordering': off,
       '@typescript-eslint/method-signature-style': [warn, 'property'],
-      // Initialisms are written in capitals, like `JSON.parse()` and `innerHTML`:
       '@typescript-eslint/naming-convention': [
         warn,
+        { custom: INITIALISM_NAMING, format: null, selector: 'default' },
+        // Constants are written in `SNAKE_CASE`, when their type tells them apart
+        // from functions and components:
         {
-          custom: {
-            match: false,
-            regex:
-              '(?:Api|Ascii|Css|Csv|Dom|Html|Http|Iso|Json|Pdf|Sql|Svg|Uri|Url|Utf|Uuid|Xml)(?![a-z])',
-          },
+          custom: INITIALISM_NAMING,
+          format: ['UPPER_CASE'],
+          modifiers: ['const', 'global'],
+          selector: 'variable',
+          types: ['array', 'boolean', 'number', 'string'],
+        },
+        // Destructured names come from elsewhere, e.g. `const { env } = process`:
+        {
+          custom: INITIALISM_NAMING,
           format: null,
-          selector: 'default',
+          modifiers: ['const', 'destructured', 'global'],
+          selector: 'variable',
+          types: ['array', 'boolean', 'number', 'string'],
         },
       ],
       '@typescript-eslint/no-array-constructor': warn,
@@ -1279,8 +1370,15 @@ const config = [
           selector:
             "MemberExpression[object.name='expect'][property.name=/^(?:any|anything|arrayContaining|objectContaining|stringContaining|stringMatching)$/]",
         },
+        {
+          message:
+            'Test the real code. If a mock or stub is truly necessary, disable this with a reason.',
+          selector:
+            'CallExpression[callee.object.name=/^(?:jest|mock|vi)$/][callee.property.name=/^(?:fn|mock|module|spyOn)$/], CallExpression[callee.name=/^(?:mock|spyOn)$/]',
+        },
       ],
       'no-sparse-arrays': off,
+      'robinblomberg/test-imports-source': warn,
       'sonarjs/no-duplicate-string': off,
       'sort-keys': off,
       'symbol-description': off,

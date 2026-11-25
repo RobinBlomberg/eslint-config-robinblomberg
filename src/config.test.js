@@ -12,7 +12,13 @@ const eslint = new ESLint({
       languageOptions: {
         parserOptions: {
           project: false,
-          projectService: { allowDefaultProject: ['example.ts'] },
+          projectService: {
+            allowDefaultProject: [
+              'example.test.ts',
+              'example.ts',
+              'example.tsx',
+            ],
+          },
           tsconfigRootDir: join(import.meta.dirname, '..'),
         },
       },
@@ -26,10 +32,11 @@ const eslint = new ESLint({
  *
  * @param {string} code
  * @param {string} ruleId
+ * @param {string} [filePath]
  * @return {Promise<string[]>}
  */
-const getMessages = async (code, ruleId) => {
-  const [result] = await eslint.lintText(code, { filePath: 'example.ts' });
+const getMessages = async (code, ruleId, filePath = 'example.ts') => {
+  const [result] = await eslint.lintText(code, { filePath });
 
   return (result?.messages ?? [])
     .filter((message) => {
@@ -187,4 +194,139 @@ assert.deepEqual(
     'perfectionist/sort-objects',
   ),
   [],
+);
+
+// A RegExp match always has an `index`:
+assert.deepEqual(
+  await getMessages(
+    [
+      'export const getIndex = (match: RegExpExecArray) => {',
+      '  return match.index!;',
+      '};',
+      'export const getItem = (items: string[], index: number) => {',
+      '  return items[index]!;',
+      '};',
+    ].join('\n'),
+    'no-restricted-syntax',
+  ),
+  ['A RegExp match always has an `index`, so it needs no `!`.'],
+);
+
+// Built-ins instead of reimplementations:
+assert.deepEqual(
+  await getMessages(
+    [
+      'export const escape = (text: string) => {',
+      "  return text.replaceAll(/[.*]/g, '\\\\$&');",
+      '};',
+    ].join('\n'),
+    'no-restricted-syntax',
+  ),
+  ['Use `RegExp.escape()` instead of escaping by hand.'],
+);
+
+assert.deepEqual(
+  await getMessages(
+    [
+      'export const copy = (value: object): unknown => {',
+      '  return JSON.parse(JSON.stringify(value));',
+      '};',
+    ].join('\n'),
+    'unicorn/prefer-structured-clone',
+  ),
+  [
+    'Prefer `structuredClone(…)` over `JSON.parse(JSON.stringify(…))` to create a deep clone.',
+  ],
+);
+
+// Theme values get named utilities, while runtime values like Base UI's are fine:
+assert.deepEqual(
+  await getMessages(
+    [
+      'export const Box = () => {',
+      '  return <div className="bg-(--color-surface) w-(--anchor-width)" />;',
+      '};',
+      "export const PADDING = twMerge('p-[calc(1rem+2px)]');",
+    ].join('\n'),
+    'no-restricted-syntax',
+    'example.tsx',
+  ),
+  [
+    'Define the value as a named theme variable, e.g. `--color-surface`, and use its utility, e.g. `bg-surface`.',
+    'Define the value as a named theme variable, e.g. `--color-surface`, and use its utility, e.g. `bg-surface`.',
+  ],
+);
+
+// Tests use the real code, and say why when a mock is necessary:
+assert.deepEqual(
+  await getMessages(
+    [
+      "import { add } from './add.js';",
+      '',
+      "describe('add', () => {",
+      "  it('should add', () => {",
+      '    mock(() => {',
+      '      return add(1, 2);',
+      '    });',
+      "    spyOn(console, 'log');",
+      '  });',
+      '});',
+    ].join('\n'),
+    'no-restricted-syntax',
+    'example.test.ts',
+  ),
+  [
+    'Test the real code. If a mock or stub is truly necessary, disable this with a reason.',
+    'Test the real code. If a mock or stub is truly necessary, disable this with a reason.',
+  ],
+);
+
+// Exceptions to the rules say why:
+assert.deepEqual(
+  await getMessages(
+    [
+      '// eslint-disable-next-line no-var',
+      'var a = 1;',
+      '// eslint-disable-next-line no-var -- Legacy code',
+      'var b = 2;',
+      'export { a, b };',
+    ].join('\n'),
+    '@eslint-community/eslint-comments/require-description',
+  ),
+  [
+    'Unexpected undescribed directive comment. Include descriptions to explain why the comment is necessary.',
+  ],
+);
+
+// Constants are in `SNAKE_CASE` and initialisms in capitals, unless a library's
+// own spelling differs, e.g. `Cuid2`:
+assert.deepEqual(
+  await getMessages(
+    [
+      'export const maxCount = 1;',
+      'export const MAX_COUNT = 2;',
+      'export const ITEMS = [1];',
+      'export const { a, b } = { a: 1, b: 2 };',
+      'export const createCuid2 = () => {',
+      "  return '';",
+      '};',
+      "export type UnicodeTr35Symbol = 'G';",
+    ].join('\n'),
+    '@typescript-eslint/naming-convention',
+  ),
+  [
+    'Variable name `maxCount` must match one of the following formats: UPPER_CASE',
+    'Type Alias name `UnicodeTr35Symbol` must not match the RegExp: /(?:Api|Ascii|Ast|Csp|Css|Csv|Dom|Fsrs|Html|Http|Ip|Iso|Json|Otp|Pdf|Rpc|Sql|Sse|Svg|Tr|Ui|Uri|Url|Utf|Uuid|Xml)(?![a-z])/u',
+  ],
+);
+
+// Abbreviations are written out:
+assert.deepEqual(
+  await getMessages(
+    'export const cfg = { debug: true };',
+    'unicorn/prevent-abbreviations',
+  ),
+  [
+    'The variable `cfg` should be named `config`. A more descriptive name will do too.',
+  ],
 );

@@ -8,10 +8,17 @@ const FUNCTION_TYPES = new Set([
   'TSDeclareFunction',
 ]);
 
+// A call like `run()` or `items.at()`, which belongs in backticks:
+const IDENTIFIER_CALL_REGEXP =
+  /(?:^|[\s(])([$A-Z_a-z][\w$]*(?:\.[$A-Z_a-z][\w$]*)*\(\))/;
+
 const MAX_LINE_LENGTH = 85;
 
 // Notes that aren't descriptions of the code below, e.g. `// TODO: Remove`:
 const NOTE_REGEXP = /^\s*(?:FIXME|HACK|NOTE|TODO|XXX)\b/;
+
+// A comment that divides sections, e.g. `// --- Types ---` or `/* ====== */`:
+const SECTION_DIVIDER_REGEXP = /^\s*[-#*=_~]{3,}|[-#*=_~]{3,}\s*$/;
 
 /**
  * @type {import('eslint').Rule.RuleModule}
@@ -53,6 +60,54 @@ const rule = {
         isFunctionLike(getNodeAt(next))
       ) {
         context.report({ loc: comment.loc, messageId: 'functionNeedsJSDoc' });
+      }
+    };
+
+    /**
+     * Reports calls like `run()` that aren't wrapped in backticks, outside of code
+     * examples.
+     *
+     * @param {any} comment
+     */
+    const checkIdentifiers = (comment) => {
+      if (isDirective(comment)) {
+        return;
+      }
+
+      let isInCodeBlock = false;
+
+      for (const [index, line] of comment.value.split('\n').entries()) {
+        if (/^\s*\*?\s*```/.test(line)) {
+          isInCodeBlock = !isInCodeBlock;
+          continue;
+        }
+
+        const prose = line.replaceAll(
+          /`[^`]*`/g,
+          (/** @type {string} */ code) => {
+            return ' '.repeat(code.length);
+          },
+        );
+
+        const match = isInCodeBlock ? null : IDENTIFIER_CALL_REGEXP.exec(prose);
+
+        if (match) {
+          const [, name = ''] = match;
+          const column = match.index + match[0].length - name.length;
+          const lineNumber = comment.loc.start.line + index;
+
+          const startColumn =
+            index === 0 ? comment.loc.start.column + 2 + column : column;
+
+          context.report({
+            data: { name },
+            loc: {
+              end: { column: startColumn + name.length, line: lineNumber },
+              start: { column: startColumn, line: lineNumber },
+            },
+            messageId: 'identifierWithoutBackticks',
+          });
+        }
       }
     };
 
@@ -106,7 +161,8 @@ const rule = {
     };
 
     const checkLineLengths = (/** @type {any} */ comment) => {
-      if (!isOwnLine(comment)) {
+      // A directive, e.g. `// eslint-disable-next-line rule -- Reason`, can't wrap:
+      if (!isOwnLine(comment) || isDirective(comment)) {
         return;
       }
 
@@ -139,6 +195,18 @@ const rule = {
             messageId: 'tooLong',
           });
         }
+      }
+    };
+
+    const checkSectionDivider = (/** @type {any} */ comment) => {
+      const isSingleLine = comment.loc.start.line === comment.loc.end.line;
+
+      if (
+        isSingleLine &&
+        isOwnLine(comment) &&
+        SECTION_DIVIDER_REGEXP.test(comment.value)
+      ) {
+        context.report({ loc: comment.loc, messageId: 'sectionDivider' });
       }
     };
 
@@ -205,7 +273,9 @@ const rule = {
         let group = [];
 
         for (const comment of comments) {
+          checkIdentifiers(comment);
           checkLineLengths(comment);
+          checkSectionDivider(comment);
 
           if (comment.type === 'Block') {
             checkBlockComment(comment);
@@ -239,13 +309,16 @@ const rule = {
   meta: {
     docs: {
       description:
-        'Keep comments to 85 characters per line, write block comments over several lines, end `//` comments that describe the code below with a colon, and describe functions with JSDoc.',
+        'Keep comments to 85 characters per line, write block comments over several lines, end `//` comments that describe the code below with a colon, describe functions with JSDoc, wrap calls like `run()` in backticks, and leave out section dividers.',
     },
     messages: {
       functionNeedsJSDoc:
         'Describe a function with a JSDoc comment (`/** ... */` over several lines) instead.',
+      identifierWithoutBackticks: 'Wrap `{{name}}` in backticks.',
       missingColon:
         'End a comment that describes the code below with a colon (`:`) instead of a period.',
+      sectionDivider:
+        "Leave out section-dividing comments, e.g. `// --- Types ---`. The file's structure is its own order.",
       singleLineBlock:
         'Write block and JSDoc comments over several lines: `/**`, ` * ...` and ` */` each on a line of their own.',
       tooLong:

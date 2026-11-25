@@ -5,6 +5,7 @@ import paddingLines from './padding-lines.js';
 import preferArrowFunctions from './prefer-arrow-functions.js';
 import sortDeclarations from './sort-declarations.js';
 import sortTests from './sort-tests.js';
+import testImportsSource from './test-imports-source.js';
 
 const ruleTester = new RuleTester({
   languageOptions: {
@@ -33,6 +34,27 @@ ruleTester.run('comment-style', commentStyle, {
       code: `// ${'a'.repeat(83)}:\nconst value = 1;`,
       errors: [{ messageId: 'tooLong' }],
     },
+    {
+      code: '// --- Types ---\n\ntype A = 1;',
+      errors: [{ messageId: 'sectionDivider' }],
+    },
+    {
+      code: '// Calls run() first:\nrun();',
+      errors: [
+        { data: { name: 'run()' }, messageId: 'identifierWithoutBackticks' },
+      ],
+    },
+    {
+      code: '/**\n * Uses items.at() and `ok()`.\n */\nconst value = 1;',
+      errors: [
+        {
+          column: 9,
+          data: { name: 'items.at()' },
+          line: 2,
+          messageId: 'identifierWithoutBackticks',
+        },
+      ],
+    },
   ],
   valid: [
     '// Adds one:\nconst value = 1;',
@@ -48,6 +70,11 @@ ruleTester.run('comment-style', commentStyle, {
     `/**\n * @example\n * \`\`\`ts\n * ${'a'.repeat(90)}\n * \`\`\`\n */\nconst value = 1;`,
     '/**\n * Adds one.\n */\nconst add = (value: number) => {\n  return value + 1;\n};',
     `// ${'a'.repeat(81)}:\nconst value = 1;`,
+    // A directive can't wrap, e.g. because of its reason:
+    `// @ts-expect-error - ${'a'.repeat(90)}\nconst value = 1;`,
+    '// Calls `run()` first:\nrun();',
+    '// Turns -> into an arrow:\nrun();',
+    '/**\n * @example\n * ```ts\n * run();\n * ```\n */\nconst value = 1;',
   ],
 });
 
@@ -243,5 +270,25 @@ ruleTester.run('sort-tests', sortTests, {
   valid: [
     "describe('a', () => {\n  it('should a', () => {});\n  it('should b', () => {});\n});",
     "describe('b', () => {});\nconst value = 1;\ndescribe('a', () => {});",
+  ],
+});
+
+ruleTester.run('test-imports-source', testImportsSource, {
+  invalid: [
+    {
+      code: "describe('add', () => {});",
+      errors: [{ messageId: 'missingSourceImport' }],
+    },
+    {
+      code: "import { setUp } from './add.test.js';",
+      errors: [{ messageId: 'missingSourceImport' }],
+    },
+  ],
+  valid: [
+    "import { add } from './add.js';",
+    "import { add } from '../add';",
+    // A test of types, e.g. with `expectTypeOf()`:
+    "import type { Add } from './add.js';",
+    "const { add } = await import('./add.js');",
   ],
 });

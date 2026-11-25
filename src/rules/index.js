@@ -3,6 +3,7 @@ import paddingLines from './padding-lines.js';
 import preferArrowFunctions from './prefer-arrow-functions.js';
 import sortDeclarations from './sort-declarations.js';
 import sortTests from './sort-tests.js';
+import testImportsSource from './test-imports-source.js';
 
 /**
  * The rules that no published plugin has.
@@ -19,6 +20,7 @@ const plugin = {
     'prefer-arrow-functions': preferArrowFunctions,
     'sort-declarations': sortDeclarations,
     'sort-tests': sortTests,
+    'test-imports-source': testImportsSource,
   },
 };
 
