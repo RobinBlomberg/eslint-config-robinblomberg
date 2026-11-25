@@ -21,6 +21,7 @@ const rule = {
               messageId: 'unsorted',
               node: test.statement,
             });
+
             break;
           }
         }
@@ -79,6 +80,7 @@ const getTestTitle = (statement) => {
   }
 
   const { callee } = call;
+
   const name =
     callee.type === 'MemberExpression' ? callee.object.name : callee.name;
 

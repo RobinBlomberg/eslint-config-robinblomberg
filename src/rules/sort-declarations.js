@@ -61,6 +61,7 @@ const rule = {
     const getPieces = (declarations) => {
       return declarations.map((declaration, index) => {
         const previous = declarations[index - 1];
+
         // Comments on the line where the previous declaration ends belong to it:
         const firstComment = sourceCode
           .getCommentsBefore(declaration.statement)
@@ -71,10 +72,13 @@ const rule = {
                 previous.statement.loc.end.line
             );
           });
+
         const start =
           /** @type {any} */ (firstComment)?.range[0] ??
           declaration.statement.range[0];
+
         const end = getEnd(declaration);
+
         const separator = previous
           ? sourceCode.text.slice(getEnd(previous), start)
           : '';
@@ -111,6 +115,7 @@ const rule = {
       const index = expected.findIndex((declaration, position) => {
         return declaration !== declarations[position];
       });
+
       const misplaced = expected[index];
       const displaced = declarations[index];
 
@@ -160,11 +165,13 @@ const rule = {
                 firstPiece.declaration.statement.loc.start.line - 1
               ] ?? '',
             )?.[0] ?? '';
+
           const replacement = expected
             .map((declaration, position) => {
               const piece = pieces.find((candidate) => {
                 return candidate.declaration === declaration;
               });
+
               const previous = expected[position - 1];
 
               if (!piece || !previous) {
@@ -177,6 +184,7 @@ const rule = {
                 piece === firstPiece
                   ? (pieces[1]?.hasBlankLineBefore ?? true)
                   : piece.hasBlankLineBefore;
+
               const hasBlankLine =
                 previous.group !== declaration.group || ownSpacing;
 
@@ -275,6 +283,7 @@ const getExpectedOrder = (declarations, dependencies) => {
         );
       })
       .toSorted(compareDeclarations);
+
     // A dependency cycle keeps the original order:
     const next = ready ?? [...remaining][0];
 

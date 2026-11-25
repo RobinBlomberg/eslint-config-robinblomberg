@@ -10,6 +10,7 @@ import {
 const rule = {
   create: (context) => {
     const { filename, sourceCode } = context;
+
     /** @type {Map<any[], Set<string>>} */
     const hoistedFunctionNamesByStatements = new Map();
 
@@ -24,6 +25,7 @@ const rule = {
       const names =
         hoistedFunctionNamesByStatements.get(statements) ??
         getHoistedFunctionNames(sourceCode, statements);
+
       hoistedFunctionNamesByStatements.set(statements, names);
 
       return names;
@@ -52,9 +54,11 @@ const rule = {
       FunctionDeclaration: (/** @type {any} */ node) => {
         const statement =
           node.parent.type === 'ExportNamedDeclaration' ? node.parent : node;
+
         // A block's or the module's statements, or a `case` clause's:
         const statements =
           statement.parent.body ?? statement.parent.consequent ?? [];
+
         const isHoisted = getHoistedNames(statements).has(node.id?.name);
 
         if (
@@ -69,17 +73,22 @@ const rule = {
         context.report({
           fix: (fixer) => {
             const isTSX = filename.endsWith('.tsx');
+
             const typeParameters = node.typeParameters
               ? sourceCode.getText(node.typeParameters)
               : '';
+
             const parametersStart = (node.typeParameters ?? node.id).range[1];
             const parametersEnd = (node.returnType ?? node.body).range[0];
+
             const parameters = sourceCode.text
               .slice(parametersStart, parametersEnd)
               .trim();
+
             const returnType = node.returnType
               ? sourceCode.getText(node.returnType)
               : '';
+
             // In TSX, `<T>` would start a JSX element:
             const arrowTypeParameters =
               isTSX && node.typeParameters?.params.length === 1
@@ -134,10 +143,13 @@ const rule = {
 const getHoistedFunctionNames = (sourceCode, statements) => {
   const functions = statements.flatMap((statement) => {
     const declaration = getDeclaration(statement);
+
     return declaration?.group === GROUPS.function ? [declaration] : [];
   });
+
   /** @type {Map<string, number>} */
   const firstCalls = new Map();
+
   /** @type {string[]} */
   const queue = [];
 
@@ -145,6 +157,7 @@ const getHoistedFunctionNames = (sourceCode, statements) => {
     const declarationIndex = statements.findIndex((statement) => {
       return getDeclaration(statement)?.name === name;
     });
+
     const previousIndex = firstCalls.get(name);
 
     if (
@@ -183,12 +196,14 @@ const getHoistedFunctionNames = (sourceCode, statements) => {
   while (queue.length > 0) {
     const name = queue.shift() ?? '';
     const index = firstCalls.get(name) ?? 0;
+
     const caller = functions.find((declaration) => {
       return declaration.name === name;
     });
 
     for (const declaration of functions) {
       const variable = getVariable(sourceCode, declaration);
+
       const isUsedByCaller = (variable?.references ?? []).some((reference) => {
         const identifier = /** @type {any} */ (reference.identifier);
 

@@ -1,12 +1,15 @@
 const DIRECTIVE_REGEXP =
   /^\s*(?:@ts-|@vite-ignore|[#@]__PURE__|biome-ignore|c8 |cspell|eslint|exported |global |globals |istanbul |prettier-ignore|webpack[A-Z])/;
+
 const FUNCTION_TYPES = new Set([
   'ArrowFunctionExpression',
   'FunctionDeclaration',
   'FunctionExpression',
   'TSDeclareFunction',
 ]);
+
 const MAX_LINE_LENGTH = 85;
+
 // Notes that aren't descriptions of the code below, e.g. `// TODO: Remove`:
 const NOTE_REGEXP = /^\s*(?:FIXME|HACK|NOTE|TODO|XXX)\b/;
 
@@ -19,6 +22,7 @@ const rule = {
 
     const checkBlockComment = (/** @type {any} */ comment) => {
       const isSingleLine = comment.loc.start.line === comment.loc.end.line;
+
       // A JSDoc type cast, e.g. `/** @type {any} */ (value)`:
       const isTypeCast = /^\*\s*@(?:satisfies|type)\s/.test(comment.value);
 
@@ -36,6 +40,7 @@ const rule = {
       const next = /** @type {any} */ (
         sourceCode.getTokenAfter(comment, { includeComments: true })
       );
+
       const isJSDocument = comment.value.startsWith('*');
 
       if (
@@ -58,9 +63,11 @@ const rule = {
      */
     const checkLineCommentGroup = (group) => {
       const last = group.at(-1);
+
       const next = /** @type {any} */ (
         sourceCode.getTokenAfter(last, { includeComments: true })
       );
+
       const isAttached =
         next &&
         next.type !== 'Block' &&
@@ -73,9 +80,11 @@ const rule = {
       }
 
       const isCommentedOutCode = /[,;[{]$/.test(last.value.trimEnd());
+
       const hasDirective = group.some((comment) => {
         return isDirective(comment);
       });
+
       const isNote = group.some((comment) => {
         return NOTE_REGEXP.test(comment.value);
       });
@@ -87,6 +96,7 @@ const rule = {
 
       if (isFunctionLike(getNodeAt(next))) {
         context.report({ loc: group[0].loc, messageId: 'functionNeedsJSDoc' });
+
         return;
       }
 
@@ -164,6 +174,7 @@ const rule = {
       const node = /** @type {any} */ (
         sourceCode.getNodeByRangeIndex(comment.range[0])
       );
+
       return (
         node?.type === 'JSXExpressionContainer' ||
         node?.type === 'JSXEmptyExpression'
@@ -189,6 +200,7 @@ const rule = {
     return {
       Program: () => {
         const comments = /** @type {any[]} */ (sourceCode.getAllComments());
+
         /** @type {any[]} */
         let group = [];
 

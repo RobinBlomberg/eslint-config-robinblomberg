@@ -120,6 +120,7 @@ export const getDeclaration = (statement) => {
 export const getDeclarationRuns = (statements) => {
   /** @type {Declaration[][]} */
   const runs = [];
+
   /** @type {Declaration[]} */
   let run = [];
 
@@ -154,6 +155,7 @@ export const getDeclarationRuns = (statements) => {
 export const getLoadTimeDependencies = (sourceCode, declarations) => {
   /** @type {Map<Declaration, Set<Declaration>>} */
   const allReferences = new Map();
+
   /** @type {Map<Declaration, Set<Declaration>>} */
   const loadTimeReferences = new Map();
 
@@ -171,6 +173,7 @@ export const getLoadTimeDependencies = (sourceCode, declarations) => {
       }
 
       const identifier = /** @type {any} */ (reference.identifier);
+
       const user = declarations.find((declaration) => {
         return (
           declaration.name !== dependency.name &&
@@ -232,6 +235,7 @@ export const getLoadTimeDependencies = (sourceCode, declarations) => {
  */
 export const getModuleVariable = (sourceCode, name) => {
   const { globalScope } = sourceCode.scopeManager;
+
   const moduleScope =
     globalScope?.childScopes.find((scope) => {
       return scope.type === 'module';

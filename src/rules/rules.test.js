@@ -1,6 +1,7 @@
 import typescriptEslintParser from '@typescript-eslint/parser';
 import { RuleTester } from 'eslint';
 import commentStyle from './comment-style.js';
+import paddingLines from './padding-lines.js';
 import preferArrowFunctions from './prefer-arrow-functions.js';
 import sortDeclarations from './sort-declarations.js';
 import sortTests from './sort-tests.js';
@@ -47,6 +48,94 @@ ruleTester.run('comment-style', commentStyle, {
     `/**\n * @example\n * \`\`\`ts\n * ${'a'.repeat(90)}\n * \`\`\`\n */\nconst value = 1;`,
     '/**\n * Adds one.\n */\nconst add = (value: number) => {\n  return value + 1;\n};',
     `// ${'a'.repeat(81)}:\nconst value = 1;`,
+  ],
+});
+
+ruleTester.run('padding-lines', paddingLines, {
+  invalid: [
+    {
+      code: 'setUp();\nif (value) {\n  run();\n} else {\n  stop();\n}\ntearDown();',
+      errors: [
+        { line: 2, messageId: 'missingBlankLine' },
+        { line: 7, messageId: 'missingBlankLine' },
+      ],
+      output:
+        'setUp();\n\nif (value) {\n  run();\n} else {\n  stop();\n}\n\ntearDown();',
+    },
+    {
+      code: 'const MAX = 1;\nconst add = (value: number) => {};',
+      errors: [{ messageId: 'missingBlankLine' }],
+      output: 'const MAX = 1;\n\nconst add = (value: number) => {};',
+    },
+    {
+      code: 'const MAX = 1;\nconst add = function () {} as () => void;',
+      errors: [{ messageId: 'missingBlankLine' }],
+      output: 'const MAX = 1;\n\nconst add = function () {} as () => void;',
+    },
+    {
+      code: 'const MAX = 1;\nexport function add() {}',
+      errors: [{ messageId: 'missingBlankLine' }],
+      output: 'const MAX = 1;\n\nexport function add() {}',
+    },
+    {
+      code: 'const run = () => {\n  const value = 1;\n  return value;\n};',
+      errors: [{ messageId: 'missingBlankLine' }],
+      output: 'const run = () => {\n  const value = 1;\n\n  return value;\n};',
+    },
+    {
+      code: 'const run = () => {\n  check();\n  throw new Error();\n};',
+      errors: [{ messageId: 'missingBlankLine' }],
+      output: 'const run = () => {\n  check();\n\n  throw new Error();\n};',
+    },
+    {
+      code: 'const MAX = 1;\nconst options = {\n  max: MAX,\n};\nrun(options);',
+      errors: [
+        { line: 2, messageId: 'missingBlankLine' },
+        { line: 5, messageId: 'missingBlankLine' },
+      ],
+      output:
+        'const MAX = 1;\n\nconst options = {\n  max: MAX,\n};\n\nrun(options);',
+    },
+    {
+      code: 'setUp();\n// Then run:\nrun();',
+      errors: [{ line: 2, messageId: 'missingBlankLine' }],
+      output: 'setUp();\n\n// Then run:\nrun();',
+    },
+    {
+      // The blank line goes above the comment that belongs to the statement:
+      code: 'setUp(); // Prepares\n// Runs twice:\nfor (const value of values) {}',
+      errors: [{ line: 2, messageId: 'missingBlankLine' }],
+      output:
+        'setUp(); // Prepares\n\n// Runs twice:\nfor (const value of values) {}',
+    },
+    {
+      code: 'do {\n  run();\n} while (value);\nrun();',
+      errors: [{ messageId: 'missingBlankLine' }],
+      output: 'do {\n  run();\n} while (value);\n\nrun();',
+    },
+    {
+      code: "switch (value) {\n  case 'a':\n    run();\n    return;\n}",
+      errors: [{ messageId: 'missingBlankLine' }],
+      output: "switch (value) {\n  case 'a':\n    run();\n\n    return;\n}",
+    },
+    {
+      code: 'run(); while (value) {}',
+      errors: [{ messageId: 'missingBlankLine' }],
+      output: 'run();\n\n while (value) {}',
+    },
+  ],
+  valid: [
+    'setUp();\n\nif (value) {\n  run();\n} else if (other) {\n  stop();\n}\n\ntearDown();',
+    'const MAX = 1;\nlet count = 0;\nrun(count);',
+    'const run = () => {\n  return 1;\n};',
+    'const run = () => {\n  // First:\n  setUp();\n};',
+    "switch (value) {\n  case 'a':\n    return 1;\n}",
+    'setUp();\n\n// First line\n// Second line\nrun();',
+    'setUp(); // Prepares\nrun();',
+    'const value = /** @type {number} */ (input);\nrun(value);',
+    "import {\n  a,\n  b,\n} from 'a';\n// @ts-expect-error - No types:\nimport c from 'c';\nexport {\n  d,\n  e,\n} from 'd';",
+    'export function add(value: number): number;\nexport function add(value: string): string;\nexport function add(value: any) {\n  return value;\n}',
+    'const options = {\n  // Extra:\n  max: 1,\n};',
   ],
 });
 

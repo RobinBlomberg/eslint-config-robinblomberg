@@ -502,19 +502,8 @@ const config = [
         warn,
         { blocks: 'never', classes: 'never', switches: 'never' },
       ],
-      'padding-line-between-statements': [
-        warn,
-        {
-          blankLine: 'always',
-          next: ['do', 'for', 'if', 'switch', 'try', 'while'],
-          prev: '*',
-        },
-        {
-          blankLine: 'always',
-          next: '*',
-          prev: ['do', 'for', 'if', 'switch', 'try', 'while'],
-        },
-      ],
+      // Replaced by `robinblomberg/padding-lines`, which covers more statements:
+      'padding-line-between-statements': off,
       'perfectionist/sort-array-includes': warn,
       // Would change what the array means:
       'perfectionist/sort-arrays': off,
@@ -680,6 +669,7 @@ const config = [
       'require-yield': warn,
       'rest-spread-spacing': [warn, 'never'],
       'robinblomberg/comment-style': warn,
+      'robinblomberg/padding-lines': warn,
       'robinblomberg/prefer-arrow-functions': warn,
       'robinblomberg/sort-declarations': warn,
       'robinblomberg/sort-tests': warn,
