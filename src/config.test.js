@@ -161,6 +161,25 @@ assert.deepEqual(
   ],
 );
 
+// Placeholders and conventional one-character names are allowed, e.g. cheerio's `$`:
+assert.deepEqual(
+  await getMessages(
+    [
+      'export const values = [[1, 2]].map(([x, y]) => {',
+      '  return x + y;',
+      '});',
+      'export const select = ($: (selector: string) => unknown) => {',
+      "  return $('a');",
+      '};',
+      'export const count = (a: number) => {',
+      '  return a;',
+      '};',
+    ].join('\n'),
+    'id-length',
+  ),
+  ["Identifier name 'a' is too short (< 2)."],
+);
+
 // Sorting is case-insensitive, like the `robinblomberg` rules:
 assert.deepEqual(
   await getMessages(

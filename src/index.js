@@ -133,7 +133,7 @@ const config = [
       'id-blacklist': warn,
       'id-length': [
         warn,
-        { exceptions: ['_', 'x', 'y', 'z'], min: 2, properties: 'never' },
+        { exceptions: ['_', '$', 'x', 'y', 'z'], min: 2, properties: 'never' },
       ],
       // No trailing `_`, which e.g. `unicorn/prevent-abbreviations` adds to avoid a
       // clash, as in `index_`:
