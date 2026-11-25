@@ -128,11 +128,6 @@ const config = [
       '@eslint-community/eslint-comments/no-duplicate-disable': warn,
       '@eslint-community/eslint-comments/no-unlimited-disable': warn,
       '@eslint-community/eslint-comments/no-unused-enable': warn,
-      // Every exception says why, e.g. `// eslint-disable-next-line rule -- Reason`:
-      '@eslint-community/eslint-comments/require-description': [
-        warn,
-        { ignore: ['eslint-enable'] },
-      ],
       'accessor-pairs': warn,
       'array-bracket-newline': off,
       'array-bracket-spacing': [warn, 'never'],
@@ -799,8 +794,6 @@ const config = [
       'unicorn/no-array-method-this-argument': warn,
       'unicorn/no-array-push-push': off,
       'unicorn/no-array-reduce': warn,
-      'unicorn/no-array-reverse': warn,
-      'unicorn/no-array-sort': warn,
       'unicorn/no-await-expression-member': warn,
       'unicorn/no-console-spaces': warn,
       'unicorn/no-document-cookie': off,

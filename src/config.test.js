@@ -281,23 +281,6 @@ assert.deepEqual(
   ],
 );
 
-// Exceptions to the rules say why:
-assert.deepEqual(
-  await getMessages(
-    [
-      '// eslint-disable-next-line no-var',
-      'var a = 1;',
-      '// eslint-disable-next-line no-var -- Legacy code',
-      'var b = 2;',
-      'export { a, b };',
-    ].join('\n'),
-    '@eslint-community/eslint-comments/require-description',
-  ),
-  [
-    'Unexpected undescribed directive comment. Include descriptions to explain why the comment is necessary.',
-  ],
-);
-
 // Constants are in `SNAKE_CASE` and initialisms in capitals, unless a library's
 // own spelling differs, e.g. `Cuid2`:
 assert.deepEqual(

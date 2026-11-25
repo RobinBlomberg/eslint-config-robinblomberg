@@ -161,8 +161,7 @@ const rule = {
     };
 
     const checkLineLengths = (/** @type {any} */ comment) => {
-      // A directive, e.g. `// eslint-disable-next-line rule -- Reason`, can't wrap:
-      if (!isOwnLine(comment) || isDirective(comment)) {
+      if (!isOwnLine(comment)) {
         return;
       }
 

@@ -35,6 +35,10 @@ ruleTester.run('comment-style', commentStyle, {
       errors: [{ messageId: 'tooLong' }],
     },
     {
+      code: `// eslint-disable-next-line no-var -- ${'a'.repeat(60)}\nvar value = 1;`,
+      errors: [{ messageId: 'tooLong' }],
+    },
+    {
       code: '// --- Types ---\n\ntype A = 1;',
       errors: [{ messageId: 'sectionDivider' }],
     },
@@ -70,8 +74,9 @@ ruleTester.run('comment-style', commentStyle, {
     `/**\n * @example\n * \`\`\`ts\n * ${'a'.repeat(90)}\n * \`\`\`\n */\nconst value = 1;`,
     '/**\n * Adds one.\n */\nconst add = (value: number) => {\n  return value + 1;\n};',
     `// ${'a'.repeat(81)}:\nconst value = 1;`,
-    // A directive can't wrap, e.g. because of its reason:
-    `// @ts-expect-error - ${'a'.repeat(90)}\nconst value = 1;`,
+    // A long directive wraps as a block comment, and a reason as more lines:
+    `/* eslint-disable-next-line no-var -- ${'a'.repeat(40)}\n   ${'a'.repeat(40)} */\nvar value = 1;`,
+    `// @ts-expect-error - ${'a'.repeat(60)}\n// ${'a'.repeat(60)}\nconst value = 1;`,
     '// Calls `run()` first:\nrun();',
     '// Turns -> into an arrow:\nrun();',
     '/**\n * @example\n * ```ts\n * run();\n * ```\n */\nconst value = 1;',
