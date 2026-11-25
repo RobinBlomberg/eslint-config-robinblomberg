@@ -12,11 +12,15 @@
     "no-collection-size-mischeck",
     "nonblock-statement-body-position",
     "nonwords",
+    "quasis",
+    "reimplementations",
     "robinblomberg",
     "setstate",
     "sonarjs",
     "spinbutton",
     "textnodes",
-    "treegrid"
+    "treegrid",
+    "undescribed",
+    "unhoisted"
   ]
 }
